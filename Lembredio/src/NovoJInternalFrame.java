@@ -150,7 +150,10 @@ public class NovoJInternalFrame extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void DigitarLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DigitarLoginActionPerformed
-        // TODO add your handling code here:
+        
+
+
+// TODO add your handling code here:
     }//GEN-LAST:event_DigitarLoginActionPerformed
 
     private void EfetuarLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EfetuarLoginActionPerformed
