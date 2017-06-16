@@ -16,11 +16,13 @@ public class Lembredio {
 
     /**
      * @param args the command line arguments
+     * @throws java.io.IOException
      */
     public static void main(String[] args) throws IOException {
-         File file = new File("CADASTRADOS.txt");
-       //if(!file.exists()){
-         file.createNewFile();// TODO code application logic here
+       File file = new File("CADASTRADOS.txt");
+       if(!file.exists()){
+        file.createNewFile();// TODO code application logic here
+       }
     }
     
 }

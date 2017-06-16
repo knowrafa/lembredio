@@ -42,15 +42,41 @@ public class ValidarLogin {
        InputStreamReader isr = new InputStreamReader(is);
        BufferedReader br = new BufferedReader(isr);
        
-       for(int i=0; i <"CADASTRADOS.txt".length(); i++ ){
-       
         try {
             String linha = br.readLine();
+            int totalCadastros = Integer.parseInt(linha);
+            
+          for(int i=0; i < totalCadastros; i++ ){
+       
+            linha = br.readLine();
+            
+            if(Integer.parseInt(linha) == 0){
+                if(this.login == br.readLine()){
+                    return false;
+                }
+                for(i=0; i< 3; i++) br.readLine();
+            }
+            else if(Integer.parseInt(linha) == 1){
+                if(this.login == br.readLine()){
+                    return false;
+                }
+                for(i=0; i< 4; i++) br.readLine();
+            }else if(Integer.parseInt(linha) == 2){
+                if(this.login == br.readLine()){
+                    return false;
+                }
+                for(i=0; i< 3; i++) br.readLine();
+            
+            }
+            
+          }
+
+            
         } catch (IOException ex) {
             Logger.getLogger(ValidarLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
        
-       }
+       
        return true;
    }
    
