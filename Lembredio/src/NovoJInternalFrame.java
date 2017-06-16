@@ -38,6 +38,19 @@ public class NovoJInternalFrame extends javax.swing.JInternalFrame {
         DigitarSenha = new javax.swing.JPasswordField();
         ImagemTelaDeLogin = new javax.swing.JLabel();
 
+        setTitle("Login");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setFocusCycleRoot(false);
+        setFocusable(false);
+        setName(""); // NOI18N
+        setVerifyInputWhenFocusTarget(false);
+        setVisible(true);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentMoved(java.awt.event.ComponentEvent evt) {
+                formComponentMoved(evt);
+            }
+        });
+
         jLabel3.setText("Login");
 
         DigitarLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -147,6 +160,10 @@ public class NovoJInternalFrame extends javax.swing.JInternalFrame {
     private void DigitarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DigitarSenhaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_DigitarSenhaActionPerformed
+
+    private void formComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentMoved
+        this.setLocation(0, 0);// TODO add your handling code here:
+    }//GEN-LAST:event_formComponentMoved
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
