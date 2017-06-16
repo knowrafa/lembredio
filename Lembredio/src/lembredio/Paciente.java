@@ -9,6 +9,6 @@ package lembredio;
  *
  * @author elrafa
  */
-public class Paciente {
+public class Paciente extends Pessoa{
     
 }
