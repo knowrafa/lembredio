@@ -1,3 +1,9 @@
+
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import lembredio.ValidarLogin;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,14 +15,15 @@
  * @author elrafa
  */
 public class NovoJInternalFrame extends javax.swing.JInternalFrame {
-
+    
+    ValidarLogin vlogin = new ValidarLogin();
     /**
      * Creates new form NovoJInternalFrame
      */
     public NovoJInternalFrame() {
         initComponents();
-        
-        
+        //setVisible(true);
+        dispose();
     }
 
     /**
@@ -150,18 +157,28 @@ public class NovoJInternalFrame extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void DigitarLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DigitarLoginActionPerformed
+        this.vlogin.setLogin(evt.getActionCommand());
         
-
 
 // TODO add your handling code here:
     }//GEN-LAST:event_DigitarLoginActionPerformed
 
     private void EfetuarLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EfetuarLoginActionPerformed
-        // TODO add your handling code here:
+        
+        try {
+            if(!vlogin.verificaLogin()){
+                this.setVisible(false);
+               // NovoJInternalFrame nInternal = new NovoJInternalFrame();
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(NovoJInternalFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
     }//GEN-LAST:event_EfetuarLoginActionPerformed
 
     private void DigitarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DigitarSenhaActionPerformed
-        // TODO add your handling code here:
+        this.vlogin.setSenha(evt.getActionCommand());
+        
     }//GEN-LAST:event_DigitarSenhaActionPerformed
 
     private void formComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentMoved
