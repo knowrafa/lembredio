@@ -5,6 +5,9 @@
  */
 package lembredio;
 
+import java.io.File;
+import java.io.IOException;
+
 /**
  *
  * @author elrafa
@@ -14,8 +17,10 @@ public class Lembredio {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public static void main(String[] args) throws IOException {
+         File file = new File("CADASTRADOS.txt");
+       //if(!file.exists()){
+         file.createNewFile();// TODO code application logic here
     }
     
 }
