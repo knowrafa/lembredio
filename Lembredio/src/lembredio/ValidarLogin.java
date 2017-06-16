@@ -32,12 +32,6 @@ public class ValidarLogin {
    
    public boolean verificaLogin() throws FileNotFoundException, IOException {
        
-       File file = new File("CADASTRADOS.txt");
-      /* if(!file.exists()){
-           file.createNewFile();
-           
-       }
-       */
        InputStream is = new FileInputStream("CADASTRADOS.txt");
        InputStreamReader isr = new InputStreamReader(is);
        BufferedReader br = new BufferedReader(isr);
@@ -45,27 +39,27 @@ public class ValidarLogin {
         try {
             String linha = br.readLine();
             int totalCadastros = Integer.parseInt(linha);
-          int i=0;
+            int i=0;
           
           for(int k=0; k < totalCadastros; k++ ){
        
             linha = br.readLine();
-            
+              System.out.println(linha + "  " + this.login);
                 switch (Integer.parseInt(linha)) {
                     case 0:
-                        if(this.login == br.readLine()){
+                        if(br.readLine().equals(this.login)){
                             br.close();
                             return false;
                         }       for(i=0; i< 3; i++) br.readLine();
                         break;
                     case 1:
-                        if(this.login == br.readLine()){
+                        if(br.readLine().equals(this.login)){
                             br.close();
                             return false;
                         }       for(i=0; i< 4; i++) br.readLine();
                         break;
                     case 2:
-                        if(this.login == br.readLine()){
+                        if(br.readLine().equals(this.login)){
                             br.close();
                             return false;
                         }       for(i=0; i< 3; i++) br.readLine();

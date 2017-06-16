@@ -23,6 +23,17 @@ public class Lembredio {
        if(!file.exists()){
         file.createNewFile();// TODO code application logic here
        }
+       
+       TelaInicial tl = new TelaInicial();
+       tl.setVisible(true);
+       
+       TelaInicial tl2 = new TelaInicial();
+       tl2.setVisible(true);
+       tl2.dispose();
+       
+      
+       NovoJInternalFrame jne = new NovoJInternalFrame();
+       jne.setVisible(true);
     }
     
 }

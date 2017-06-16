@@ -1,3 +1,5 @@
+package lembredio;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,12 +10,12 @@
  *
  * @author elrafa
  */
-public class EnfermeiraInterface extends javax.swing.JInternalFrame {
+public class PacienteInterface extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form EnfermeiraInterface
+     * Creates new form PacienteInterface
      */
-    public EnfermeiraInterface() {
+    public PacienteInterface() {
         initComponents();
     }
 
@@ -26,15 +28,17 @@ public class EnfermeiraInterface extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        setPreferredSize(new java.awt.Dimension(450, 420));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 413, Short.MAX_VALUE)
+            .addGap(0, 394, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 363, Short.MAX_VALUE)
+            .addGap(0, 312, Short.MAX_VALUE)
         );
 
         pack();

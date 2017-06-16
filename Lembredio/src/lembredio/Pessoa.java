@@ -12,4 +12,6 @@ package lembredio;
 public class Pessoa {
     protected String nome;
     protected ValidarLogin loginInfo;
+    
+    
 }

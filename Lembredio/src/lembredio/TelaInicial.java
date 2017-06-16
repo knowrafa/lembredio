@@ -1,3 +1,5 @@
+package lembredio;
+
 
 import java.awt.Color;
 import javax.swing.ImageIcon;
@@ -26,6 +28,14 @@ public class TelaInicial extends javax.swing.JFrame {
         getContentPane().setBackground(Color.WHITE);
         
     }
+    
+    public TelaInicial(NovoJInternalFrame obj){
+        initComponents();
+        obj = new NovoJInternalFrame();
+        jDesktopPane3.add(obj);
+        obj.setVisible(true);
+        getContentPane().setBackground(Color.WHITE);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,11 +59,11 @@ public class TelaInicial extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)
+            .addComponent(jDesktopPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
+            .addComponent(jDesktopPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
         );
 
         pack();
