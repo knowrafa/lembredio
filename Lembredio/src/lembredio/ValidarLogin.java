@@ -30,7 +30,7 @@ public class ValidarLogin {
        this.senha = senha;
    }
    
-   public boolean verificaLogin() throws FileNotFoundException, IOException{
+   public boolean verificaLogin() throws FileNotFoundException, IOException {
        
        File file = new File("CADASTRADOS.txt");
       /* if(!file.exists()){
@@ -45,24 +45,28 @@ public class ValidarLogin {
         try {
             String linha = br.readLine();
             int totalCadastros = Integer.parseInt(linha);
-            
-          for(int i=0; i < totalCadastros; i++ ){
+          int i=0;
+          
+          for(int k=0; k < totalCadastros; k++ ){
        
             linha = br.readLine();
             
                 switch (Integer.parseInt(linha)) {
                     case 0:
                         if(this.login == br.readLine()){
+                            br.close();
                             return false;
                         }       for(i=0; i< 3; i++) br.readLine();
                         break;
                     case 1:
                         if(this.login == br.readLine()){
+                            br.close();
                             return false;
                         }       for(i=0; i< 4; i++) br.readLine();
                         break;
                     case 2:
                         if(this.login == br.readLine()){
+                            br.close();
                             return false;
                         }       for(i=0; i< 3; i++) br.readLine();
                         break;
@@ -77,7 +81,7 @@ public class ValidarLogin {
             Logger.getLogger(ValidarLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
        
-       
+       br.close();
        return true;
    }
    
