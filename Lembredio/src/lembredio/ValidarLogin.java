@@ -50,24 +50,25 @@ public class ValidarLogin {
        
             linha = br.readLine();
             
-            if(Integer.parseInt(linha) == 0){
-                if(this.login == br.readLine()){
-                    return false;
+                switch (Integer.parseInt(linha)) {
+                    case 0:
+                        if(this.login == br.readLine()){
+                            return false;
+                        }       for(i=0; i< 3; i++) br.readLine();
+                        break;
+                    case 1:
+                        if(this.login == br.readLine()){
+                            return false;
+                        }       for(i=0; i< 4; i++) br.readLine();
+                        break;
+                    case 2:
+                        if(this.login == br.readLine()){
+                            return false;
+                        }       for(i=0; i< 3; i++) br.readLine();
+                        break;
+                    default:
+                        break;
                 }
-                for(i=0; i< 3; i++) br.readLine();
-            }
-            else if(Integer.parseInt(linha) == 1){
-                if(this.login == br.readLine()){
-                    return false;
-                }
-                for(i=0; i< 4; i++) br.readLine();
-            }else if(Integer.parseInt(linha) == 2){
-                if(this.login == br.readLine()){
-                    return false;
-                }
-                for(i=0; i< 3; i++) br.readLine();
-            
-            }
             
           }
 
