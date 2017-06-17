@@ -1,6 +1,7 @@
 package lembredio;
 
 
+import java.awt.Container;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,6 +29,8 @@ public class NovoJInternalFrame extends javax.swing.JInternalFrame {
         EfetuarLogin.setEnabled(false);
         jLabel1.setVisible(false);
         dispose();
+        
+        Container parent = getParent();
     }
 
     /**
@@ -79,6 +82,11 @@ public class NovoJInternalFrame extends javax.swing.JInternalFrame {
         });
 
         EfetuarCadastro.setText("Cadastre-se!");
+        EfetuarCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EfetuarCadastroActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Não tem conta?");
 
@@ -157,12 +165,12 @@ public class NovoJInternalFrame extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(70, 70, 70)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(ImagemTelaDeLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -182,9 +190,11 @@ public class NovoJInternalFrame extends javax.swing.JInternalFrame {
     private void EfetuarLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EfetuarLoginActionPerformed
         
         try {
-            if(!vlogin.verificaLogin()){
-             jLabel1.setVisible(true);
-           }
+            if(vlogin.verificaLogin()){
+             setVisible(false);
+             //getParent().add(new CadastroInternal());
+             
+            }
         } catch (IOException ex) {
             Logger.getLogger(NovoJInternalFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -199,6 +209,12 @@ public class NovoJInternalFrame extends javax.swing.JInternalFrame {
     private void formComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentMoved
         this.setLocation(0, 0);// TODO add your handling code here:
     }//GEN-LAST:event_formComponentMoved
+
+    private void EfetuarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EfetuarCadastroActionPerformed
+        getParent().add(new CadastroInternal());   
+        
+        //getParent().removeAll();       // TODO add your handling code here:
+    }//GEN-LAST:event_EfetuarCadastroActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

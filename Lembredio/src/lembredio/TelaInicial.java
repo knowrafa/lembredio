@@ -2,7 +2,9 @@ package lembredio;
 
 
 import java.awt.Color;
+import java.awt.Component;
 import javax.swing.ImageIcon;
+import javax.swing.JInternalFrame;
 
 
 /*
@@ -16,13 +18,13 @@ import javax.swing.ImageIcon;
  * @author elrafa
  */
 public class TelaInicial extends javax.swing.JFrame {
-
+    NovoJInternalFrame obj = new NovoJInternalFrame();
+        
     /**
      * Creates new form TelaInicial
      */
     public TelaInicial() {
         initComponents();
-        NovoJInternalFrame obj = new NovoJInternalFrame();
         jDesktopPane3.add(obj);
         obj.setVisible(true);
         getContentPane().setBackground(Color.WHITE);
@@ -31,12 +33,21 @@ public class TelaInicial extends javax.swing.JFrame {
     
     public TelaInicial(NovoJInternalFrame obj){
         initComponents();
-        obj = new NovoJInternalFrame();
-        jDesktopPane3.add(obj);
-        obj.setVisible(true);
+        this.obj = obj;
+        jDesktopPane3.add(this.obj);
+        jDesktopPane3.setVisible(true);
+        this.obj.setVisible(true);
         getContentPane().setBackground(Color.WHITE);
     }
-
+    
+    public void addFrame(JInternalFrame JIFrame){
+       // jDesktopPane3.remove(this.obj);
+        //jDesktopPane3.setVisible(false);
+    }
+    public Component returnComponent(){
+        return jDesktopPane3.getComponentAt(getSize().height/2, getSize().width/2);
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,8 +57,6 @@ public class TelaInicial extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
-        jDesktopPane2 = new javax.swing.JDesktopPane();
         jDesktopPane3 = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -105,8 +114,6 @@ public class TelaInicial extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JDesktopPane jDesktopPane2;
     private javax.swing.JDesktopPane jDesktopPane3;
     // End of variables declaration//GEN-END:variables
 }

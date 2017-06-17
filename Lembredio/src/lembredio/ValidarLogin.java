@@ -47,6 +47,56 @@ public class ValidarLogin {
               System.out.println(linha + "  " + this.login);
                 switch (Integer.parseInt(linha)) {
                     case 0:
+                        if(br.readLine().equals(this.login) && br.readLine().equals(this.senha)){
+                            
+                            br.close();
+                            return true;
+                        }       for(i=0; i< 2; i++) br.readLine();
+                        break;
+                    case 1:
+                        if(br.readLine().equals(this.login) && br.readLine().equals(this.senha)){
+                            br.close();
+                            return true;
+                        }       for(i=0; i< 3; i++) br.readLine();
+                        break;
+                    case 2:
+                        if(br.readLine().equals(this.login) && br.readLine().equals(this.senha)){
+                            br.close();
+                            return true;
+                        }       for(i=0; i< 2; i++) br.readLine();
+                        break;
+                    default:
+                        break;
+                }
+            
+          }
+
+            
+        } catch (IOException ex) {
+            Logger.getLogger(ValidarLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+       br.close();
+       return false;
+   }
+   
+   public boolean verificaCadastro() throws FileNotFoundException, IOException {
+       
+       InputStream is = new FileInputStream("CADASTRADOS.txt");
+       InputStreamReader isr = new InputStreamReader(is);
+       BufferedReader br = new BufferedReader(isr);
+       
+        try {
+            String linha = br.readLine();
+            int totalCadastros = Integer.parseInt(linha);
+            int i=0;
+          
+          for(int k=0; k < totalCadastros; k++ ){
+       
+            linha = br.readLine();
+              System.out.println(linha + "  " + this.login);
+                switch (Integer.parseInt(linha)) {
+                    case 0:
                         if(br.readLine().equals(this.login)){
                             br.close();
                             return false;
