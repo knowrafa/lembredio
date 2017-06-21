@@ -10,5 +10,12 @@ package lembredio;
  * @author elrafa
  */
 public class Médico {
+    private int CRM;
+    public void setCRM(int CRM){
+        this.CRM = CRM;
+    }
     
+    public int getCRM(){
+        return this.CRM;
+    }
 }

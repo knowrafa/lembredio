@@ -28,7 +28,7 @@ public class NovoJInternalFrame extends javax.swing.JInternalFrame {
         //setVisible(true);
         EfetuarLogin.setEnabled(false);
         jLabel1.setVisible(false);
-        dispose();
+        
         
         Container parent = getParent();
     }
@@ -192,7 +192,7 @@ public class NovoJInternalFrame extends javax.swing.JInternalFrame {
         try {
             if(vlogin.verificaLogin()){
              setVisible(false);
-             //getParent().add(new CadastroInternal());
+            // getParent().add(new CadastroInternal());
              
             }
         } catch (IOException ex) {
@@ -211,7 +211,8 @@ public class NovoJInternalFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formComponentMoved
 
     private void EfetuarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EfetuarCadastroActionPerformed
-        getParent().add(new CadastroInternal());   
+        setVisible(false);
+        getParent().add(new CadastroInternal()); 
         
         //getParent().removeAll();       // TODO add your handling code here:
     }//GEN-LAST:event_EfetuarCadastroActionPerformed
