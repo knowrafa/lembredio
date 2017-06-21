@@ -47,7 +47,6 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
                       
         FileWriter outputfile = new FileWriter("CADASTRADOS2.txt");
         PrintWriter out = new PrintWriter(outputfile);
-        out.print("PAU NO SEU CU");
         out.flush();
         out.close();
         }else{

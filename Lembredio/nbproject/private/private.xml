@@ -3,11 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/home/elrafa/NetBeansProjects/lembredio/Lembredio/src/lembredio/Posologia.java</file>
+            <file>file:/home/elrafa/NetBeansProjects/lembredio/Lembredio/src/lembredio/Paciente.java</file>
+            <file>file:/home/elrafa/NetBeansProjects/lembredio/Lembredio/src/lembredio/Médico.java</file>
+            <file>file:/home/elrafa/NetBeansProjects/lembredio/Lembredio/src/lembredio/Pessoa.java</file>
             <file>file:/home/elrafa/NetBeansProjects/lembredio/Lembredio/src/lembredio/CadastroInternal.java</file>
             <file>file:/home/elrafa/NetBeansProjects/lembredio/Lembredio/src/lembredio/Lembredio.java</file>
             <file>file:/home/elrafa/NetBeansProjects/lembredio/Lembredio/src/lembredio/Enfermeira.java</file>
             <file>file:/home/elrafa/NetBeansProjects/lembredio/Lembredio/src/lembredio/ValidarLogin.java</file>
             <file>file:/home/elrafa/NetBeansProjects/lembredio/Lembredio/src/lembredio/TelaInicial.java</file>
+            <file>file:/home/elrafa/NetBeansProjects/lembredio/Lembredio/src/lembredio/PacienteInterface.java</file>
             <file>file:/home/elrafa/NetBeansProjects/lembredio/Lembredio/src/lembredio/NovoJInternalFrame.java</file>
         </group>
     </open-files>
