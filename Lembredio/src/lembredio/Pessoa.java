@@ -14,4 +14,9 @@ public class Pessoa {
     protected ValidarLogin loginInfo;
     protected String email;
     
+    
+    public boolean verificaEmail(){
+        
+        return true;
+    }
 }
