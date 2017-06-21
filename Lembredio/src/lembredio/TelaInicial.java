@@ -18,7 +18,7 @@ import javax.swing.JInternalFrame;
  * @author elrafa
  */
 public class TelaInicial extends javax.swing.JFrame {
-    NovoJInternalFrame obj = new NovoJInternalFrame();
+    LoginInterface obj = new LoginInterface();
         
     /**
      * Creates new form TelaInicial
@@ -31,7 +31,7 @@ public class TelaInicial extends javax.swing.JFrame {
         
     }
     
-    public TelaInicial(NovoJInternalFrame obj){
+    public TelaInicial(LoginInterface obj){
         initComponents();
         this.obj = obj;
         jDesktopPane3.add(this.obj);

@@ -17,13 +17,13 @@ import lembredio.ValidarLogin;
  *
  * @author elrafa
  */
-public class NovoJInternalFrame extends javax.swing.JInternalFrame {
+public class LoginInterface extends javax.swing.JInternalFrame {
     
     ValidarLogin vlogin = new ValidarLogin();
     /**
      * Creates new form NovoJInternalFrame
      */
-    public NovoJInternalFrame() {
+    public LoginInterface() {
         initComponents();
         //setVisible(true);
         EfetuarLogin.setEnabled(false);
@@ -196,7 +196,7 @@ public class NovoJInternalFrame extends javax.swing.JInternalFrame {
              
             }
         } catch (IOException ex) {
-            Logger.getLogger(NovoJInternalFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoginInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
             
     }//GEN-LAST:event_EfetuarLoginActionPerformed

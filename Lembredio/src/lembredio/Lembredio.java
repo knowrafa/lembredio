@@ -8,6 +8,7 @@ package lembredio;
 import java.io.File;
 import java.io.IOException;
 import static java.lang.Thread.sleep;
+import static java.lang.Thread.sleep;
 
 /**
  *
@@ -25,7 +26,7 @@ public class Lembredio {
         file.createNewFile();// TODO code application logic here
        }
        
-       NovoJInternalFrame inFrame = new NovoJInternalFrame();
+       LoginInterface inFrame = new LoginInterface();
        CadastroInternal inCadas = new CadastroInternal();
        TelaInicial tl = new TelaInicial(inFrame);
        tl.setVisible(true);
