@@ -32,12 +32,13 @@ public class Lembredio {
        tl.setVisible(true);
 
        inFrame.setVisible(true);
+       
        //sleep(5000);
      
        //inFrame.setTitle("VAI SE FUDER");
        //inFrame.repaint();
        //tl.addFrame(inFrame);
-      // tl.repaint();
+       // tl.repaint();
     }
     
 }

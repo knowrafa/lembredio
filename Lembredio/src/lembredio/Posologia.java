@@ -62,7 +62,7 @@ public class Posologia {
     }
     
     public int dosesTotaisDoTratamento (int duracaoTotal, int intervaloHoras) {
-        //int total = (duracaoTotal * 24) / intervaloHoras;
+        int total = (duracaoTotal * 24) / intervaloHoras;
         
         return total;
     }

@@ -45,7 +45,7 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
     public void cadastroInfo() throws IOException{
         if(vlogin.verificaCadastro() && plogin.verificaEmail()){
                       
-        FileWriter outputfile = new FileWriter("CADASTRADOS2.txt");
+        FileWriter outputfile = new FileWriter("CADASTRADOS.txt");
         PrintWriter out = new PrintWriter(outputfile);
         out.flush();
         out.close();
@@ -265,9 +265,9 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
         try {
             if(vlogin.verificaCadastro() && plogin.verificaEmail() && type != -1){
                //Copia o primeiro arquivo pro segundo alterando a quantidade de cadastros ( primeira linha)
-               swapFile("CADASTRADOS2.txt", "CADASTRADOS3.txt", true); 
+               swapFile("CADASTRADOS.txt", "CADASTRADOS2.txt", true); 
                //Copia o segundo arquivo, após ter sido alterado para o primeiro.
-               swapFile("CADASTRADOS3.txt", "CADASTRADOS2.txt", false);
+               swapFile("CADASTRADOS2.txt", "CADASTRADOS.txt", false);
                
             } // TODO add your handling code here:
         } catch (IOException ex) {

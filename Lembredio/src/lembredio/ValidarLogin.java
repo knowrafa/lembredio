@@ -82,7 +82,7 @@ public class ValidarLogin {
    
    public boolean verificaCadastro() throws FileNotFoundException, IOException {
        
-       InputStream is = new FileInputStream("CADASTRADOS2.txt");
+       InputStream is = new FileInputStream("CADASTRADOS.txt");
        InputStreamReader isr = new InputStreamReader(is);
        BufferedReader br = new BufferedReader(isr);
        
