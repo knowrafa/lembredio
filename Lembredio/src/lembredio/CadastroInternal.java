@@ -97,11 +97,6 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
 
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setText("Médico");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
-            }
-        });
 
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("Enfermeiro(a)");
@@ -111,43 +106,13 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Digite o login desejado:");
 
-        loginDesejado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginDesejadoActionPerformed(evt);
-            }
-        });
-
         jLabel3.setText("Digite a senha:");
-
-        SENHA.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SENHAActionPerformed(evt);
-            }
-        });
 
         jLabel4.setText("Digite seu CRM");
 
-        CRM.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CRMActionPerformed(evt);
-            }
-        });
-
         jLabel5.setText("Digite seu nome");
 
-        nomePessoa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nomePessoaActionPerformed(evt);
-            }
-        });
-
         jLabel7.setText("Digite seu e-mail");
-
-        email.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -231,43 +196,20 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nomePessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomePessoaActionPerformed
-        plogin.nome = evt.getActionCommand();
-        
-       // TODO add your handling code here:
-    }//GEN-LAST:event_nomePessoaActionPerformed
-
-    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
-        plogin.email = evt.getActionCommand();
-// TODO add your handling code here:
-    }//GEN-LAST:event_emailActionPerformed
-
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
-
-    private void loginDesejadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginDesejadoActionPerformed
-        vlogin.login = evt.getActionCommand();
-        // TODO add your handling code here:
-    }//GEN-LAST:event_loginDesejadoActionPerformed
-
-    private void SENHAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SENHAActionPerformed
-        vlogin.senha = evt.getActionCommand();
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SENHAActionPerformed
-
-    private void CRMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CRMActionPerformed
-       medico.setCRM(Integer.parseInt(evt.getActionCommand()));
-// TODO add your handling code here:
-    }//GEN-LAST:event_CRMActionPerformed
-
     private void EfetuarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EfetuarCadastroActionPerformed
         try {
+            
+                plogin.nome = nomePessoa.getText();
+                plogin.email = email.getText();
+                vlogin.senha = SENHA.getText();
+                vlogin.login = loginDesejado.getText();
+                if(type == 1) medico.setCRM(Integer.parseInt(CRM.getText()));
+                
+            
             if(vlogin.verificaCadastro() && plogin.verificaEmail() && type != -1){
-               //Copia o primeiro arquivo pro segundo alterando a quantidade de cadastros ( primeira linha)
-               swapFile("CADASTRADOS.txt"); 
-               //Copia o segundo arquivo, após ter sido alterado para o primeiro.
-               //swapFile("CADASTRADOS2.txt", "CADASTRADOS.txt", false);
+                
+                swapFile("CADASTRADOS.txt"); 
+
                
             } // TODO add your handling code here:
         } catch (IOException ex) {
