@@ -31,6 +31,7 @@ public class LoginInterface extends javax.swing.JInternalFrame {
         
         
         Container parent = getParent();
+
     }
 
     /**
@@ -192,7 +193,9 @@ public class LoginInterface extends javax.swing.JInternalFrame {
         try {
             if(vlogin.verificaLogin()){
              setVisible(false);
-            // getParent().add(new CadastroInternal());
+             getParent().add(new MedicoInterface(vlogin.getLogin()));
+            
+// getParent().add(new CadastroInternal());
              
             }
         } catch (IOException ex) {

@@ -27,13 +27,12 @@ import javax.swing.JOptionPane;
 public class CadastroInternal extends javax.swing.JInternalFrame {
     ValidarLogin vlogin = new ValidarLogin();
     Pessoa plogin = new Pessoa();
-    int type;
     Médico medico = new Médico();
     /**
      * Creates new form CadastroInternal
      */
     public CadastroInternal() {
-        this.type = -1;
+        this.vlogin.type = -1;
         initComponents();
         setVisible(true);
         RadioButtonHandler handler = new RadioButtonHandler();
@@ -204,17 +203,17 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
                 plogin.email = email.getText();
                 vlogin.senha = SENHA.getText();
                 vlogin.login = loginDesejado.getText();
-                if(type == 1) medico.setCRM(Integer.parseInt(CRM.getText()));
+                if(vlogin.type == 1) medico.setCRM(Integer.parseInt(CRM.getText()));
                 
             
-            if(vlogin.verificaCadastro() && plogin.verificaEmail() && type != -1){
+            if(vlogin.verificaCadastro() && plogin.verificaEmail() && vlogin.type != -1){
                 
                swapFile("CADASTRADOS.txt"); 
                this.nomePessoa.setText("");
                this.email.setText("");
                this.loginDesejado.setText("");
                this.SENHA.setText("");
-               if(type == 1) this.CRM.setText("");
+               if(vlogin.type == 1) this.CRM.setText("");
                
              JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso");
                
@@ -233,17 +232,17 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
         if(evt.getSource()== jRadioButton3){
             jLabel4.setVisible(false);
             CRM.setVisible(false);
-            type = 0;
+            vlogin.type = 0;
             
         }else if(evt.getSource()== jRadioButton1){
             jLabel4.setVisible(true);
             CRM.setVisible(true);
-            type = 1;
+            vlogin.type = 1;
         }
         else if(evt.getSource()== jRadioButton2){
             jLabel4.setVisible(false);
             CRM.setVisible(false);
-            type = 2;
+            vlogin.type = 2;
         }
         
         
@@ -255,12 +254,12 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
                 FileWriter outputfile = new FileWriter(file1, true);
                 PrintWriter out = new PrintWriter(outputfile);
 
-                    out.println(type);
+                    out.println(vlogin.type);
                     out.println(vlogin.login);
                     out.println(vlogin.senha);
                     out.println(plogin.nome);
                     out.println(plogin.email);
-                    if(type==1) out.println(medico.getCRM());
+                    if(vlogin.type==1) out.println(medico.getCRM());
                     
 
               out.close();

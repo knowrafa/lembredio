@@ -17,6 +17,11 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
      */
     public MedicoInterface() {
         initComponents();
+        setVisible(true);
+    }
+    public MedicoInterface(String nome){
+        initComponents();
+        setVisible(true);
     }
 
     /**

@@ -22,6 +22,7 @@ import java.util.logging.Logger;
 public class ValidarLogin {
     String login;
     String senha;
+    int type;
     
    public void setLogin(String login){
        this.login = login;
