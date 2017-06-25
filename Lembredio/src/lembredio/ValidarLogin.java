@@ -23,6 +23,7 @@ public class ValidarLogin {
     String login;
     String senha;
     int type;
+    Pessoa pessoa = new Pessoa();
     
    public void setLogin(String login){
        this.login = login;
@@ -57,7 +58,9 @@ public class ValidarLogin {
                     case 1:
                         if(br.readLine().equals(this.login) && br.readLine().equals(this.senha)){
                            this.type = Integer.parseInt(linha);
+                           pessoa.nome = br.readLine();
                            System.out.println(this.type);
+                           
                            br.close();
                             return true;
                         }       for(i=0; i< 3; i++) br.readLine();

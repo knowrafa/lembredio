@@ -196,10 +196,18 @@ public class LoginInterface extends javax.swing.JInternalFrame {
             if(vlogin.verificaLogin()){
              setVisible(false);
              
-           
-             getParent().add(new MedicoInterface(vlogin.getLogin()));
-            
-// getParent().add(new CadastroInternal());
+                switch (vlogin.type) {
+                    case 0:
+                        //getParent().add(new PacienteInterface(vlogin.getLogin()));
+                        break;
+                       
+                    case 1:
+                        getParent().add(new MedicoInterface(vlogin.getLogin()));
+                        break;
+                    default:
+                        //getParent().add(new EnfermeiraInterface(vlogin.getLogin()));
+                        break;
+                }
              
             }
         } catch (IOException ex) {
