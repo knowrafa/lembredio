@@ -208,8 +208,12 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
             
             if(vlogin.verificaCadastro() && plogin.verificaEmail() && type != -1){
                 
-                swapFile("CADASTRADOS.txt"); 
-
+               swapFile("CADASTRADOS.txt"); 
+               this.nomePessoa.setText("");
+               this.email.setText("");
+               this.loginDesejado.setText("");
+               this.SENHA.setText("");
+               if(type == 1) this.CRM.setText("");
                
             } // TODO add your handling code here:
         } catch (IOException ex) {
