@@ -1,5 +1,9 @@
 package lembredio;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,13 +19,14 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
     /**
      * Creates new form PacienteInterface
      */
-    public PacienteInterface() {
+    public PacienteInterface() throws IOException {
         
         initComponents();
-        
+      
     }
      public PacienteInterface(String nome){
         initComponents();
+        String n = nome;
         jLabel2NP.setText(nome);
         setVisible(true);
         
@@ -57,13 +62,17 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         jCheckBox7 = new javax.swing.JCheckBox();
         jCheckBox8 = new javax.swing.JCheckBox();
         horario = new javax.swing.JFormattedTextField();
-        jButton1 = new javax.swing.JButton();
+        BotaoSalvar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
         jPanel4 = new javax.swing.JPanel();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
         setPreferredSize(new java.awt.Dimension(450, 420));
 
         jLabel1.setText("Paciente :");
@@ -161,7 +170,12 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton1.setText("Salvar");
+        BotaoSalvar.setText("Salvar");
+        BotaoSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotaoSalvarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -203,7 +217,7 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
                 .addContainerGap(9, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(BotaoSalvar)
                 .addGap(31, 31, 31))
         );
         jPanel2Layout.setVerticalGroup(
@@ -232,7 +246,7 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
                     .addComponent(jCheckBox5)
                     .addComponent(jCheckBox4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(BotaoSalvar)
                 .addGap(27, 27, 27))
         );
 
@@ -328,10 +342,21 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox5ActionPerformed
 
+    private void BotaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoSalvarActionPerformed
+        
+        try {
+            RemediosPaciente RP = new RemediosPaciente("Teste", jTextField1.getText());
+        } catch (IOException ex) {
+            Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+        
+    }//GEN-LAST:event_BotaoSalvarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotaoSalvar;
     private javax.swing.JFormattedTextField horario;
-    private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
