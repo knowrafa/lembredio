@@ -18,6 +18,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -215,7 +216,11 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
                this.SENHA.setText("");
                if(type == 1) this.CRM.setText("");
                
-            } // TODO add your handling code here:
+             JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso");
+               
+            }else{
+                JOptionPane.showMessageDialog(null, "Preencha todos os dados");
+                    }// TODO add your handling code here:
         } catch (IOException ex) {
             Logger.getLogger(CadastroInternal.class.getName()).log(Level.SEVERE, null, ex);
         }
