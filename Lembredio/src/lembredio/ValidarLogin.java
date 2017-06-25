@@ -48,19 +48,24 @@ public class ValidarLogin {
                 switch (Integer.parseInt(linha)) {
                     case 0:
                         if(br.readLine().equals(this.login) && br.readLine().equals(this.senha)){
-                            
+                            this.type = Integer.parseInt(linha);
+                            System.out.println(this.type);
                             br.close();
                             return true;
                         }       for(i=0; i< 2; i++) br.readLine();
                         break;
                     case 1:
                         if(br.readLine().equals(this.login) && br.readLine().equals(this.senha)){
-                            br.close();
+                           this.type = Integer.parseInt(linha);
+                           System.out.println(this.type);
+                           br.close();
                             return true;
                         }       for(i=0; i< 3; i++) br.readLine();
                         break;
                     case 2:
                         if(br.readLine().equals(this.login) && br.readLine().equals(this.senha)){
+                            this.type = Integer.parseInt(linha);
+                            System.out.println(this.type);
                             br.close();
                             return true;
                         }       for(i=0; i< 2; i++) br.readLine();
