@@ -48,26 +48,33 @@ public class ValidarLogin {
               System.out.println(linha + "  " + this.login);
                 switch (Integer.parseInt(linha)) {
                     case 0:
-                        if(br.readLine().equals(this.login) && br.readLine().equals(this.senha)){
+                        if(br.readLine().equals(this.login) & br.readLine().equals(this.senha)){
                             this.type = Integer.parseInt(linha);
+                            
                             System.out.println(this.type);
+                            
                             pessoa.nome = br.readLine();
+                            
                             br.close();
+                            
                             return true;
                         }       for(i=0; i< 2; i++) br.readLine();
                         break;
                     case 1:
-                        if(br.readLine().equals(this.login) && br.readLine().equals(this.senha)){
+                        if(br.readLine().equals(this.login) & br.readLine().equals(this.senha)){
                            this.type = Integer.parseInt(linha);
+                           pessoa.nome = br.readLine();
                            System.out.println(this.type);
+                           
                            br.close();
                             return true;
                         }       for(i=0; i< 3; i++) br.readLine();
                         break;
                     case 2:
-                        if(br.readLine().equals(this.login) && br.readLine().equals(this.senha)){
+                        if(br.readLine().equals(this.login) & br.readLine().equals(this.senha)){
                             this.type = Integer.parseInt(linha);
                             System.out.println(this.type);
+                            pessoa.nome = br.readLine();
                             br.close();
                             return true;
                         }       for(i=0; i< 2; i++) br.readLine();

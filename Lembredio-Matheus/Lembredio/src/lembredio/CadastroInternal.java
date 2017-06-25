@@ -216,7 +216,8 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
                if(vlogin.type == 1) this.CRM.setText("");
                
              JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso");
-               
+             setVisible(false);
+             getParent().add(new LoginInterface());
             }else{
                 JOptionPane.showMessageDialog(null, "Preencha todos os dados");
                     }// TODO add your handling code here:

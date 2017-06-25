@@ -53,6 +53,10 @@ public class LoginInterface extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         ImagemTelaDeLogin = new javax.swing.JLabel();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
         setTitle("Login");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setFocusCycleRoot(false);
@@ -194,17 +198,27 @@ public class LoginInterface extends javax.swing.JInternalFrame {
             vlogin.senha = DigitarSenha.getText();
             
             if(vlogin.verificaLogin()){
-             setVisible(false); 
-             getParent().add(new MedicoInterface(vlogin.getLogin()));
-             if(vlogin.type == 1){
-                 getParent().add(new LoginInterface());
-                 
-                 
-             }
+             setVisible(false);
+             
+                switch (vlogin.type) {
+                    case 0:
+                        getParent().add(new PacienteInterface(vlogin.getLogin()));
+                        
+                        break;
+                       
+                    case 1:
+                        getParent().add(new MedicoInterface(vlogin.getLogin()));
+                        break;
+                    default:
+                        //getParent().add(new EnfermeiraInterface(vlogin.getLogin()));
+                        break;
+                }
+             
             }
         } catch (IOException ex) {
             Logger.getLogger(LoginInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
+            
     }//GEN-LAST:event_EfetuarLoginActionPerformed
 
     private void DigitarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DigitarSenhaActionPerformed

@@ -4,6 +4,7 @@ package lembredio;
 import java.awt.Color;
 import java.awt.Component;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 
 
@@ -19,16 +20,20 @@ import javax.swing.JInternalFrame;
  */
 public class TelaInicial extends javax.swing.JFrame {
     LoginInterface obj = new LoginInterface();
+    
         
     /**
      * Creates new form TelaInicial
      */
+    
+    
     public TelaInicial() {
         initComponents();
         jDesktopPane3.add(obj);
         obj.setVisible(true);
         getContentPane().setBackground(Color.WHITE);
-        
+       //obj.setLocation(jDesktopPane3.getSize().width/2 - obj.getSize().width/2,jDesktopPane3.getSize().height/2 - obj.getSize().height/2);
+
     }
     
     public TelaInicial(LoginInterface obj){
@@ -38,11 +43,13 @@ public class TelaInicial extends javax.swing.JFrame {
         jDesktopPane3.setVisible(true);
         this.obj.setVisible(true);
         getContentPane().setBackground(Color.WHITE);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
     
     public void addFrame(JInternalFrame JIFrame){
        // jDesktopPane3.remove(this.obj);
         //jDesktopPane3.setVisible(false);
+        
     }
     public Component returnComponent(){
         return jDesktopPane3.getComponentAt(getSize().height/2, getSize().width/2);
