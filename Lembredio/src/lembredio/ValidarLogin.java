@@ -51,6 +51,7 @@ public class ValidarLogin {
                         if(br.readLine().equals(this.login) && br.readLine().equals(this.senha)){
                             this.type = Integer.parseInt(linha);
                             System.out.println(this.type);
+                            pessoa.nome = br.readLine();
                             br.close();
                             return true;
                         }       for(i=0; i< 2; i++) br.readLine();
@@ -69,6 +70,7 @@ public class ValidarLogin {
                         if(br.readLine().equals(this.login) && br.readLine().equals(this.senha)){
                             this.type = Integer.parseInt(linha);
                             System.out.println(this.type);
+                            pessoa.nome = br.readLine();
                             br.close();
                             return true;
                         }       for(i=0; i< 2; i++) br.readLine();
