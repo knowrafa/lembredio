@@ -265,9 +265,9 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
         try {
             if(vlogin.verificaCadastro() && plogin.verificaEmail() && type != -1){
                //Copia o primeiro arquivo pro segundo alterando a quantidade de cadastros ( primeira linha)
-               swapFile("CADASTRADOS.txt", "CADASTRADOS2.txt", true); 
+               swapFile("CADASTRADOS.txt"); 
                //Copia o segundo arquivo, após ter sido alterado para o primeiro.
-               swapFile("CADASTRADOS2.txt", "CADASTRADOS.txt", false);
+               //swapFile("CADASTRADOS2.txt", "CADASTRADOS.txt", false);
                
             } // TODO add your handling code here:
         } catch (IOException ex) {
@@ -292,39 +292,18 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
         else if(evt.getSource()== jRadioButton2){
             jLabel4.setVisible(false);
             CRM.setVisible(false);
-            type = 3;
+            type = 2;
         }
         
         
         }
     }
     
-    public void swapFile(String file1, String file2, boolean t) throws FileNotFoundException, IOException{
-                boolean endOfFile = true;
+    public void swapFile(String file1) throws FileNotFoundException, IOException{
                 
-                InputStream is = new FileInputStream(file1);
-                InputStreamReader isr = new InputStreamReader(is);
-                BufferedReader br = new BufferedReader(isr);
-                
-                FileWriter outputfile = new FileWriter(file2);
+                FileWriter outputfile = new FileWriter(file1, true);
                 PrintWriter out = new PrintWriter(outputfile);
-               
-                if(t){
-                int a = Integer.parseInt(br.readLine()) + 1;
-                out.println(a);
-               }
 
-               do{ 
-                    String b = br.readLine();    
-                    if(b == null){
-                        endOfFile = false;
-                        continue;
-                    }
-                    out.println(b);
-                    out.flush();
-                }while(endOfFile);
-               
-               if(t){
                     out.println(type);
                     out.println(vlogin.login);
                     out.println(vlogin.senha);
@@ -332,10 +311,7 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
                     out.println(plogin.email);
                     if(type==1) out.println(medico.getCRM());
                     
-               }else{
-                   File file = new File(file1);
-                   file.delete();
-               }
+
               out.close();
     }
 

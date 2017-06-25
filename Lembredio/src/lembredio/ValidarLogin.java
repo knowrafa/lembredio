@@ -37,13 +37,12 @@ public class ValidarLogin {
        BufferedReader br = new BufferedReader(isr);
        
         try {
-            String linha = br.readLine();
-            int totalCadastros = Integer.parseInt(linha);
+            String linha;
             int i=0;
           
-          for(int k=0; k < totalCadastros; k++ ){
-       
+          do{
             linha = br.readLine();
+            if(linha == null) break;
               System.out.println(linha + "  " + this.login);
                 switch (Integer.parseInt(linha)) {
                     case 0:
@@ -69,7 +68,7 @@ public class ValidarLogin {
                         break;
                 }
             
-          }
+          }while(true);
 
             
         } catch (IOException ex) {
@@ -87,14 +86,17 @@ public class ValidarLogin {
        BufferedReader br = new BufferedReader(isr);
        
         try {
-            String linha = br.readLine();
-            int totalCadastros = Integer.parseInt(linha);
-            int i=0;
-          
-          for(int k=0; k < totalCadastros; k++ ){
-       
-            linha = br.readLine();
-              System.out.println(linha + "  " + this.login);
+            String linha;
+            int i =0;
+          do{
+            
+              linha = br.readLine();
+              
+              System.out.println(linha + " - " + this.login);
+              
+              if(linha == null) break;
+              
+             
                 switch (Integer.parseInt(linha)) {
                     case 0:
                         if(br.readLine().equals(this.login)){
@@ -118,7 +120,7 @@ public class ValidarLogin {
                         break;
                 }
             
-          }
+          }while(linha != null);
 
             
         } catch (IOException ex) {
