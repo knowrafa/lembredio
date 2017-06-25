@@ -25,12 +25,12 @@ public class LoginInterface extends javax.swing.JInternalFrame {
      */
     public LoginInterface() {
         initComponents();
-        //setVisible(true);
-        EfetuarLogin.setEnabled(false);
+        setVisible(true);
         jLabel1.setVisible(false);
         
         
         Container parent = getParent();
+
     }
 
     /**
@@ -190,20 +190,25 @@ public class LoginInterface extends javax.swing.JInternalFrame {
     private void EfetuarLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EfetuarLoginActionPerformed
         
         try {
+            vlogin.login = DigitarLogin.getText();
+            vlogin.senha = DigitarSenha.getText();
+            
             if(vlogin.verificaLogin()){
-             setVisible(false);
-            // getParent().add(new CadastroInternal());
-             
+             setVisible(false); 
+             getParent().add(new MedicoInterface(vlogin.getLogin()));
+             if(vlogin.type == 1){
+                 getParent().add(new LoginInterface());
+                 
+                 
+             }
             }
         } catch (IOException ex) {
             Logger.getLogger(LoginInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
     }//GEN-LAST:event_EfetuarLoginActionPerformed
 
     private void DigitarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DigitarSenhaActionPerformed
-        this.vlogin.setSenha(evt.getActionCommand());
-        EfetuarLogin.setEnabled(true);
+
     }//GEN-LAST:event_DigitarSenhaActionPerformed
 
     private void formComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentMoved
@@ -212,6 +217,7 @@ public class LoginInterface extends javax.swing.JInternalFrame {
 
     private void EfetuarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EfetuarCadastroActionPerformed
         setVisible(false);
+        
         getParent().add(new CadastroInternal()); 
         
         //getParent().removeAll();       // TODO add your handling code here:

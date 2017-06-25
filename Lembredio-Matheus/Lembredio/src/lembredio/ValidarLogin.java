@@ -22,6 +22,8 @@ import java.util.logging.Logger;
 public class ValidarLogin {
     String login;
     String senha;
+    int type;
+    Pessoa pessoa = new Pessoa();
     
    public void setLogin(String login){
        this.login = login;
@@ -47,19 +49,25 @@ public class ValidarLogin {
                 switch (Integer.parseInt(linha)) {
                     case 0:
                         if(br.readLine().equals(this.login) && br.readLine().equals(this.senha)){
-                            
+                            this.type = Integer.parseInt(linha);
+                            System.out.println(this.type);
+                            pessoa.nome = br.readLine();
                             br.close();
                             return true;
                         }       for(i=0; i< 2; i++) br.readLine();
                         break;
                     case 1:
                         if(br.readLine().equals(this.login) && br.readLine().equals(this.senha)){
-                            br.close();
+                           this.type = Integer.parseInt(linha);
+                           System.out.println(this.type);
+                           br.close();
                             return true;
                         }       for(i=0; i< 3; i++) br.readLine();
                         break;
                     case 2:
                         if(br.readLine().equals(this.login) && br.readLine().equals(this.senha)){
+                            this.type = Integer.parseInt(linha);
+                            System.out.println(this.type);
                             br.close();
                             return true;
                         }       for(i=0; i< 2; i++) br.readLine();

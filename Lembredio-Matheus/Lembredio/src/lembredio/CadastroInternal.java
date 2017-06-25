@@ -18,7 +18,6 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,14 +27,12 @@ import javax.swing.JOptionPane;
 public class CadastroInternal extends javax.swing.JInternalFrame {
     ValidarLogin vlogin = new ValidarLogin();
     Pessoa plogin = new Pessoa();
-    int type;
     Médico medico = new Médico();
-    
     /**
      * Creates new form CadastroInternal
      */
     public CadastroInternal() {
-        this.type = -1;
+        this.vlogin.type = -1;
         initComponents();
         setVisible(true);
         RadioButtonHandler handler = new RadioButtonHandler();
@@ -44,7 +41,6 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
         jRadioButton2.addItemListener(handler);
         jLabel4.setVisible(false);
         CRM.setVisible(false);
-        jLabel8.setText("eae");
     }
     public void cadastroInfo() throws IOException{
         if(vlogin.verificaCadastro() && plogin.verificaEmail()){
@@ -84,7 +80,6 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
         nomePessoa = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         email = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
 
@@ -119,8 +114,6 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
 
         jLabel7.setText("Digite seu e-mail");
 
-        jLabel8.setText("jLabel8");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -151,9 +144,7 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jRadioButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioButton2)
-                        .addGap(66, 66, 66)
-                        .addComponent(jLabel8))
+                        .addComponent(jRadioButton2))
                     .addComponent(jLabel6)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
@@ -162,7 +153,7 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
                             .addComponent(nomePessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7)
                             .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,8 +164,7 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton3)
                     .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jLabel8))
+                    .addComponent(jRadioButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -213,17 +203,17 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
                 plogin.email = email.getText();
                 vlogin.senha = SENHA.getText();
                 vlogin.login = loginDesejado.getText();
-                if(type == 1) medico.setCRM(Integer.parseInt(CRM.getText()));
+                if(vlogin.type == 1) medico.setCRM(Integer.parseInt(CRM.getText()));
                 
             
-            if(vlogin.verificaCadastro() && plogin.verificaEmail() && type != -1){
+            if(vlogin.verificaCadastro() && plogin.verificaEmail() && vlogin.type != -1){
                 
                swapFile("CADASTRADOS.txt"); 
                this.nomePessoa.setText("");
                this.email.setText("");
                this.loginDesejado.setText("");
                this.SENHA.setText("");
-               if(type == 1) this.CRM.setText("");
+               if(vlogin.type == 1) this.CRM.setText("");
                
              JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso");
                
@@ -242,17 +232,17 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
         if(evt.getSource()== jRadioButton3){
             jLabel4.setVisible(false);
             CRM.setVisible(false);
-            type = 0;
+            vlogin.type = 0;
             
         }else if(evt.getSource()== jRadioButton1){
             jLabel4.setVisible(true);
             CRM.setVisible(true);
-            type = 1;
+            vlogin.type = 1;
         }
         else if(evt.getSource()== jRadioButton2){
             jLabel4.setVisible(false);
             CRM.setVisible(false);
-            type = 2;
+            vlogin.type = 2;
         }
         
         
@@ -264,12 +254,12 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
                 FileWriter outputfile = new FileWriter(file1, true);
                 PrintWriter out = new PrintWriter(outputfile);
 
-                    out.println(type);
+                    out.println(vlogin.type);
                     out.println(vlogin.login);
                     out.println(vlogin.senha);
                     out.println(plogin.nome);
                     out.println(plogin.email);
-                    if(type==1) out.println(medico.getCRM());
+                    if(vlogin.type==1) out.println(medico.getCRM());
                     
 
               out.close();
@@ -288,7 +278,6 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
