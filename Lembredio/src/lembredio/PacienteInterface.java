@@ -1,5 +1,17 @@
 package lembredio;
 
+import static java.awt.Frame.MAXIMIZED_BOTH;
+import static java.awt.SystemColor.desktop;
+import java.beans.PropertyVetoException;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,13 +23,27 @@ package lembredio;
  * @author elrafa
  */
 public class PacienteInterface extends javax.swing.JInternalFrame {
-
+    String nomeUser;
     /**
      * Creates new form PacienteInterface
      */
-    public PacienteInterface() {
+    public PacienteInterface(){
+         
         initComponents();
+        
     }
+   
+     public PacienteInterface(String nome) throws IOException{
+        
+         initComponents();
+        nomeUser = nome;
+        jLabel2NP.setText(nome);
+        setVisible(true);
+
+        jTextArea2.setText("Remedios e horarios aqui!");
+ 
+    }
+     
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,60 +54,266 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jLabel2NP = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        CheckDomingo = new javax.swing.JCheckBox();
+        CheckSegunda = new javax.swing.JCheckBox();
+        CheckTerça = new javax.swing.JCheckBox();
+        CheckQuinta = new javax.swing.JCheckBox();
+        CheckSexta = new javax.swing.JCheckBox();
+        CheckSabado = new javax.swing.JCheckBox();
+        CheckQuarta = new javax.swing.JCheckBox();
+        CheckTDS = new javax.swing.JCheckBox();
+        horario = new javax.swing.JFormattedTextField();
+        BotaoSalvar = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
+        jPanel4 = new javax.swing.JPanel();
 
-        setPreferredSize(new java.awt.Dimension(450, 420));
+        setMinimumSize(new java.awt.Dimension(665, 544));
+        setPreferredSize(new java.awt.Dimension(665, 544));
 
-        jLabel1.setText("Seja bem-vindo (a), ");
+        jLabel1.setText("Paciente :");
 
-        jButton1.setText("Ver próximas doses e seus horários");
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel2NP.setText("Nome Paciente");
 
-        jButton2.setText("Ver quantidade restante de remédios");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2NP)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2NP))
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Avisos", jPanel1);
+
+        jLabel2.setText(" Remédios :");
+
+        jLabel3.setText("Horarios :");
+
+        jLabel4.setText("Dias da Semana :");
+
+        CheckDomingo.setText("Domingo");
+        CheckDomingo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                CheckDomingoActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Sair");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        CheckSegunda.setText("Segunda - feira");
+
+        CheckTerça.setText("Terça - feira");
+
+        CheckQuinta.setText("Quinta - feira");
+        CheckQuinta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                CheckQuintaActionPerformed(evt);
             }
         });
+
+        CheckSexta.setText("Sexta - feira");
+        CheckSexta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CheckSextaActionPerformed(evt);
+            }
+        });
+
+        CheckSabado.setText("Sábado");
+        CheckSabado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CheckSabadoActionPerformed(evt);
+            }
+        });
+
+        CheckQuarta.setText("Quarta - feira");
+
+        CheckTDS.setText("Todos os dias da semana");
+        CheckTDS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CheckTDSActionPerformed(evt);
+            }
+        });
+
+        try {
+            horario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        horario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                horarioActionPerformed(evt);
+            }
+        });
+
+        BotaoSalvar.setText("Salvar");
+        BotaoSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotaoSalvarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextField1)
+                    .addComponent(horario, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE))
+                .addGap(75, 75, 75))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(CheckDomingo)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel2)
+                                        .addComponent(jLabel4)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(CheckSegunda)
+                                .addGap(18, 18, 18)
+                                .addComponent(CheckTerça))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(CheckSexta)
+                                .addGap(18, 18, 18)
+                                .addComponent(CheckSabado))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addComponent(CheckQuinta)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CheckTDS)
+                            .addComponent(CheckQuarta))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BotaoSalvar)
+                .addGap(31, 31, 31))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addGap(5, 5, 5)
+                .addComponent(horario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
+                .addComponent(jLabel4)
+                .addGap(30, 30, 30)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckDomingo)
+                    .addComponent(CheckSegunda)
+                    .addComponent(CheckTerça)
+                    .addComponent(CheckQuarta))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckTDS)
+                    .addComponent(CheckSabado)
+                    .addComponent(CheckSexta)
+                    .addComponent(CheckQuinta))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BotaoSalvar)
+                .addGap(27, 27, 27))
+        );
+
+        jTabbedPane1.addTab("Cadastrar Remédios", jPanel2);
+
+        jLabel5.setText("Horários :");
+
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jScrollPane2.setViewportView(jTextArea2);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Remédios Cadastrados", jPanel3);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 646, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 478, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("tab4", jPanel4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1)
-                    .addComponent(jLabel1))
-                .addContainerGap(172, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(51, 51, 51))
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jLabel1)
-                .addGap(34, 34, 34)
-                .addComponent(jButton1)
-                .addGap(34, 34, 34)
-                .addComponent(jButton2)
-                .addGap(34, 34, 34)
-                .addComponent(jButton3)
-                .addContainerGap(171, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1)
         );
 
         pack();
@@ -95,11 +327,138 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void CheckDomingoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckDomingoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CheckDomingoActionPerformed
+
+    private void CheckTDSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckTDSActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CheckTDSActionPerformed
+
+    private void CheckQuintaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckQuintaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CheckQuintaActionPerformed
+
+    private void CheckSabadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckSabadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CheckSabadoActionPerformed
+
+    private void horarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_horarioActionPerformed
+                
+    }//GEN-LAST:event_horarioActionPerformed
+
+    private void CheckSextaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckSextaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CheckSextaActionPerformed
+
+    private void BotaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoSalvarActionPerformed
+        File diretorio = new File("CadastroRemedios");
+        diretorio.mkdir();  
+        File Remedios = new File(diretorio,nomeUser + ".txt");
+        try {
+            FileWriter fw = new FileWriter(Remedios, true);
+          if(jTextField1.getText().length() > 0 && CheckDomingo.isSelected()||CheckSegunda.isSelected()||CheckTerça.isSelected()||CheckQuarta.isSelected()||CheckQuinta.isSelected()||CheckSexta.isSelected()||CheckSabado.isSelected()||CheckTDS.isSelected()){
+            fw.write(nomeUser);
+            fw.write("\r\n");
+            fw.write(jTextField1.getText());
+            fw.write("\r\n");
+            if(CheckDomingo.isSelected()){
+               fw.write("1");
+               fw.write("\r\n");              
+            }
+            if(CheckSegunda.isSelected()){
+               fw.write("2");
+               fw.write("\r\n");  
+            }
+            if(CheckTerça.isSelected()){
+               fw.write("3");
+               fw.write("\r\n");  
+            }
+            if(CheckQuarta.isSelected()){
+               fw.write("4");
+               fw.write("\r\n");  
+            }
+            if(CheckQuinta.isSelected()){
+               fw.write("5");
+               fw.write("\r\n");  
+            }
+            if(CheckSexta.isSelected()){
+               fw.write("6");
+               fw.write("\r\n");  
+            }
+            if(CheckSabado.isSelected()){
+               fw.write("7");
+               fw.write("\r\n");  
+            }
+            if(CheckTDS.isSelected()){
+               fw.write("1");
+               fw.write("\r\n");
+               fw.write("2");
+               fw.write("\r\n");
+               fw.write("3");
+               fw.write("\r\n");
+               fw.write("4");
+               fw.write("\r\n");
+               fw.write("5");
+               fw.write("\r\n");
+               fw.write("6");
+               fw.write("\r\n");
+               fw.write("7");
+               fw.write("\r\n");
+                    
+          }
+             JOptionPane.showMessageDialog(null,"Remédio Cadastrado com sucesso!");
+             jTextField1.setText("");
+             CheckDomingo.setSelected(false);
+             CheckSegunda.setSelected(false);
+             CheckTerça.setSelected(false);
+             CheckQuarta.setSelected(false);
+             CheckQuinta.setSelected(false);
+             CheckSexta.setSelected(false);
+             CheckSabado.setSelected(false);
+             CheckTDS.setSelected(false);
+             
+       }
+          else{
+              JOptionPane.showMessageDialog(null,"Preencha todos os dados");
+          }
+            fw.flush();
+            fw.close();
+        } catch (IOException ex) {
+            Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_BotaoSalvarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton BotaoSalvar;
+    private javax.swing.JCheckBox CheckDomingo;
+    private javax.swing.JCheckBox CheckQuarta;
+    private javax.swing.JCheckBox CheckQuinta;
+    private javax.swing.JCheckBox CheckSabado;
+    private javax.swing.JCheckBox CheckSegunda;
+    private javax.swing.JCheckBox CheckSexta;
+    private javax.swing.JCheckBox CheckTDS;
+    private javax.swing.JCheckBox CheckTerça;
+    private javax.swing.JFormattedTextField horario;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel2NP;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+
+  
 }

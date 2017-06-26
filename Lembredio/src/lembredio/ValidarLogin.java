@@ -22,6 +22,8 @@ import java.util.logging.Logger;
 public class ValidarLogin {
     String login;
     String senha;
+    int type;
+    Pessoa pessoa = new Pessoa();
     
    public void setLogin(String login){
        this.login = login;
@@ -37,30 +39,42 @@ public class ValidarLogin {
        BufferedReader br = new BufferedReader(isr);
        
         try {
-            String linha = br.readLine();
-            int totalCadastros = Integer.parseInt(linha);
+            String linha;
             int i=0;
           
-          for(int k=0; k < totalCadastros; k++ ){
-       
+          do{
             linha = br.readLine();
+            if(linha == null) break;
               System.out.println(linha + "  " + this.login);
                 switch (Integer.parseInt(linha)) {
                     case 0:
-                        if(br.readLine().equals(this.login) && br.readLine().equals(this.senha)){
+                        if(br.readLine().equals(this.login) & br.readLine().equals(this.senha)){
+                            this.type = Integer.parseInt(linha);
+                            
+                            System.out.println(this.type);
+                            
+                            pessoa.nome = br.readLine();
                             
                             br.close();
+                            
                             return true;
                         }       for(i=0; i< 2; i++) br.readLine();
                         break;
                     case 1:
-                        if(br.readLine().equals(this.login) && br.readLine().equals(this.senha)){
-                            br.close();
+                        if(br.readLine().equals(this.login) & br.readLine().equals(this.senha)){
+                           this.type = Integer.parseInt(linha);
+                           pessoa.nome = br.readLine();
+                           System.out.println(this.type);
+                           
+                           br.close();
                             return true;
                         }       for(i=0; i< 3; i++) br.readLine();
                         break;
                     case 2:
-                        if(br.readLine().equals(this.login) && br.readLine().equals(this.senha)){
+                        if(br.readLine().equals(this.login) & br.readLine().equals(this.senha)){
+                            this.type = Integer.parseInt(linha);
+                            System.out.println(this.type);
+                            pessoa.nome = br.readLine();
                             br.close();
                             return true;
                         }       for(i=0; i< 2; i++) br.readLine();
@@ -69,7 +83,7 @@ public class ValidarLogin {
                         break;
                 }
             
-          }
+          }while(true);
 
             
         } catch (IOException ex) {
@@ -82,19 +96,22 @@ public class ValidarLogin {
    
    public boolean verificaCadastro() throws FileNotFoundException, IOException {
        
-       InputStream is = new FileInputStream("CADASTRADOS2.txt");
+       InputStream is = new FileInputStream("CADASTRADOS.txt");
        InputStreamReader isr = new InputStreamReader(is);
        BufferedReader br = new BufferedReader(isr);
        
         try {
-            String linha = br.readLine();
-            int totalCadastros = Integer.parseInt(linha);
-            int i=0;
-          
-          for(int k=0; k < totalCadastros; k++ ){
-       
-            linha = br.readLine();
-              System.out.println(linha + "  " + this.login);
+            String linha;
+            int i =0;
+          do{
+            
+              linha = br.readLine();
+              
+              System.out.println(linha + " - " + this.login);
+              
+              if(linha == null) break;
+              
+             
                 switch (Integer.parseInt(linha)) {
                     case 0:
                         if(br.readLine().equals(this.login)){
@@ -118,7 +135,7 @@ public class ValidarLogin {
                         break;
                 }
             
-          }
+          }while(linha != null);
 
             
         } catch (IOException ex) {
