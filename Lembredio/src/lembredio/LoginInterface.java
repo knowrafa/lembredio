@@ -31,7 +31,7 @@ public class LoginInterface extends javax.swing.JInternalFrame {
      //  this.setMaximizable(true);
        // this.setMaximum(true);
         
-       Container parent = getParent();
+       //Container parent = getParent();
 
     }
 

@@ -88,6 +88,9 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
 
         setTitle("Cadastro");
         setToolTipText("");
+        setMaximumSize(new java.awt.Dimension(665, 544));
+        setMinimumSize(new java.awt.Dimension(665, 544));
+        setPreferredSize(new java.awt.Dimension(665, 544));
 
         EfetuarCadastro.setText("Continuar");
         EfetuarCadastro.addActionListener(new java.awt.event.ActionListener() {
@@ -122,7 +125,7 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(159, Short.MAX_VALUE)
+                .addGap(159, 159, 159)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(15, 15, 15)
@@ -186,7 +189,7 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(CRM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(24, 24, 24)))
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addGap(92, 92, 92))
         );
 
         pack();

@@ -3,12 +3,18 @@ package lembredio;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import static java.awt.SystemColor.desktop;
 import java.beans.PropertyVetoException;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -36,23 +42,33 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         
     }
    
-     public PacienteInterface(String nome){
+     public PacienteInterface(String nome) throws FileNotFoundException, IOException{
         
+         
          initComponents();
         nomeUser = nome;
         jLabel2NP.setText(nome);
         setVisible(true);
-
-        jTextArea2.setText("Remedios e horarios aqui!");
+         String linha;
+        File file = new File("CadastroRemedios/" + nome +".txt");
+        if(!file.exists()) file.createNewFile();
+        InputStream is = new FileInputStream("CadastroRemedios/" + nome +".txt");
+        InputStreamReader isr = new InputStreamReader(is);
+        BufferedReader br = new BufferedReader(isr);
         
-        try {
-            
-            MaskFormatter mf = new MaskFormatter("##:##:##");
-            horarioRemedio = new JFormattedTextField(mf);
-        } catch (Exception e) {
+        linha = br.readLine();
+        while ((linha = br.readLine()) != null) {   
+            if(linha.equals(nome)){
+                linha = br.readLine();
+            }
+              jTextArea2.append(linha);  
+              jTextArea2.append("\n");
         }
-        
-        
+        is.close();
+        isr.close();
+        br.close();
+        String ok = horarioRemedio.getText();
+  
     }
 
     /**
@@ -181,11 +197,10 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         });
 
         try {
-            horarioRemedio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##:##")));
+            horarioRemedio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        horarioRemedio.setText("");
         horarioRemedio.setToolTipText("");
         horarioRemedio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -251,10 +266,10 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nomeRemedio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
-                .addGap(5, 5, 5)
-                .addComponent(horarioRemedio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(horarioRemedio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
                 .addComponent(jLabel4)
                 .addGap(30, 30, 30)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -268,7 +283,7 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
                     .addComponent(CheckSabado)
                     .addComponent(CheckSexta)
                     .addComponent(CheckQuinta))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
                 .addComponent(BotaoSalvar)
                 .addGap(27, 27, 27))
         );
@@ -366,9 +381,17 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_CheckSextaActionPerformed
 
     private void BotaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoSalvarActionPerformed
-       File diretorio = new File("CadastroRemedios");
+        File diretorio = new File("CadastroRemedios");
         diretorio.mkdir();  
         File Remedios = new File(diretorio,nomeUser + ".txt");
+         String ok = (horarioRemedio.getText());
+        String horas[] = new String[2];
+        horas = ok.split(Pattern.quote(":"));
+        if(Integer.parseInt(horas[0]) > 24 || Integer.parseInt(horas[0]) < 0 && Integer.parseInt(horas[1]) < 0 || Integer.parseInt(horas[1]) > 59){
+            JOptionPane.showMessageDialog(null,"Horario inválido!!");
+            System.out.println("Horas "+horas[0]+"minutos "+horas[1]);
+        }
+        else{
         try {
             FileWriter fw = new FileWriter(Remedios, true);
           if(nomeRemedio.getText().length() > 0 && CheckDomingo.isSelected()||CheckSegunda.isSelected()||CheckTerça.isSelected()||CheckQuarta.isSelected()||CheckQuinta.isSelected()||CheckSexta.isSelected()||CheckSabado.isSelected()||CheckTDS.isSelected()){
@@ -425,6 +448,7 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
              JOptionPane.showMessageDialog(null,"Remédio Cadastrado com sucesso!");
              
              nomeRemedio.setText("");
+             horarioRemedio.setText("");
              CheckDomingo.setSelected(false);
              CheckDomingo.setSelected(false);
              CheckTerça.setSelected(false);
@@ -443,7 +467,8 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         } catch (IOException ex) {
             Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+       }
+   
     }//GEN-LAST:event_BotaoSalvarActionPerformed
 
 
