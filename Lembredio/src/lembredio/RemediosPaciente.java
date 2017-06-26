@@ -30,8 +30,9 @@ public class RemediosPaciente {
     //FALTA PASSAR O HORARIO
     public RemediosPaciente(String nome, String NomeRemedio) throws IOException{
         File diretorio = new File("CadastroRemedios");
-        diretorio.mkdir();  
-        File Remedios = new File(diretorio,nome + ".txt");
+        diretorio.mkdir();
+        String m = nome;  
+        File Remedios = new File(diretorio,nome);
         FileWriter fw = new FileWriter(Remedios, true);
         
         fw.write(nome);
@@ -40,7 +41,6 @@ public class RemediosPaciente {
         fw.write("\r\n");
         fw.flush();
         fw.close();
-    } 
-    
+    }  
     
 }
