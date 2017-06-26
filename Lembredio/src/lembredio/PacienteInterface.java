@@ -45,7 +45,7 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
      public PacienteInterface(String nome) throws FileNotFoundException, IOException{
         
          
-         initComponents();
+        initComponents();
         nomeUser = nome;
         jLabel2NP.setText(nome);
         setVisible(true);

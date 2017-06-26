@@ -27,7 +27,7 @@ public class LoginInterface extends javax.swing.JInternalFrame {
     public LoginInterface() {
         initComponents();
         setVisible(true);
-        jLabel1.setVisible(false);
+        errorMessage.setVisible(false);
      //  this.setMaximizable(true);
        // this.setMaximum(true);
         
@@ -51,7 +51,7 @@ public class LoginInterface extends javax.swing.JInternalFrame {
         EfetuarCadastro = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         DigitarSenha = new javax.swing.JPasswordField();
-        jLabel1 = new javax.swing.JLabel();
+        errorMessage = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         ImagemTelaDeLogin = new javax.swing.JLabel();
 
@@ -59,7 +59,10 @@ public class LoginInterface extends javax.swing.JInternalFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setFocusCycleRoot(false);
         setFocusable(false);
+        setMaximumSize(new java.awt.Dimension(665, 544));
+        setMinimumSize(new java.awt.Dimension(665, 544));
         setName(""); // NOI18N
+        setPreferredSize(new java.awt.Dimension(665, 544));
         setVerifyInputWhenFocusTarget(false);
         setVisible(true);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -98,8 +101,8 @@ public class LoginInterface extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/1497671163_scull.png"))); // NOI18N
-        jLabel1.setText("Login ou Senha incorretos!!!");
+        errorMessage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/1497671163_scull.png"))); // NOI18N
+        errorMessage.setText("Login ou Senha incorretos!!!");
 
         jLabel3.setText("Login");
 
@@ -109,7 +112,7 @@ public class LoginInterface extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(64, 64, 64)
-                .addComponent(jLabel1)
+                .addComponent(errorMessage)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,7 +146,7 @@ public class LoginInterface extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(DigitarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(errorMessage)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addGap(4, 4, 4)
@@ -167,7 +170,7 @@ public class LoginInterface extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(270, 270, 270)
                         .addComponent(ImagemTelaDeLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(183, Short.MAX_VALUE))
+                .addContainerGap(201, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,7 +179,7 @@ public class LoginInterface extends javax.swing.JInternalFrame {
                 .addComponent(ImagemTelaDeLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(133, Short.MAX_VALUE))
+                .addContainerGap(159, Short.MAX_VALUE))
         );
 
         pack();
@@ -212,7 +215,7 @@ public class LoginInterface extends javax.swing.JInternalFrame {
                         break;
                 }
              
-            }
+            }else errorMessage.setVisible(true);
         } catch (IOException ex) {
             Logger.getLogger(LoginInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -247,7 +250,7 @@ public class LoginInterface extends javax.swing.JInternalFrame {
     private javax.swing.JButton EfetuarCadastro;
     private javax.swing.JButton EfetuarLogin;
     private javax.swing.JLabel ImagemTelaDeLogin;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel errorMessage;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
