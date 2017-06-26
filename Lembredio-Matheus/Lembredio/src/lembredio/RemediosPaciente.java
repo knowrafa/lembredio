@@ -20,14 +20,19 @@ import java.io.InputStreamReader;
 public class RemediosPaciente {
       
     public RemediosPaciente() throws IOException{
-        File Remedios = new File("Remedios.txt");
+        File diretorio = new File("C:\\Users\\Matheus\\Documents\\NetBeansProjects");
+        diretorio.mkdir();
+        File Remedios = new File(diretorio,"Remedios.txt");
         Remedios.createNewFile();
     }
     
     
     //FALTA PASSAR O HORARIO
     public RemediosPaciente(String nome, String NomeRemedio) throws IOException{
-        File Remedios = new File("Remedios.txt");
+         File diretorio = new File("C:\\Users\\Matheus\\Documents\\NetBeansProjects\\lembredio-master\\Lembredio\\CadastroRemedios");
+        diretorio.mkdir();
+        String m = nome;  
+        File Remedios = new File(diretorio,nome);
         FileWriter fw = new FileWriter(Remedios, true);
         
         fw.write(nome);
