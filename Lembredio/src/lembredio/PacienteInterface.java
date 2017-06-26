@@ -6,7 +6,6 @@ import java.beans.PropertyVetoException;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -42,9 +41,14 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         
     }
    
-     public PacienteInterface(String nome) throws FileNotFoundException, IOException{
+     public PacienteInterface(String nome) throws IOException{
         
          initComponents();
+        nomeUser = nome;
+        jLabel2NP.setText(nome);
+        setVisible(true);
+
+        initComponents();
         nomeUser = nome;
         jLabel2NP.setText(nome);
         setVisible(true);
@@ -61,12 +65,9 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
             }
               jTextArea2.append(linha);  
               jTextArea2.append("\n");
-        }
-        String ok = horarioRemedio.getText();
+}
         
-               
-                    
-        
+      
         
         
     }
@@ -381,13 +382,13 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_CheckSextaActionPerformed
 
     private void BotaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoSalvarActionPerformed
-       File diretorio = new File("CadastroRemedios");
+      File diretorio = new File("CadastroRemedios");
         diretorio.mkdir();  
         File Remedios = new File(diretorio,nomeUser + ".txt");
          String ok = (horarioRemedio.getText());
         String horas[] = new String[2];
         horas = ok.split(Pattern.quote(":"));
-        if(Integer.parseInt(horas[0]) > 24 || Integer.parseInt(horas[0]) < 0 && Integer.parseInt(horas[1]) < 0 || Integer.parseInt(horas[1]) > 59){
+        if(Integer.parseInt(horas[0]) >= 23 || Integer.parseInt(horas[0]) < 0 && Integer.parseInt(horas[1]) < 0 || Integer.parseInt(horas[1]) > 59){
             JOptionPane.showMessageDialog(null,"Horario inválido!!");
             System.out.println("Horas "+horas[0]+"minutos "+horas[1]);
         }
