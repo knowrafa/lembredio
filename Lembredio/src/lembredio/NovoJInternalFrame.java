@@ -2,6 +2,7 @@ package lembredio;
 
 
 import java.awt.Container;
+import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -212,9 +213,13 @@ public class NovoJInternalFrame extends javax.swing.JInternalFrame {
 
     private void EfetuarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EfetuarCadastroActionPerformed
         setVisible(false);
-        getParent().add(new CadastroInternal()); 
-        
-        //getParent().removeAll();       // TODO add your handling code here:
+        try {
+            getParent().add(new CadastroInternal());
+            
+            //getParent().removeAll();       // TODO add your handling code here:
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(NovoJInternalFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_EfetuarCadastroActionPerformed
 
 
