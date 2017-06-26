@@ -42,8 +42,8 @@
         <Container class="javax.swing.JPanel" name="jPanel1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Primeira">
-                <Property name="tabTitle" type="java.lang.String" value="Primeira"/>
+              <JTabbedPaneConstraints tabName="Avisos">
+                <Property name="tabTitle" type="java.lang.String" value="Avisos"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -51,15 +51,24 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="337" max="32767" attributes="0"/>
-                      <Component id="jToolBar1" min="-2" pref="267" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="nomeMedico" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="185" max="-2" attributes="0"/>
+                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="medicoCrm" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                              <Component id="jScrollPane1" min="-2" pref="553" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="55" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -67,10 +76,15 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                      <Component id="jToolBar1" min="-2" pref="67" max="-2" attributes="0"/>
-                      <EmptySpace pref="339" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel1" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                          <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="nomeMedico" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="medicoCrm" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" pref="375" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -78,30 +92,40 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Trouxa"/>
+                <Property name="text" type="java.lang.String" value="M&#xe9;dico:"/>
               </Properties>
             </Component>
-            <Container class="javax.swing.JToolBar" name="jToolBar1">
+            <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
-                <Property name="rollover" type="boolean" value="true"/>
+                <Property name="text" type="java.lang.String" value="CRM:"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="nomeMedico">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nome do M&#xe9;dico"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="medicoCrm">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="CRM do M&#xe9;dico"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
 
-              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="jButton1">
+                <Component class="javax.swing.JTextArea" name="jTextArea1">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="B1"/>
-                    <Property name="focusable" type="boolean" value="false"/>
-                    <Property name="horizontalTextPosition" type="int" value="0"/>
-                    <Property name="verticalTextPosition" type="int" value="3"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JButton" name="jButton2">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="B2"/>
-                    <Property name="focusable" type="boolean" value="false"/>
-                    <Property name="horizontalTextPosition" type="int" value="0"/>
-                    <Property name="verticalTextPosition" type="int" value="3"/>
+                    <Property name="columns" type="int" value="20"/>
+                    <Property name="rows" type="int" value="5"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                        <LineBorder/>
+                      </Border>
+                    </Property>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -111,8 +135,8 @@
         <Container class="javax.swing.JPanel" name="jPanel2">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Segunda">
-                <Property name="tabTitle" type="java.lang.String" value="Segunda"/>
+              <JTabbedPaneConstraints tabName="Cadastrar Enfermeira (o)">
+                <Property name="tabTitle" type="java.lang.String" value="Cadastrar Enfermeira (o)"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -133,8 +157,8 @@
         <Container class="javax.swing.JPanel" name="jPanel3">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Terceira">
-                <Property name="tabTitle" type="java.lang.String" value="Terceira"/>
+              <JTabbedPaneConstraints tabName="Cadastrar Rem&#xe9;dio">
+                <Property name="tabTitle" type="java.lang.String" value="Cadastrar Rem&#xe9;dio"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
