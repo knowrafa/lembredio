@@ -3,9 +3,13 @@ package lembredio;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import static java.awt.SystemColor.desktop;
 import java.beans.PropertyVetoException;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -39,8 +43,23 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         nomeUser = nome;
         jLabel2NP.setText(nome);
         setVisible(true);
-
-        jTextArea2.setText("Remedios e horarios aqui!");
+        String linha;
+        
+        InputStream is = new FileInputStream("CadastroRemedios/" + nome +".txt");
+        InputStreamReader isr = new InputStreamReader(is);
+        BufferedReader br = new BufferedReader(isr);
+        
+        linha = br.readLine();
+        while ((linha = br.readLine()) != null) {   
+            if(linha.equals(nome)){
+                linha = br.readLine();
+            }
+              jTextArea2.append(linha);  
+              jTextArea2.append("\n");
+        }
+        
+       
+        
  
     }
      
