@@ -205,7 +205,7 @@ public class LoginInterface extends javax.swing.JInternalFrame {
                         break;
                        
                     case 1:
-                        getParent().add(new MedicoInterface(vlogin.getLogin()));
+                        getParent().add(new MedicoInterface(vlogin));
                         break;
                     default:
                         //getParent().add(new EnfermeiraInterface(vlogin.getLogin()));

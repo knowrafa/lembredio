@@ -1,5 +1,14 @@
 package lembredio;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,7 +20,8 @@ package lembredio;
  * @author elrafa
  */
 public class MedicoInterface extends javax.swing.JInternalFrame {
-
+    ValidarLogin vlogin = new ValidarLogin();
+    int qual=0;
     /**
      * Creates new form MedicoInterface
      */
@@ -19,9 +29,11 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
         initComponents();
         setVisible(true);
     }
-    public MedicoInterface(String nome){
+    public MedicoInterface(ValidarLogin vlogin){
         initComponents();
         setVisible(true);
+        
+        nomeMedico.setText(vlogin.pessoa.nome);
     }
 
     /**
@@ -41,17 +53,36 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
         medicoCrm = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        userName4Medic = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        userLogin4Medic = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        userEmail4Medic = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        userAge4Medic = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        nextUser = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
 
+        setMaximumSize(new java.awt.Dimension(665, 544));
+        setMinimumSize(new java.awt.Dimension(665, 544));
         setPreferredSize(new java.awt.Dimension(665, 554));
         try {
             setSelected(true);
         } catch (java.beans.PropertyVetoException e1) {
             e1.printStackTrace();
         }
+
+        jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTabbedPane1MouseClicked(evt);
+            }
+        });
 
         jLabel1.setText("Médico:");
 
@@ -71,20 +102,19 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(nomeMedico)
                         .addGap(185, 185, 185)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(medicoCrm))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(55, Short.MAX_VALUE))
+                        .addComponent(medicoCrm)
+                        .addGap(0, 134, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,21 +126,126 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
                     .addComponent(nomeMedico)
                     .addComponent(medicoCrm))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
-                .addGap(57, 57, 57))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Avisos", jPanel1);
+
+        jPanel6.setBorder(new javax.swing.border.MatteBorder(null));
+
+        jLabel3.setText("Nome do Paciente:");
+
+        userName4Medic.setText("nomePaciente");
+
+        jLabel5.setText("Login:");
+
+        userLogin4Medic.setText("loginpaciente");
+
+        jLabel7.setText("E-mail:");
+
+        userEmail4Medic.setText("emailPaciente");
+
+        jLabel9.setText("Idade:");
+
+        userAge4Medic.setText("Idadepaciente");
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user_image.jpg"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel3))
+                        .addGap(34, 34, 34)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(userAge4Medic)
+                            .addComponent(userName4Medic, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addGap(67, 67, 67)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel7))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(userLogin4Medic, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(userEmail4Medic))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(userLogin4Medic))
+                        .addGap(31, 31, 31)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(userEmail4Medic)))
+                    .addComponent(jLabel11))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(userName4Medic))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addComponent(userAge4Medic))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        nextUser.setText("Próximo Usuário");
+        nextUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextUserActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(nextUser)
+                .addGap(34, 34, 34))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(92, 92, 92)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55)
+                .addComponent(nextUser)
+                .addGap(55, 55, 55))
+        );
+
+        jTabbedPane1.addTab("Visualizar Pacientes", jPanel4);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 646, Short.MAX_VALUE)
+            .addGap(0, 668, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 488, Short.MAX_VALUE)
+            .addGap(0, 510, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Cadastrar Enfermeira (o)", jPanel2);
@@ -119,37 +254,24 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 646, Short.MAX_VALUE)
+            .addGap(0, 668, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 488, Short.MAX_VALUE)
+            .addGap(0, 510, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Cadastrar Remédio", jPanel3);
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 646, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 488, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("tab4", jPanel4);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 646, Short.MAX_VALUE)
+            .addGap(0, 668, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 488, Short.MAX_VALUE)
+            .addGap(0, 510, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("tab5", jPanel5);
@@ -168,19 +290,142 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
+       qual=0;
+       InputStream  is = null;
+        try {
+            is = new FileInputStream("CADASTRADOS.txt");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            InputStreamReader isr = new InputStreamReader(is);
+            BufferedReader br = new BufferedReader(isr);
+
+                String linha = null;
+                int i=0;
+                
+                do{
+                    
+           try {
+               linha = br.readLine();
+           } catch (IOException ex) {
+               Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
+           }
+                    
+                    if(Integer.parseInt(linha) == 0){
+               try {
+                   userLogin4Medic.setText(br.readLine());
+               } catch (IOException ex) {
+                   Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
+               }
+               try {
+                   br.readLine();
+               } catch (IOException ex) {
+                   Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
+               }
+               try {
+                   userName4Medic.setText(br.readLine());
+               } catch (IOException ex) {
+                   Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
+               }
+               try {
+                   userEmail4Medic.setText(br.readLine());
+               } catch (IOException ex) {
+                   Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
+               }
+                        break;
+                    }else{
+                        for(i=0; i < 4; i++) try {
+                            br.readLine();
+                            } catch (IOException ex) {
+                                Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                    }
+                }while(true);
+
+        try {
+            br.close();
+        } catch (IOException ex) {
+            Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jTabbedPane1MouseClicked
+
+    private void nextUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextUserActionPerformed
+        InputStream is = null;
+        try {
+            is = new FileInputStream("CADASTRADOS.txt");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       InputStreamReader isr = new InputStreamReader(is);
+       BufferedReader br = new BufferedReader(isr);
+       
+        try {
+            String linha;
+            int i=0;
+            int l=-1;
+          while(true){
+            
+              linha = br.readLine();
+              if(linha==null) break;
+                if(Integer.parseInt(linha)==0)l++;
+                
+                if(Integer.parseInt(linha)==0 && l==qual+1 ) {
+                    userLogin4Medic.setText(br.readLine());
+                    br.readLine();
+                    userName4Medic.setText(br.readLine());
+                    userEmail4Medic.setText(br.readLine());
+                    
+                    qual++;
+                    break;
+                            
+                 }else if(Integer.parseInt(linha) == 1){
+                     for(i=0; i< 5; i++) br.readLine();
+                 }
+                 else{
+                     for(i=0; i< 4; i++) br.readLine();
+                 }
+                    
+                
+          }
+
+            
+        } catch (IOException ex) {
+            Logger.getLogger(ValidarLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+        try {
+            br.close();
+        } catch (IOException ex) {
+            Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_nextUserActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel medicoCrm;
+    private javax.swing.JButton nextUser;
     private javax.swing.JLabel nomeMedico;
+    private javax.swing.JLabel userAge4Medic;
+    private javax.swing.JLabel userEmail4Medic;
+    private javax.swing.JLabel userLogin4Medic;
+    private javax.swing.JLabel userName4Medic;
     // End of variables declaration//GEN-END:variables
 }
