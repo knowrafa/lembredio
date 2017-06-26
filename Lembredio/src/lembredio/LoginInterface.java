@@ -2,6 +2,7 @@ package lembredio;
 
 
 import java.awt.Container;
+import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,9 +28,10 @@ public class LoginInterface extends javax.swing.JInternalFrame {
         initComponents();
         setVisible(true);
         jLabel1.setVisible(false);
+     //  this.setMaximizable(true);
+       // this.setMaximum(true);
         
-        
-        Container parent = getParent();
+       Container parent = getParent();
 
     }
 
@@ -160,21 +162,21 @@ public class LoginInterface extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(161, 161, 161)
-                        .addComponent(ImagemTelaDeLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(182, 182, 182)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(80, Short.MAX_VALUE))
+                        .addGap(270, 270, 270)
+                        .addComponent(ImagemTelaDeLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(183, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(ImagemTelaDeLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(ImagemTelaDeLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52))
+                .addContainerGap(133, Short.MAX_VALUE))
         );
 
         pack();
@@ -198,7 +200,8 @@ public class LoginInterface extends javax.swing.JInternalFrame {
              
                 switch (vlogin.type) {
                     case 0:
-                        //getParent().add(new PacienteInterface(vlogin.getLogin()));
+                        getParent().add(new PacienteInterface(vlogin.getLogin()));
+                        
                         break;
                        
                     case 1:
@@ -227,9 +230,14 @@ public class LoginInterface extends javax.swing.JInternalFrame {
     private void EfetuarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EfetuarCadastroActionPerformed
         setVisible(false);
         
-        getParent().add(new CadastroInternal()); 
-        
-        //getParent().removeAll();       // TODO add your handling code here:
+        try {
+            getParent().add(new CadastroInternal());
+            
+            
+            //getParent().removeAll();       // TODO add your handling code here:
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(LoginInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_EfetuarCadastroActionPerformed
 
 

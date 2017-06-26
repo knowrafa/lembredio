@@ -3,7 +3,11 @@ package lembredio;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.beans.PropertyVetoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 
 
@@ -18,31 +22,43 @@ import javax.swing.JInternalFrame;
  * @author elrafa
  */
 public class TelaInicial extends javax.swing.JFrame {
-    LoginInterface obj = new LoginInterface();
+    public LoginInterface obj = new LoginInterface();
+    public CadastroInternal obj2 = new CadastroInternal();
         
     /**
      * Creates new form TelaInicial
      */
-    public TelaInicial() {
+    
+    
+    public TelaInicial() throws PropertyVetoException {
         initComponents();
         jDesktopPane3.add(obj);
+        obj.setMaximizable(true);
+        obj.setMaximum(true);
         obj.setVisible(true);
         getContentPane().setBackground(Color.WHITE);
-        
+        //this.setExtendedState(MAXIMIZED_BOTH);
+        //jDesktopPane3.setExtendedState(MAXIMIZED_BOTH);
+       //obj.setLocation(jDesktopPane3.getSize().width/2 - obj.getSize().width/2,jDesktopPane3.getSize().height/2 - obj.getSize().height/2);
+
     }
     
-    public TelaInicial(LoginInterface obj){
+    public TelaInicial(LoginInterface obj) throws PropertyVetoException{
         initComponents();
         this.obj = obj;
         jDesktopPane3.add(this.obj);
         jDesktopPane3.setVisible(true);
+        this.obj.setMaximizable(false);
+        this.obj.setMaximum(true);
         this.obj.setVisible(true);
         getContentPane().setBackground(Color.WHITE);
+        //setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
     
     public void addFrame(JInternalFrame JIFrame){
        // jDesktopPane3.remove(this.obj);
         //jDesktopPane3.setVisible(false);
+        
     }
     public Component returnComponent(){
         return jDesktopPane3.getComponentAt(getSize().height/2, getSize().width/2);
@@ -68,11 +84,15 @@ public class TelaInicial extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jDesktopPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 665, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jDesktopPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -108,7 +128,11 @@ public class TelaInicial extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaInicial().setVisible(true);
+                try {
+                    new TelaInicial().setVisible(true);
+                } catch (PropertyVetoException ex) {
+                    Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

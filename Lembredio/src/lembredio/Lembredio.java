@@ -5,6 +5,7 @@
  */
 package lembredio;
 
+import java.beans.PropertyVetoException;
 import java.io.File;
 import java.io.IOException;
 import static java.lang.Thread.sleep;
@@ -20,7 +21,7 @@ public class Lembredio {
      * @param args the command line arguments
      * @throws java.io.IOException
      */
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws IOException, InterruptedException, PropertyVetoException {
        File file = new File("CADASTRADOS.txt");
        if(!file.exists()){
         file.createNewFile();// TODO code application logic here
@@ -32,13 +33,7 @@ public class Lembredio {
        tl.setVisible(true);
 
        inFrame.setVisible(true);
-       
-       //sleep(5000);
-     
-       //inFrame.setTitle("VAI SE FUDER");
-       //inFrame.repaint();
-       //tl.addFrame(inFrame);
-       // tl.repaint();
+
     }
     
 }
