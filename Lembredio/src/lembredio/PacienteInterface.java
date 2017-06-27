@@ -1,6 +1,7 @@
 package lembredio;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.awt.List;
 import static java.awt.SystemColor.desktop;
@@ -17,12 +18,14 @@ import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
+import javax.swing.BorderFactory;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.text.MaskFormatter;
 
 /*
@@ -44,35 +47,118 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
    
      public PacienteInterface(String nome) throws FileNotFoundException, IOException{
         
-         int x = 100, y = 100;
+         int x = 30, y = -100, k = 175;
        
         initComponents();
         nomeUser = nome;
         jLabel2NP.setText(nome);
         setVisible(true);
-         String linha;
+        
+        String linha;
         File file = new File("CadastroRemedios/" + nome +".txt");
         if(!file.exists()) file.createNewFile();
         InputStream is = new FileInputStream("CadastroRemedios/" + nome +".txt");
         InputStreamReader isr = new InputStreamReader(is);
         BufferedReader br = new BufferedReader(isr);
         
-        linha = br.readLine();
-        while ((linha = br.readLine()) != null) {   
+         scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+         scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+         scroll.setViewportBorder(BorderFactory.createLoweredBevelBorder());
+         scroll.setAutoscrolls(true);
+         scroll.setViewportView(jPanel6);
+      
+        
+          linha = br.readLine();
+        
+        while ((linha) != null){   
+           
             if(linha.equals(nome)){
                 linha = br.readLine();
-            }else{
-                JLabel teste= new JLabel(linha);
-
-                 jPanel5.add(teste);
-                 teste.setBounds(100, 100, x, y);
-                 x += 30;
-                 y += 30;
-                 teste.setVisible(true);
-                 linha = br.readLine();
             }
+              if(linha.length() > 1){
+                JLabel LMR= new JLabel(); // LMR = Label Mostra Remedios
+                JLabel LNomeR = new JLabel("Remédio"); // LNomeR = Label Nome Remedio
+                JLabel LDdS = new JLabel("Remédio");// LDdS = Label Dias da Semana
+                
+              //LMR.setBounds(x, y, 100, 100);
+                      
+                    LMR.setBounds(x+80, y, 300, 300);
+                    LMR.setText(linha);
+                    LNomeR.setText("Remédio :");
+                    LNomeR.setBounds(x, y, 300, 300);    
+                    LDdS.setText("Dias da semana:");
+                    LDdS.setBounds(x+300, y-30, 300, 300);  
+                    
+                    y +=30;
+                    k += 30;
+                    jPanel6.add(LMR);
+                    jPanel6.add(LNomeR);    
+                    jPanel6.add(LDdS); 
+                 
+                jPanel6.setPreferredSize(new Dimension(0,k));
+              
+                 LMR.setVisible(true);
+              }
+              else if(linha.length() == 1){
+                  JLabel LMDdS= new JLabel(); // LMDdS = Label Mostra Dias da Semana
+                   
+                if(Integer.parseInt(linha) == 1){
+                    LMDdS.setBounds(x+450, y-30, 300, 300);
+                    LMDdS.setText("Domingo");                          
+                    y +=30;
+                    k += 30;
+                }
+                if(Integer.parseInt(linha) == 2){
+                    LMDdS.setBounds(x+450, y-30, 300, 300);
+                    LMDdS.setText("Segunda");                          
+                    y +=30;
+                    k += 30;
+                }
+                if(Integer.parseInt(linha) == 3){
+                    LMDdS.setBounds(x+450, y-30, 300, 300);
+                    LMDdS.setText("Terça");                          
+                    y +=30;
+                    k += 30;
+                }
+                if(Integer.parseInt(linha) == 4){
+                    LMDdS.setBounds(x+450, y-30, 300, 300);
+                    LMDdS.setText("Quarta");                          
+                    y +=30;
+                    k += 30;
+                }
+                if(Integer.parseInt(linha) == 5){
+                    LMDdS.setBounds(x+450, y-30, 300, 300);
+                    LMDdS.setText("Quinta");                          
+                    y +=30;
+                    k += 30;
+                }
+                if(Integer.parseInt(linha) == 6){
+                    LMDdS.setBounds(x+450, y-30, 300, 300);
+                    LMDdS.setText("Sexta");                          
+                    y +=30;
+                    k += 30;
+                }
+                if(Integer.parseInt(linha) == 7){
+                    LMDdS.setBounds(x+450, y-30, 300, 300);
+                    LMDdS.setText("Sabado");                          
+                    y +=30;
+                    k += 30;
+                }
+               
+                     
+                    
+                    jPanel6.add(LMDdS);
+                       
+                 
+                jPanel6.setPreferredSize(new Dimension(0,k));
+              
+                 LMDdS.setVisible(true);
+              }
+              
+            
               jTextArea2.append(linha);  
               jTextArea2.append("\n");
+              linha = br.readLine();
         }
         is.close();
         isr.close();
@@ -118,8 +204,8 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
         jPanel4 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        scroll = new javax.swing.JScrollPane();
+        jPanel6 = new javax.swing.JPanel();
 
         setMinimumSize(new java.awt.Dimension(665, 544));
         setPreferredSize(new java.awt.Dimension(665, 544));
@@ -335,44 +421,28 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Remédios Cadastrados", jPanel3);
 
-        jButton1.setText("Atualizar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 696, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 476, Short.MAX_VALUE)
+        );
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(505, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(23, 23, 23))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap(230, Short.MAX_VALUE)
-                .addComponent(jButton1))
-        );
+        scroll.setViewportView(jPanel6);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(159, Short.MAX_VALUE))
+            .addComponent(scroll)
         );
 
         jTabbedPane1.addTab("Remedios Cadastrados/2", jPanel4);
@@ -514,41 +584,6 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
    
     }//GEN-LAST:event_BotaoSalvarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        /*String linha;
-        int x = 125, y = 125;
-        File file = new File("CadastroRemedios/" + nomeUser +".txt");
-        if(!file.exists()) try {
-            file.createNewFile();
-        
-        InputStream is = new FileInputStream("CadastroRemedios/" + nomeUser +".txt");
-        InputStreamReader isr = new InputStreamReader(is);
-        BufferedReader br = new BufferedReader(isr);
-        
-        linha = br.readLine();
-        while ((linha = br.readLine()) != null) {   
-            if(linha.equals(nomeUser)){
-                linha = br.readLine();
-            }
-            
-            
-        }
-        
-        is.close();
-        isr.close();
-        br.close();
-        } catch (IOException ex) {
-            Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        JLabel teste= new JLabel("TESTE");
-
-        jPanel5.add(teste);
-        teste.setBounds(125, 125, 125, 125);
-        teste.setVisible(true);*/
-
-    }//GEN-LAST:event_jButton1ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotaoSalvar;
@@ -561,7 +596,6 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
     private javax.swing.JCheckBox CheckTDS;
     private javax.swing.JCheckBox CheckTerça;
     private javax.swing.JFormattedTextField horarioRemedio;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel2NP;
@@ -572,13 +606,14 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField nomeRemedio;
+    private javax.swing.JScrollPane scroll;
     // End of variables declaration//GEN-END:variables
 
   
