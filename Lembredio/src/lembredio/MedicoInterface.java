@@ -111,12 +111,6 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
             e1.printStackTrace();
         }
 
-        jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTabbedPane1MouseClicked(evt);
-            }
-        });
-
         jLabel1.setText("Médico:");
 
         jLabel2.setText("CRM:");
@@ -159,8 +153,8 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
                     .addComponent(nomeMedico)
                     .addComponent(medicoCrm))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Avisos", jPanel1);
@@ -270,12 +264,6 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
             }
         });
 
-        searchTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchTextFieldActionPerformed(evt);
-            }
-        });
-
         jLabel12.setText("Pesquisar Usuário");
 
         okButton.setText("Ok");
@@ -335,45 +323,20 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
         jLabel16.setText("Dias da Semana :");
 
         CheckDomingo1.setText("Domingo");
-        CheckDomingo1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CheckDomingo1ActionPerformed(evt);
-            }
-        });
 
         CheckSegunda1.setText("Segunda - feira");
 
         CheckTerça1.setText("Terça - feira");
 
         CheckQuinta1.setText("Quinta - feira");
-        CheckQuinta1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CheckQuinta1ActionPerformed(evt);
-            }
-        });
 
         CheckSexta1.setText("Sexta - feira");
-        CheckSexta1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CheckSexta1ActionPerformed(evt);
-            }
-        });
 
         CheckSabado1.setText("Sábado");
-        CheckSabado1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CheckSabado1ActionPerformed(evt);
-            }
-        });
 
         CheckQuarta1.setText("Quarta - feira");
 
         CheckTDS1.setText("Todos os dias da semana");
-        CheckTDS1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CheckTDS1ActionPerformed(evt);
-            }
-        });
 
         try {
             horarioRemedio1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
@@ -381,11 +344,6 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
         horarioRemedio1.setToolTipText("");
-        horarioRemedio1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                horarioRemedio1RemedioActionPerformed(evt);
-            }
-        });
 
         BotaoSalvar1.setText("Salvar");
         BotaoSalvar1.addActionListener(new java.awt.event.ActionListener() {
@@ -396,7 +354,7 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
 
         jLabel17.setText("Intervalo:");
 
-        jComboBox21.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "30 em 30 minutos", "1 em 1 hora", "2 em 2 horas", "3 em 3 horas", "4 em 4 horas", "5 em 5 hora", "6 em 6 horas", "7 em 7 horas", "8 em 8 horas", "9 em 9 hora", "10 em 10 horas", "11 em 11 horas", "12 em 12 horas", "1 vez ao dia" }));
+        jComboBox21.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 vez ao dia", "3 em 3 horas", "4 em 4 horas", "6 em 6 horas", "8 em 8 horas", "12 em 12 horas" }));
 
         jButton1.setText("Voltar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -545,67 +503,6 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
-        /*qual=0;
-        InputStream  is = null;
-        try {
-            is = new FileInputStream("CADASTRADOS.txt");
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        InputStreamReader isr = new InputStreamReader(is);
-        BufferedReader br = new BufferedReader(isr);
-
-        String linha = null;
-        int i=0;
-
-        do{
-
-            try {
-                linha = br.readLine();
-            } catch (IOException ex) {
-                Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            if(Integer.parseInt(linha) == 0){
-                try {
-                    loginUser = br.readLine();
-                    userLogin4Medic.setText(loginUser);
-                } catch (IOException ex) {
-                    Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                try {
-                    br.readLine();
-                } catch (IOException ex) {
-                    Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                try {
-                    userName4Medic.setText(br.readLine());
-                } catch (IOException ex) {
-                    Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                try {
-                    userEmail4Medic.setText(br.readLine());
-                } catch (IOException ex) {
-                    Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                break;
-            }else{
-                for(i=0; i < 4; i++) try {
-                    br.readLine();
-                } catch (IOException ex) {
-                    Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }while(true);
-
-        try {
-            br.close();
-        } catch (IOException ex) {
-            Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
-    }//GEN-LAST:event_jTabbedPane1MouseClicked
-
     private void lastUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastUserActionPerformed
         if(qual > 0){
             qual = qual -2;
@@ -616,23 +513,17 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
 
     private void nextUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextUserActionPerformed
         manageUsers();
+        
+        java.awt.Toolkit.getDefaultToolkit().beep();
     }//GEN-LAST:event_nextUserActionPerformed
 
     private void selectUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectUserActionPerformed
         
         System.out.println(loginUser);  
-       // jTabbedPane1.setEnabledAt(2, false);
-       //jPanel7.setVisible(true);
-        //jTabbedPane1.n
-        //jPanel7.setVisible(false);// TODO add your handling code here:
         jPanel2.setVisible(true);
         jPanel4.setVisible(false);
         
     }//GEN-LAST:event_selectUserActionPerformed
-
-    private void searchTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchTextFieldActionPerformed
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
        InputStream is = null;
@@ -696,30 +587,6 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
         }
       
     }//GEN-LAST:event_okButtonActionPerformed
-
-    private void CheckDomingo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckDomingo1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CheckDomingo1ActionPerformed
-
-    private void CheckQuinta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckQuinta1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CheckQuinta1ActionPerformed
-
-    private void CheckSexta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckSexta1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CheckSexta1ActionPerformed
-
-    private void CheckSabado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckSabado1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CheckSabado1ActionPerformed
-
-    private void CheckTDS1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckTDS1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CheckTDS1ActionPerformed
-
-    private void horarioRemedio1RemedioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_horarioRemedio1RemedioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_horarioRemedio1RemedioActionPerformed
 
     private void BotaoSalvar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoSalvar1ActionPerformed
         File diretorio = new File("CadastroRemedios");
