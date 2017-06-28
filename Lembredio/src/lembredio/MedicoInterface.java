@@ -720,7 +720,8 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_searchTextFieldActionPerformed
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-       InputStream is = null;
+        qual = -1;
+        InputStream is = null;
         try {
             is = new FileInputStream("CADASTRADOS.txt");
         } catch (FileNotFoundException ex) {
