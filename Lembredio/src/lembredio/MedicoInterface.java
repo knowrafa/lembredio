@@ -27,6 +27,7 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
     ValidarLogin vlogin = new ValidarLogin();
     int qual=0;
     String nomeUser;
+    String loginUser;
     
     /**
      * Creates new form MedicoInterface
@@ -40,6 +41,8 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
         setVisible(true);
         
         nomeMedico.setText(vlogin.pessoa.nome);
+        qual = -1;
+        manageUsers();
     }
 
     /**
@@ -70,10 +73,12 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         userAge4Medic = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        selectUser = new javax.swing.JButton();
         nextUser = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        lastUser = new javax.swing.JButton();
+        searchTextField = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        okButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -138,7 +143,7 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(medicoCrm)
-                        .addGap(0, 112, Short.MAX_VALUE)))
+                        .addGap(0, 157, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -177,7 +182,12 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user_image.jpg"))); // NOI18N
 
-        jButton2.setText("Selecionar Usuário");
+        selectUser.setText("Selecionar Usuário");
+        selectUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectUserActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -198,7 +208,7 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(userAge4Medic)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton2)
+                                .addComponent(selectUser)
                                 .addContainerGap())))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel11)
@@ -235,7 +245,7 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
                     .addComponent(jLabel9)
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(userAge4Medic)
-                        .addComponent(jButton2)))
+                        .addComponent(selectUser)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -246,10 +256,25 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton1.setText("Usuário Anterior");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        lastUser.setText("Usuário Anterior");
+        lastUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                lastUserActionPerformed(evt);
+            }
+        });
+
+        searchTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchTextFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setText("Pesquisar Usuário");
+
+        okButton.setText("Ok");
+        okButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                okButtonActionPerformed(evt);
             }
         });
 
@@ -260,40 +285,40 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(64, 64, 64)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
-            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap(94, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addComponent(jButton1)
+                .addComponent(lastUser)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(nextUser)
                 .addGap(34, 34, 34))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel12)
+                .addGap(18, 18, 18)
+                .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(92, 92, 92)
+                .addGap(27, 27, 27)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12)
+                    .addComponent(okButton))
+                .addGap(36, 36, 36)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nextUser)
-                    .addComponent(jButton1))
+                    .addComponent(lastUser))
                 .addGap(55, 55, 55))
         );
 
         jTabbedPane1.addTab("Visualizar Pacientes", jPanel4);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 646, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 490, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Cadastrar Enfermeira (o)", jPanel2);
 
         jLabel4.setText(" Remédios :");
 
@@ -403,7 +428,7 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
                                 .addComponent(CheckQuarta)))
                         .addComponent(BotaoSalvar))
                     .addComponent(jLabel10))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -451,9 +476,7 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -466,7 +489,7 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 646, Short.MAX_VALUE)
+            .addGap(0, 691, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -479,7 +502,7 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -490,144 +513,69 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
-       qual=0;
-       InputStream  is = null;
+        /*qual=0;
+        InputStream  is = null;
         try {
             is = new FileInputStream("CADASTRADOS.txt");
         } catch (FileNotFoundException ex) {
             Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
-            InputStreamReader isr = new InputStreamReader(is);
-            BufferedReader br = new BufferedReader(isr);
+        InputStreamReader isr = new InputStreamReader(is);
+        BufferedReader br = new BufferedReader(isr);
 
-                String linha = null;
-                int i=0;
-                
-                do{
-                    
-           try {
-               linha = br.readLine();
-           } catch (IOException ex) {
-               Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
-           }
-                    
-                    if(Integer.parseInt(linha) == 0){
-               try {
-                   userLogin4Medic.setText(br.readLine());
-               } catch (IOException ex) {
-                   Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
-               }
-               try {
-                   br.readLine();
-               } catch (IOException ex) {
-                   Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
-               }
-               try {
-                   userName4Medic.setText(br.readLine());
-               } catch (IOException ex) {
-                   Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
-               }
-               try {
-                   userEmail4Medic.setText(br.readLine());
-               } catch (IOException ex) {
-                   Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
-               }
-                        break;
-                    }else{
-                        for(i=0; i < 4; i++) try {
-                            br.readLine();
-                            } catch (IOException ex) {
-                                Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                    }
-                }while(true);
+        String linha = null;
+        int i=0;
+
+        do{
+
+            try {
+                linha = br.readLine();
+            } catch (IOException ex) {
+                Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            if(Integer.parseInt(linha) == 0){
+                try {
+                    loginUser = br.readLine();
+                    userLogin4Medic.setText(loginUser);
+                } catch (IOException ex) {
+                    Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                try {
+                    br.readLine();
+                } catch (IOException ex) {
+                    Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                try {
+                    userName4Medic.setText(br.readLine());
+                } catch (IOException ex) {
+                    Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                try {
+                    userEmail4Medic.setText(br.readLine());
+                } catch (IOException ex) {
+                    Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+            }else{
+                for(i=0; i < 4; i++) try {
+                    br.readLine();
+                } catch (IOException ex) {
+                    Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }while(true);
 
         try {
             br.close();
         } catch (IOException ex) {
             Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        }*/
     }//GEN-LAST:event_jTabbedPane1MouseClicked
 
-    private void nextUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextUserActionPerformed
-        manageUsers();
-    }//GEN-LAST:event_nextUserActionPerformed
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
 
-    private void CheckDomingoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckDomingoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CheckDomingoActionPerformed
-    
-    public void manageUsers(){
-        InputStream is = null;
-        try {
-            is = new FileInputStream("CADASTRADOS.txt");
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       InputStreamReader isr = new InputStreamReader(is);
-       BufferedReader br = new BufferedReader(isr);
-       
-        try {
-            String linha;
-            int i=0;
-            int l=-1;
-          while(true){
-            
-              linha = br.readLine();
-              if(linha==null) break;
-                if(Integer.parseInt(linha)==0)l++;
-                
-                if(Integer.parseInt(linha)==0 && l==qual+1 ) {
-                    userLogin4Medic.setText(br.readLine());
-                    br.readLine();
-                    userName4Medic.setText(br.readLine());
-                    userEmail4Medic.setText(br.readLine());
-                    
-                    qual++;
-                    break;
-                            
-                 }else if(Integer.parseInt(linha) == 1){
-                     for(i=0; i< 5; i++) br.readLine();
-                 }
-                 else{
-                     for(i=0; i< 4; i++) br.readLine();
-                 }
-                    
-                
-          }
-
-            
-        } catch (IOException ex) {
-            Logger.getLogger(ValidarLogin.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
-        try {
-            br.close();
-        } catch (IOException ex) {
-            Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    private void CheckQuintaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckQuintaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CheckQuintaActionPerformed
-
-    private void CheckSextaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckSextaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CheckSextaActionPerformed
-
-    private void CheckSabadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckSabadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CheckSabadoActionPerformed
-
-    private void CheckTDSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckTDSActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CheckTDSActionPerformed
-
-    private void horarioRemedioRemedioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_horarioRemedioRemedioActionPerformed
-
-    }//GEN-LAST:event_horarioRemedioRemedioActionPerformed
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void BotaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoSalvarActionPerformed
         File diretorio = new File("CadastroRemedios");
@@ -721,21 +669,171 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
                 Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
     }//GEN-LAST:event_BotaoSalvarActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void horarioRemedioRemedioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_horarioRemedioRemedioActionPerformed
 
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_horarioRemedioRemedioActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(qual != 0){
+    private void CheckTDSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckTDSActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CheckTDSActionPerformed
+
+    private void CheckSabadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckSabadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CheckSabadoActionPerformed
+
+    private void CheckSextaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckSextaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CheckSextaActionPerformed
+
+    private void CheckQuintaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckQuintaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CheckQuintaActionPerformed
+
+    private void CheckDomingoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckDomingoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CheckDomingoActionPerformed
+
+    private void lastUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastUserActionPerformed
+        if(qual > 0){
             qual = qual -2;
-        
+
             manageUsers();
         }// TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_lastUserActionPerformed
 
+    private void nextUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextUserActionPerformed
+        manageUsers();
+    }//GEN-LAST:event_nextUserActionPerformed
+
+    private void selectUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectUserActionPerformed
+        System.out.println(loginUser);  
+       // jTabbedPane1.setEnabledAt(2, false);
+        jPanel7.setVisible(true);
+        //jTabbedPane1.n
+        //jPanel7.setVisible(false);// TODO add your handling code here:
+    }//GEN-LAST:event_selectUserActionPerformed
+
+    private void searchTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchTextFieldActionPerformed
+
+    private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
+       InputStream is = null;
+        try {
+            is = new FileInputStream("CADASTRADOS.txt");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       InputStreamReader isr = new InputStreamReader(is);
+       BufferedReader br = new BufferedReader(isr);
+       String temp1, temp2;
+        try {
+            String linha;
+            int i =0;
+          do{
+            
+              linha = br.readLine();
+            
+              if(linha == null) break;
+              
+             
+                switch (Integer.parseInt(linha)) {
+                    case 0:
+                        
+                           temp1 = br.readLine();
+                           br.readLine();
+                           nomeUser = br.readLine();
+                           if(searchTextField.getText() != "" && nomeUser.equalsIgnoreCase(searchTextField.getText())){
+                               temp2 = br.readLine();
+                                userLogin4Medic.setText(temp1);
+                                userName4Medic.setText(nomeUser);
+                                userEmail4Medic.setText(temp2);
+                           br.close();
+                           return;
+                           
+                           }else 
+                               for(i=0; i< 1; i++) br.readLine();
+                        break;
+                    case 1:
+                        
+                              for(i=0; i< 5; i++) br.readLine();
+                        break;
+                    case 2:
+                             for(i=0; i< 4; i++) br.readLine();
+                        break;
+                    default:
+                        break;
+                }
+            
+          }while(linha != null);
+
+            
+        } catch (IOException ex) {
+            Logger.getLogger(ValidarLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+        try {
+            br.close();
+        } catch (IOException ex) {
+            Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
+    }//GEN-LAST:event_okButtonActionPerformed
+    
+    public void manageUsers(){
+        InputStream is = null;
+        try {
+            is = new FileInputStream("CADASTRADOS.txt");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       InputStreamReader isr = new InputStreamReader(is);
+       BufferedReader br = new BufferedReader(isr);
+       
+        try {
+            String linha;
+            int i=0;
+            int l=-1;
+          while(true){
+            
+              linha = br.readLine();
+              if(linha==null) break;
+                if(Integer.parseInt(linha)==0)l++;
+                
+                if(Integer.parseInt(linha)==0 && l==qual+1 ) {
+                    loginUser = br.readLine();
+                    userLogin4Medic.setText(loginUser);
+                    br.readLine();
+                    userName4Medic.setText(br.readLine());
+                    userEmail4Medic.setText(br.readLine());
+                    
+                    qual++;
+                    break;
+                            
+                 }else if(Integer.parseInt(linha) == 1){
+                     for(i=0; i< 5; i++) br.readLine();
+                 }
+                 else{
+                     for(i=0; i< 4; i++) br.readLine();
+                 }
+                    
+                
+          }
+
+            
+        } catch (IOException ex) {
+            Logger.getLogger(ValidarLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+        try {
+            br.close();
+        } catch (IOException ex) {
+            Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotaoSalvar;
@@ -748,12 +846,11 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
     private javax.swing.JCheckBox CheckTDS;
     private javax.swing.JCheckBox CheckTerça;
     private javax.swing.JFormattedTextField horarioRemedio;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -763,7 +860,6 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -772,10 +868,14 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JButton lastUser;
     private javax.swing.JLabel medicoCrm;
     private javax.swing.JButton nextUser;
     private javax.swing.JLabel nomeMedico;
     private javax.swing.JTextField nomeRemedio;
+    private javax.swing.JButton okButton;
+    private javax.swing.JTextField searchTextField;
+    private javax.swing.JButton selectUser;
     private javax.swing.JLabel userAge4Medic;
     private javax.swing.JLabel userEmail4Medic;
     private javax.swing.JLabel userLogin4Medic;
