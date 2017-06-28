@@ -1,6 +1,7 @@
 package lembredio;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import static java.awt.Frame.MAXIMIZED_BOTH;
@@ -29,6 +30,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
 /*
@@ -43,6 +45,7 @@ import javax.swing.text.MaskFormatter;
  */
 public class PacienteInterface extends javax.swing.JInternalFrame {
     String nomeUser;
+    int x, y, k;
     /**
      * Creates new form PacienteInterface
      */
@@ -50,119 +53,15 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
    
      public PacienteInterface(String nome) throws FileNotFoundException, IOException{
         
-        
-         int x = 50, y = 50, k = 175;
-       
         initComponents();
         nomeUser = nome;
         jLabel2NP.setText(nome);
         setVisible(true);
-       
-        String linha;
-        File file = new File("CadastroRemedios/" + nome +".txt");
-        if(!file.exists()) file.createNewFile();
-        InputStream is = new FileInputStream("CadastroRemedios/" + nome +".txt");
-        InputStreamReader isr = new InputStreamReader(is);
-        BufferedReader br = new BufferedReader(isr);
-       
-         scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-         scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-         scroll.setViewportBorder(BorderFactory.createLoweredBevelBorder());
-         scroll.setAutoscrolls(true);
-         scroll.setViewportView(jPanel6);
-     
-       
-        linha = br.readLine();
-       
-        while ((linha) != null){  
-           
-            if(linha.equals(nome)){
-               
-                linha = br.readLine();
-                
-                if(linha == null) break;
-                System.out.println("PRIMEIRO IF");
-                
-                JLabel remedio= new JLabel();
-                JLabel horario = new JLabel("Nada");
-                remedio.setText("Remédio: " +linha);
-                remedio.setFont(new Font("Sherif", Font.ITALIC + Font.BOLD, 15));
-                //remedio.setFont(new Font("Sherif",, 15));
-                jPanel6.add(remedio);
-                jPanel6.add(horario);
-               
-                remedio.setBounds(x, y, 200, 100);
-                
-                remedio.setVisible(true);
-                linha = br.readLine();
-                
-                if(linha==null) break;
-                System.out.println("SEGUNDO IF");
-                horario.setText("Horário Inicial: " + linha);
-                horario.setBounds(x+300, y, 200, 100);
-                horario.setVisible(true);
-                
-                y +=30;
-                k += 30;
-                
-                jPanel6.setPreferredSize(new Dimension(0,k));
- 
-                JLabel dias = new JLabel();
-                jPanel6.add(dias);
-                dias.setText("Dias da Semana:");
-                dias.setBounds(x, y, 200, 100);
-                y +=30;
-                k += 30;
-                jPanel6.setPreferredSize(new Dimension(0,k));
- 
-                linha = br.readLine();
-                
-                if(linha==null) break;
-                JLabel interval = new JLabel();
-                jPanel6.add(interval);
-                System.out.println("SEGUNDO IF");
-                interval.setText("Intervalo: " + linha);
-                interval.setBounds(x+300, y-30, 200, 100);
-                interval.setVisible(true);
-                
-                
-               do{
-                    linha = br.readLine();
-                    if(linha == null || linha.equals(nome)) break;
-                    System.out.println("IF DO WHILE");
-                    
-                    if(Integer.parseInt(linha) == 2)linha = "Segunda-Feira";
-                    else if(Integer.parseInt(linha) == 3) linha = "Terça-Feira";
-                    else if(Integer.parseInt(linha) == 4) linha = "Quarta-Feira";
-                    else if(Integer.parseInt(linha) == 5) linha = "Quinta-Feira";
-                    else if(Integer.parseInt(linha) == 6) linha = "Sexta-Feira";
-                    else linha = "Sábado";
-                    
-                    JLabel remedio2= new JLabel(linha);
-                     
-                    jPanel6.add(remedio2);
-                     remedio2.setBounds(x+125, y,100, 100);
-                     remedio2.setVisible(true);
-                     //remedio2.setFont(font);
-                     y += 30;
-                     
-                     k += 30;
-                     
-                    jPanel6.setPreferredSize(new Dimension(0,k));
-                     
-                     
-                }while(true);
-                y+=30;
-                k+=30;
-                if(linha == null) break;
- 
-           }
- 
-        }
-        is.close();
-        isr.close();
-        br.close();
-        String ok = horarioRemedio.getText();
+        x = 50;
+        y = 50;
+        k = 175;
+        
+        updateRemedy(false);
      }
      
     
@@ -189,6 +88,7 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         jPanel4 = new javax.swing.JPanel();
         scroll = new javax.swing.JScrollPane();
         jPanel6 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         nomeRemedio = new javax.swing.JTextField();
@@ -280,15 +180,28 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Remédios Cadastrados", jPanel3);
 
+        jButton1.setText("Atualizar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 644, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(498, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 476, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(418, Short.MAX_VALUE))
         );
 
         scroll.setViewportView(jPanel6);
@@ -513,6 +426,9 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
          String ok = (horarioRemedio.getText());
         String horas[] = new String[2];
         horas = ok.split(Pattern.quote(":"));
+        x = 50;
+        y = 50;
+        k = 175;
         if(Integer.parseInt(horas[0]) > 24 || Integer.parseInt(horas[0]) < 0 && Integer.parseInt(horas[1]) < 0 || Integer.parseInt(horas[1]) > 59){
             JOptionPane.showMessageDialog(null,"Horario inválido!!");
             System.out.println("Horas "+horas[0]+"minutos "+horas[1]);
@@ -600,10 +516,140 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
        }
    
     }//GEN-LAST:event_BotaoSalvarActionPerformed
-
+    
+    public void updateRemedy(boolean flag) throws IOException{
+        String linha;
+        File file = new File("CadastroRemedios/" + nomeUser +".txt");
+        if(!file.exists()) file.createNewFile();
+        InputStream is = new FileInputStream("CadastroRemedios/" + nomeUser +".txt");
+        InputStreamReader isr = new InputStreamReader(is);
+        BufferedReader br = new BufferedReader(isr);
+        x = 50;
+        y = 50;
+        k = 175;
+         scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+         scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+         scroll.setViewportBorder(BorderFactory.createLoweredBevelBorder());
+         scroll.setAutoscrolls(true);
+         scroll.setViewportView(jPanel6);
+       
+         if(flag){
+        
+             Component comps[] = jPanel6.getComponents(); // retorna todos os componentes do JPanel       
+             //System.out.println(comps.length);
+             for (int i = 0; i < comps.length; i++) { 
+             //    System.out.println(comps.length);
+             if (comps[i] instanceof JLabel) {   // verifica se é um JTextField   
+               jPanel6.remove(comps[i]);   
+          }     
+         }     
+       }
+       
+       
+        linha = br.readLine();
+       
+        while ((linha) != null){  
+           
+            if(linha.equals(nomeUser)){
+               
+                linha = br.readLine();
+                
+                if(linha == null) break;
+             
+                
+                JLabel remedio= new JLabel();
+                JLabel horario = new JLabel("Nada");
+                remedio.setText("Remédio: " +linha);
+                remedio.setFont(new Font("Sherif", Font.ITALIC + Font.BOLD, 15));
+                //remedio.setFont(new Font("Sherif",, 15));
+                jPanel6.add(remedio);
+                jPanel6.add(horario);
+               
+                remedio.setBounds(x, y, 200, 100);
+                
+                remedio.setVisible(true);
+                linha = br.readLine();
+                
+                if(linha==null) break;
+              
+                horario.setText("Horário Inicial: " + linha);
+                horario.setBounds(x+300, y, 200, 100);
+                horario.setVisible(true);
+                
+                y +=30;
+                k += 30;
+                
+                jPanel6.setPreferredSize(new Dimension(0,k));
+ 
+                JLabel dias = new JLabel();
+                jPanel6.add(dias);
+                dias.setText("Dias da Semana:");
+                dias.setBounds(x, y, 200, 100);
+                y +=30;
+                k += 30;
+                jPanel6.setPreferredSize(new Dimension(0,k));
+ 
+                linha = br.readLine();
+                
+                if(linha==null) break;
+                JLabel interval = new JLabel();
+                jPanel6.add(interval);
+                
+                interval.setText("Intervalo: " + linha);
+                interval.setBounds(x+300, y-30, 200, 100);
+                interval.setVisible(true);
+                
+                
+               do{
+                    linha = br.readLine();
+                    if(linha == null || linha.equals(nomeUser)) break;
+                 
+                    
+                    if(Integer.parseInt(linha) == 2)linha = "Segunda-Feira";
+                    else if(Integer.parseInt(linha) == 3) linha = "Terça-Feira";
+                    else if(Integer.parseInt(linha) == 4) linha = "Quarta-Feira";
+                    else if(Integer.parseInt(linha) == 5) linha = "Quinta-Feira";
+                    else if(Integer.parseInt(linha) == 6) linha = "Sexta-Feira";
+                    else linha = "Sábado";
+                    
+                    JLabel remedio2= new JLabel(linha);
+                     
+                    jPanel6.add(remedio2);
+                     remedio2.setBounds(x+125, y,100, 100);
+                     remedio2.setVisible(true);
+                     //remedio2.setFont(font);
+                     y += 30;
+                     
+                     k += 30;
+                     
+                    jPanel6.setPreferredSize(new Dimension(0,k));
+                     
+                     
+                }while(true);
+                y+=30;
+                k+=30;
+                if(linha == null) break;
+ 
+           }
+ 
+        }
+        is.close();
+        isr.close();
+        br.close();
+        String ok = horarioRemedio.getText();
+    }
+    
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
             
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            updateRemedy(true);
+        } catch (IOException ex) {
+            Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -617,6 +663,7 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
     private javax.swing.JCheckBox CheckTDS;
     private javax.swing.JCheckBox CheckTerça;
     private javax.swing.JFormattedTextField horarioRemedio;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

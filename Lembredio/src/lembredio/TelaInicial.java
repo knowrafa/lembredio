@@ -45,8 +45,8 @@ public class TelaInicial extends javax.swing.JFrame {
         file.createNewFile();// TODO code application logic here
        }
        File dir = new File("CadastroRemedio");
-       if(!file.exists()){
-           file.mkdir();
+       if(!dir.exists()){
+           dir.mkdir();
        }
         //this.setExtendedState(MAXIMIZED_BOTH);
         //jDesktopPane3.setExtendedState(MAXIMIZED_BOTH);

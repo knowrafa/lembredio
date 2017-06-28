@@ -45,7 +45,7 @@ public class ValidarLogin {
           do{
             linha = br.readLine();
             if(linha == null) break;
-              System.out.println(linha + "  " + this.login);
+          
                 switch (Integer.parseInt(linha)) {
                     case 0:
                         if(br.readLine().equals(this.login) & br.readLine().equals(this.senha)){

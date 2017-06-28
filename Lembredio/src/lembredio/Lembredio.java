@@ -27,8 +27,8 @@ public class Lembredio {
         file.createNewFile();// TODO code application logic here
        }
        File dir = new File("CadastroRemedio");
-       if(!file.exists()){
-           file.mkdir();
+       if(!dir.exists()){
+           dir.mkdir();
        }
        LoginInterface inFrame = new LoginInterface();
        CadastroInternal inCadas = new CadastroInternal();
