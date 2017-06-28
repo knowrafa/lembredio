@@ -26,7 +26,7 @@ public class Lembredio {
        if(!file.exists()){
         file.createNewFile();// TODO code application logic here
        }
-       File dir = new File("CadastroRemedio");
+       File dir = new File("CadastroRemedios");
        if(!dir.exists()){
            dir.mkdir();
        }
