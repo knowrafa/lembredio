@@ -354,7 +354,7 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
 
         jLabel17.setText("Intervalo:");
 
-        jComboBox21.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 vez ao dia", "3 em 3 horas", "4 em 4 horas", "6 em 6 horas", "8 em 8 horas", "12 em 12 horas" }));
+        jComboBox21.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 vez ao dia", "4 em 4 horas", "6 em 6 horas", "8 em 8 horas", "12 em 12 horas" }));
 
         jButton1.setText("Voltar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {

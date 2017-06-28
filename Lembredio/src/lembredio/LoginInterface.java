@@ -3,9 +3,12 @@ package lembredio;
 
 import java.awt.Container;
 import java.beans.PropertyVetoException;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import lembredio.ValidarLogin;
 
 /*
@@ -28,7 +31,7 @@ public class LoginInterface extends javax.swing.JInternalFrame {
         initComponents();
         setVisible(true);
         errorMessage.setVisible(false);
-     //  this.setMaximizable(true);
+        //this.setMaximizable(true);
        // this.setMaximum(true);
         
        //Container parent = getParent();
@@ -217,6 +220,12 @@ public class LoginInterface extends javax.swing.JInternalFrame {
              
             }else errorMessage.setVisible(true);
         } catch (IOException ex) {
+            Logger.getLogger(LoginInterface.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedAudioFileException ex) {
+            Logger.getLogger(LoginInterface.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (LineUnavailableException ex) {
+            Logger.getLogger(LoginInterface.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
             Logger.getLogger(LoginInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
             

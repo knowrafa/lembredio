@@ -16,12 +16,19 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import static java.lang.Thread.sleep;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import static javafx.scene.text.Font.font;
 import static javafx.scene.text.Font.font;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.BorderFactory;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
@@ -46,12 +53,11 @@ import javax.swing.text.MaskFormatter;
 public class PacienteInterface extends javax.swing.JInternalFrame {
     String nomeUser;
     int x, y, k;
-    /**
-     * Creates new form PacienteInterface
-     */
-      
+    int horaAtualMinutos, menorDifAtual= 1441;
+    Remédio remedio = new Remédio();
+  
    
-     public PacienteInterface(String nome) throws FileNotFoundException, IOException{
+     public PacienteInterface(String nome) throws FileNotFoundException, IOException, UnsupportedAudioFileException, LineUnavailableException, InterruptedException{
         
         initComponents();
         nomeUser = nome;
@@ -60,8 +66,9 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         x = 50;
         y = 50;
         k = 175;
-        
+        compararHora();
         updateRemedy(false);
+
      }
      
     
@@ -79,8 +86,13 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2NP = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jPanel2 = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        nomeAlarme = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        remainingTime = new javax.swing.JLabel();
+        horaAtual = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -93,15 +105,63 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         setMinimumSize(new java.awt.Dimension(665, 544));
         setPreferredSize(new java.awt.Dimension(665, 544));
 
+        jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTabbedPane1MouseClicked(evt);
+            }
+        });
+
         jLabel1.setText("Paciente :");
 
         jLabel2NP.setText("Nome Paciente");
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jScrollPane1.setViewportView(jTextArea1);
+        jButton2.setText("OK");
+
+        jLabel2.setText("Nome do remédio");
+
+        nomeAlarme.setText("   ");
+
+        jLabel4.setText("Tempo restante");
+
+        remainingTime.setText("          ");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2))
+                        .addGap(39, 39, 39)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(nomeAlarme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(remainingTime, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(162, 162, 162)
+                        .addComponent(jButton2)))
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(nomeAlarme))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(remainingTime))
+                .addGap(34, 34, 34)
+                .addComponent(jButton2)
+                .addContainerGap(163, Short.MAX_VALUE))
+        );
+
+        horaAtual.setText("   ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -109,25 +169,30 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 182, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2NP)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(horaAtual, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2NP))
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(jLabel2NP))
+                    .addComponent(horaAtual, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Avisos", jPanel1);
@@ -346,21 +411,179 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
+        //while(true){
+            try {
+                compararHora();
+               // sleep(20*1000);
+            } catch (IOException ex) {
+                Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if(remedio.savedHour==horaAtualMinutos){
+                Audio audio = new Audio();
+                try {
+                    audio.playAudio(3);
+                    
+                } catch (UnsupportedAudioFileException ex) {
+                    Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (LineUnavailableException ex) {
+                    Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+       // }
+    }//GEN-LAST:event_jTabbedPane1MouseClicked
 
+    public void compararHora() throws FileNotFoundException, IOException{
+        File file = new File("CadastroRemedios/" + nomeUser +".txt");
+        if(!file.exists()) file.createNewFile();
+        InputStream is = new FileInputStream("CadastroRemedios/" + nomeUser +".txt");
+        InputStreamReader isr = new InputStreamReader(is);
+        BufferedReader br = new BufferedReader(isr);
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("HH");
+        Date hora = Calendar.getInstance().getTime(); // Ou qualquer outra forma que tem
+        String dataFormatada = sdf.format(hora);
+        System.out.println(dataFormatada);
+        horaAtualMinutos = Integer.parseInt(dataFormatada)*60;
+        
+        SimpleDateFormat sdf2 = new SimpleDateFormat("mm");
+        hora = Calendar.getInstance().getTime(); // Ou qualquer outra forma que tem
+        dataFormatada = sdf2.format(hora);
+        System.out.println(dataFormatada);
+        horaAtualMinutos += Integer.parseInt(dataFormatada);
+        
+        System.out.println(horaAtualMinutos);
+        
+         String linha = br.readLine();
+       
+        while ((linha) != null){  
+           
+            if(linha.equals(nomeUser)){
+               
+                linha = br.readLine();
+                remedio.nomeRemedio = linha;
+                
+                int minutosRemedio;
+                linha = br.readLine();
+                
+                if(linha == null) break;
+                String ok = (linha);
+                String horas[] = new String[2];
+                horas = ok.split(Pattern.quote(":"));
+                
+                minutosRemedio = Integer.parseInt(horas[0])*60 + Integer.parseInt(horas[1]);
+                
+                linha = br.readLine();
+                
+                String intervalo[] = new String[1];
+                intervalo = linha.split(" ");
+                int interval = Integer.parseInt(intervalo[0]);
+                if(interval == 1) interval = 24;
+                System.out.println(interval);
+                for(int i=0; i < 24/interval; i++){
+                    
+                        //System.out.println(minutosRemedio);
+                        switch(interval){
+                            case 4:
+                                minutosRemedio += 4*60;
+                                break;
+                            case 6:
+                                
+                                minutosRemedio += 6*60;
+                                
+                                break;
+                            case 8:
+                                
+                                minutosRemedio += 8*60;
+                                
+                                break;
+                            case 12:
+                                
+                                minutosRemedio += 12*60;
+                                
+                                break;
+                            default:
+                                break;
+                        
+                        
+                        }
+                        
+                        if(minutosRemedio > 1440){
+                            minutosRemedio = minutosRemedio%1440;
+                        
+                        }
+                        
+                        if(minutosRemedio-horaAtualMinutos >= 0 ){
+                                if(horaAtualMinutos-minutosRemedio < menorDifAtual){
+                                    menorDifAtual = minutosRemedio-horaAtualMinutos;
+                                    //remedio.nomeRemedio = linha;
+                                    remedio.remainingTime = menorDifAtual;
+                                    remedio.savedHour = minutosRemedio;
+                                }
+                            }
+                    
+                }
+                
+                linha = br.readLine();
+                
+                if(linha==null) break;
+              
+                
+               do{
+                    linha = br.readLine();
+                    if(linha == null || linha.equals(nomeUser)) break;
+      
+                }while(true);
+             
+                if(linha == null) break;
+ 
+           }
+ 
+        }
+        is.close();
+        isr.close();
+        br.close();
+        
+        nomeAlarme.setText(remedio.nomeRemedio);
+        if(remedio.remainingTime>60){
+            remainingTime.setText(remedio.remainingTime/60+ "h e " + remedio.remainingTime%60+"m");
+        }
+        else
+        remainingTime.setText(""+remedio.remainingTime+"m");
+        
+        if(horaAtualMinutos>60){
+            horaAtual.setText(horaAtualMinutos/60+ "h e " + horaAtualMinutos%60+"m");
+        }
+        else
+        horaAtual.setText(""+horaAtualMinutos+"m");
+       
+        
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel horaAtual;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel2NP;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JLabel nomeAlarme;
+    private javax.swing.JLabel remainingTime;
     private javax.swing.JScrollPane scroll;
     // End of variables declaration//GEN-END:variables
 

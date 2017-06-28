@@ -13,6 +13,8 @@ import java.io.IOException;
 import static java.lang.Thread.sleep;
 import static java.lang.Thread.sleep;
 import java.net.URL;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
  *
@@ -24,7 +26,7 @@ public class Lembredio {
      * @param args the command line arguments
      * @throws java.io.IOException
      */
-    public static void main(String[] args) throws IOException, InterruptedException, PropertyVetoException {
+    public static void main(String[] args) throws IOException, InterruptedException, PropertyVetoException, UnsupportedAudioFileException, LineUnavailableException {
        File file = new File("CADASTRADOS.txt");
        
        if(!file.exists()){
@@ -35,10 +37,10 @@ public class Lembredio {
            dir.mkdir();
        }
        
-       for(int i=0; i < 10; i++){
-           sleep(1000);
-           java.awt.Toolkit.getDefaultToolkit().beep();
-       }
+      /*  Audio som = new Audio();
+           
+           som.playAudio(10);
+        */          
        LoginInterface inFrame = new LoginInterface();
        CadastroInternal inCadas = new CadastroInternal();
        TelaInicial tl = new TelaInicial(inFrame);
