@@ -4,6 +4,8 @@ package lembredio;
 import java.awt.Color;
 import java.awt.Component;
 import java.beans.PropertyVetoException;
+import java.io.File;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -30,13 +32,22 @@ public class TelaInicial extends javax.swing.JFrame {
      */
     
     
-    public TelaInicial() throws PropertyVetoException {
+    public TelaInicial() throws PropertyVetoException, IOException {
         initComponents();
         jDesktopPane3.add(obj);
         obj.setMaximizable(true);
         obj.setMaximum(true);
         obj.setVisible(true);
         getContentPane().setBackground(Color.WHITE);
+       
+        File file = new File("CADASTRADOS.txt");
+       if(!file.exists()){
+        file.createNewFile();// TODO code application logic here
+       }
+       File dir = new File("CadastroRemedio");
+       if(!file.exists()){
+           file.mkdir();
+       }
         //this.setExtendedState(MAXIMIZED_BOTH);
         //jDesktopPane3.setExtendedState(MAXIMIZED_BOTH);
        //obj.setLocation(jDesktopPane3.getSize().width/2 - obj.getSize().width/2,jDesktopPane3.getSize().height/2 - obj.getSize().height/2);
@@ -131,6 +142,8 @@ public class TelaInicial extends javax.swing.JFrame {
                 try {
                     new TelaInicial().setVisible(true);
                 } catch (PropertyVetoException ex) {
+                    Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
                     Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }

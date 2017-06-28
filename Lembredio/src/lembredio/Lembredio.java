@@ -26,12 +26,15 @@ public class Lembredio {
        if(!file.exists()){
         file.createNewFile();// TODO code application logic here
        }
-       
+       File dir = new File("CadastroRemedio");
+       if(!file.exists()){
+           file.mkdir();
+       }
        LoginInterface inFrame = new LoginInterface();
        CadastroInternal inCadas = new CadastroInternal();
        TelaInicial tl = new TelaInicial(inFrame);
        tl.setVisible(true);
-
+        System.out.println("Permitir Alteração");
        inFrame.setVisible(true);
 
     }
