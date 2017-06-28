@@ -97,16 +97,10 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
         BotaoSalvar = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jPanel5 = new javax.swing.JPanel();
 
         setMaximumSize(new java.awt.Dimension(665, 544));
         setMinimumSize(new java.awt.Dimension(665, 544));
         setPreferredSize(new java.awt.Dimension(665, 554));
-        try {
-            setSelected(true);
-        } catch (java.beans.PropertyVetoException e1) {
-            e1.printStackTrace();
-        }
 
         jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -476,7 +470,7 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -484,19 +478,6 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
         );
 
         jTabbedPane1.addTab("Cadastrar Remédio", jPanel3);
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 691, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 490, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("tab5", jPanel5);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -695,6 +676,10 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_CheckDomingoActionPerformed
 
+    private void nextUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextUserActionPerformed
+        manageUsers();
+    }//GEN-LAST:event_nextUserActionPerformed
+
     private void lastUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastUserActionPerformed
         if(qual > 0){
             qual = qual -2;
@@ -703,14 +688,10 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
         }// TODO add your handling code here:
     }//GEN-LAST:event_lastUserActionPerformed
 
-    private void nextUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextUserActionPerformed
-        manageUsers();
-    }//GEN-LAST:event_nextUserActionPerformed
-
     private void selectUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectUserActionPerformed
-        System.out.println(loginUser);  
-       // jTabbedPane1.setEnabledAt(2, false);
-        jPanel7.setVisible(true);
+        System.out.println(loginUser);
+        // jTabbedPane1.setEnabledAt(2, false);
+        // jPanel7.setVisible(true);
         //jTabbedPane1.n
         //jPanel7.setVisible(false);// TODO add your handling code here:
     }//GEN-LAST:event_selectUserActionPerformed
@@ -727,60 +708,58 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
-       InputStreamReader isr = new InputStreamReader(is);
-       BufferedReader br = new BufferedReader(isr);
-       String temp1, temp2;
+        InputStreamReader isr = new InputStreamReader(is);
+        BufferedReader br = new BufferedReader(isr);
+        String temp1, temp2;
         try {
             String linha;
             int i =0;
-          do{
-            
-              linha = br.readLine();
-            
-              if(linha == null) break;
-              
-             
+            do{
+
+                linha = br.readLine();
+
+                if(linha == null) break;
+
                 switch (Integer.parseInt(linha)) {
                     case 0:
-                        
-                           temp1 = br.readLine();
-                           br.readLine();
-                           nomeUser = br.readLine();
-                           if(searchTextField.getText() != "" && nomeUser.equalsIgnoreCase(searchTextField.getText())){
-                               temp2 = br.readLine();
-                                userLogin4Medic.setText(temp1);
-                                userName4Medic.setText(nomeUser);
-                                userEmail4Medic.setText(temp2);
-                           br.close();
-                           return;
-                           
-                           }else 
-                               for(i=0; i< 1; i++) br.readLine();
-                        break;
-                    case 1:
-                        
-                              for(i=0; i< 5; i++) br.readLine();
-                        break;
-                    case 2:
-                             for(i=0; i< 4; i++) br.readLine();
-                        break;
-                    default:
-                        break;
-                }
-            
-          }while(linha != null);
 
-            
+                    temp1 = br.readLine();
+                    br.readLine();
+                    nomeUser = br.readLine();
+                    if(searchTextField.getText() != "" && nomeUser.equalsIgnoreCase(searchTextField.getText())){
+                        temp2 = br.readLine();
+                        userLogin4Medic.setText(temp1);
+                        userName4Medic.setText(nomeUser);
+                        userEmail4Medic.setText(temp2);
+                        br.close();
+                        return;
+
+                    }else
+                    for(i=0; i< 1; i++) br.readLine();
+                    break;
+                    case 1:
+
+                    for(i=0; i< 5; i++) br.readLine();
+                    break;
+                    case 2:
+                    for(i=0; i< 4; i++) br.readLine();
+                    break;
+                    default:
+                    break;
+                }
+
+            }while(linha != null);
+
         } catch (IOException ex) {
             Logger.getLogger(ValidarLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
+
         try {
             br.close();
         } catch (IOException ex) {
             Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
-      
+
     }//GEN-LAST:event_okButtonActionPerformed
     
     public void manageUsers(){
@@ -863,7 +842,6 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
