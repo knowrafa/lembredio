@@ -1,43 +1,58 @@
 mmm
 REMEDIO1
 23:30
+2 em 2 horas
 4
 5
 mmm
 Remedio2
 09:30
+2 em 2 horas
 3
 4
 7
 mmm
 REMEDIO1
 12:30
+2 em 2 horas
 6
 mmm
 Remedio2
 21:24
+2 em 2 horas
 3
 7
 mmm
 REMEDIO1
 22:30
+2 em 2 horas
 4
 5
 mmm
 Remedio2
 11:30
+2 em 2 horas
 3
 7
 mmm
 REMEDIO1
 07:35
+2 em 2 horas
 3
 4
 5
 mmm
 Remedio2
 08:25
+2 em 2 horas
 3
 4
 6
 7
+mmm
+Rivotril
+23:59
+2 em 2 horas
+2
+3
+4

@@ -115,7 +115,17 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
                 k += 30;
                 jPanel6.setPreferredSize(new Dimension(0,k));
  
-                   
+                linha = br.readLine();
+                
+                if(linha==null) break;
+                JLabel interval = new JLabel();
+                jPanel6.add(interval);
+                System.out.println("SEGUNDO IF");
+                interval.setText("Intervalo: " + linha);
+                interval.setBounds(x+300, y-30, 200, 100);
+                interval.setVisible(true);
+                
+                
                do{
                     linha = br.readLine();
                     if(linha == null || linha.equals(nome)) break;
@@ -516,6 +526,10 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
             fw.write(nomeRemedio.getText());
             fw.write("\r\n");
             
+            fw.write(ok);
+            fw.write("\r\n");
+            fw.write(jComboBox1.getSelectedItem().toString());
+            fw.write("\r\n");
             if(CheckDomingo.isSelected()){
                fw.write("1");
                fw.write("\r\n");              
