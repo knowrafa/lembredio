@@ -217,6 +217,7 @@ teste4
 1234
 Teste Numero Sei La
 teste@gmail.com
+<<<<<<< HEAD
 0
 Marcos13
 123
@@ -227,3 +228,5 @@ marcos1
 senha1
 Marcos
 marcos
+=======
+>>>>>>> 31415e26be80489fb5f7452b7ac14452f52ecd85

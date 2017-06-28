@@ -13,7 +13,7 @@ import javax.swing.JLabel;
  */
 public class MostrandoRemedios {
     
-    public void MostrandoRemedios(String NomeRemedio, int PX, int PY){
+  /*  public void MostrandoRemedios(String NomeRemedio, int PX, int PY){
         JLabel label = new JLabel(NomeRemedio);  
         label.setName(NomeRemedio);  
         
@@ -21,7 +21,7 @@ public class MostrandoRemedios {
        
         label.setVisible(true);
         
-    }
+  } */ 
     
     
     
