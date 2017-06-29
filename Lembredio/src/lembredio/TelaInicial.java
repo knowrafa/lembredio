@@ -34,6 +34,7 @@ public class TelaInicial extends javax.swing.JFrame {
     
     public TelaInicial() throws PropertyVetoException, IOException {
         initComponents();
+        this.setLocationRelativeTo(null);
         jDesktopPane3.add(obj);
         obj.setMaximizable(true);
         obj.setMaximum(true);
@@ -56,6 +57,7 @@ public class TelaInicial extends javax.swing.JFrame {
     
     public TelaInicial(LoginInterface obj) throws PropertyVetoException{
         initComponents();
+        this.setLocationRelativeTo(null);
         this.obj = obj;
         jDesktopPane3.add(this.obj);
         jDesktopPane3.setVisible(true);

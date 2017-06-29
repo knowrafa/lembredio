@@ -37,11 +37,9 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
         initComponents();
         setVisible(true);
         RadioButtonHandler handler = new RadioButtonHandler();
-        jRadioButton3.addItemListener(handler);
-        jRadioButton1.addItemListener(handler);
-        jRadioButton2.addItemListener(handler);
-        //this.setMaximizable(true);
-        //this.setMaximum(true);
+        jRadioButtonPaciente.addItemListener(handler);
+        jRadioButtonMedico.addItemListener(handler);
+       
         jLabel4.setVisible(false);
         CRM.setVisible(false);
     }
@@ -70,9 +68,8 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         EfetuarCadastro = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        jRadioButtonMedico = new javax.swing.JRadioButton();
+        jRadioButtonPaciente = new javax.swing.JRadioButton();
         jLabel2 = new javax.swing.JLabel();
         loginDesejado = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -101,14 +98,11 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
 
         jLabel6.setText("O que você é para com o aplicativo?");
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("Médico");
+        buttonGroup1.add(jRadioButtonMedico);
+        jRadioButtonMedico.setText("Médico");
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("Enfermeiro(a)");
-
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setText("Paciente");
+        buttonGroup1.add(jRadioButtonPaciente);
+        jRadioButtonPaciente.setText("Paciente");
 
         jLabel2.setText("Digite o login desejado:");
 
@@ -140,11 +134,9 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
                             .addComponent(jLabel2)
                             .addComponent(SENHA, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jRadioButton3)
+                        .addComponent(jRadioButtonPaciente)
                         .addGap(18, 18, 18)
-                        .addComponent(jRadioButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioButton2))
+                        .addComponent(jRadioButtonMedico))
                     .addComponent(jLabel6)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
@@ -162,9 +154,8 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                    .addComponent(jRadioButtonPaciente)
+                    .addComponent(jRadioButtonMedico))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -229,22 +220,16 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
         @Override
         public void itemStateChanged (ItemEvent evt){
                     
-        if(evt.getSource()== jRadioButton3){
+        if(evt.getSource()== jRadioButtonPaciente){
             jLabel4.setVisible(false);
             CRM.setVisible(false);
             vlogin.type = 0;
             
-        }else if(evt.getSource()== jRadioButton1){
+        }else if(evt.getSource()== jRadioButtonMedico){
             jLabel4.setVisible(true);
             CRM.setVisible(true);
             vlogin.type = 1;
-        }
-        else if(evt.getSource()== jRadioButton2){
-            jLabel4.setVisible(false);
-            CRM.setVisible(false);
-            vlogin.type = 2;
-        }
-        
+        } 
         
         }
     }
@@ -278,9 +263,8 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JRadioButton jRadioButtonMedico;
+    private javax.swing.JRadioButton jRadioButtonPaciente;
     private javax.swing.JTextField loginDesejado;
     private javax.swing.JTextField nomePessoa;
     // End of variables declaration//GEN-END:variables

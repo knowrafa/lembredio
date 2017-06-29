@@ -608,7 +608,6 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         else
         horaAtual.setText(""+horaAtualMinutos+"m");
         
-        System.out.println(remedio.nomeRemedio + "  " + remedio.remainingTime + " " + horaAtualMinutos + " "  + (menorDifAtual+horaAtualMinutos));
         nomeAlarme.repaint();
         remainingTime.repaint();
         horaAtual.repaint();

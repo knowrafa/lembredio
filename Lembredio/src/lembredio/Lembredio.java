@@ -5,14 +5,9 @@
  */
 package lembredio;
 
-import java.applet.Applet;
-import java.applet.AudioClip;
 import java.beans.PropertyVetoException;
 import java.io.File;
 import java.io.IOException;
-import static java.lang.Thread.sleep;
-import static java.lang.Thread.sleep;
-import java.net.URL;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
@@ -37,10 +32,6 @@ public class Lembredio {
            dir.mkdir();
        }
        
-      /*  Audio som = new Audio();
-           
-           som.playAudio(10);
-        */          
        LoginInterface inFrame = new LoginInterface();
        CadastroInternal inCadas = new CadastroInternal();
        TelaInicial tl = new TelaInicial(inFrame);
