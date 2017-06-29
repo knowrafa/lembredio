@@ -1,4 +1,5 @@
 rafael1
+<<<<<<< HEAD
 TesteLab
 14:44
 4 em 4 horas
@@ -8,6 +9,10 @@ TesteLab
 rafael1
 TesteLab2
 14:46
+=======
+Rem
+16:42
+>>>>>>> c9bffe50b1eb701a5744089331e99ab38b8aeb94
 4 em 4 horas
 3
 4
