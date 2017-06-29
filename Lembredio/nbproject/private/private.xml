@@ -4,11 +4,15 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/elrafa/NetBeansProjects/lembredio/Lembredio/src/lembredio/Remédio.java</file>
+            <file>file:/home/elrafa/NetBeansProjects/lembredio/Lembredio/src/lembredio/Médico.java</file>
+            <file>file:/home/elrafa/NetBeansProjects/lembredio/Lembredio/src/lembredio/CadastroInternal.java</file>
             <file>file:/home/elrafa/NetBeansProjects/lembredio/Lembredio/src/lembredio/MedicoInterface.java</file>
             <file>file:/home/elrafa/NetBeansProjects/lembredio/Lembredio/src/lembredio/Lembredio.java</file>
             <file>file:/home/elrafa/NetBeansProjects/lembredio/Lembredio/src/lembredio/PacienteInterface.java</file>
             <file>file:/home/elrafa/NetBeansProjects/lembredio/Lembredio/src/lembredio/TelaInicial.java</file>
             <file>file:/home/elrafa/NetBeansProjects/lembredio/Lembredio/src/lembredio/LoginInterface.java</file>
+            <file>file:/home/elrafa/NetBeansProjects/lembredio/Lembredio/src/lembredio/MostrandoRemedios.java</file>
+            <file>file:/home/elrafa/NetBeansProjects/lembredio/Lembredio/src/lembredio/Audio.java</file>
         </group>
     </open-files>
 </project-private>

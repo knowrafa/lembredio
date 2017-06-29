@@ -554,7 +554,7 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
             remainingTime.setText(remedio.remainingTime/60+ "h e " + remedio.remainingTime%60+"m");
         }
         else
-        remainingTime.setText(""+remedio.remainingTime+"m");
+            remainingTime.setText(""+remedio.remainingTime+"m");
         
         if(horaAtualMinutos>60){
             horaAtual.setText(horaAtualMinutos/60+ "h e " + horaAtualMinutos%60+"m");
