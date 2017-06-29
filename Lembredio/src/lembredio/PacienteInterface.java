@@ -54,21 +54,26 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
     String nomeUser;
     int x, y, k;
     int horaAtualMinutos, menorDifAtual= 1441;
+    boolean flag = true;
     Remédio remedio = new Remédio();
   
    
      public PacienteInterface(String nome) throws FileNotFoundException, IOException, UnsupportedAudioFileException, LineUnavailableException, InterruptedException{
         
         initComponents();
+        
         nomeUser = nome;
+        
         jLabel2NP.setText(nome);
+        
         setVisible(true);
+        
         x = 50;
         y = 50;
         k = 175;
-        compararHora();
+        //remedio.nomeRemedio = "";
         updateRemedy(false);
-
+        compareHour();
      }
      
     
@@ -116,6 +121,11 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         jLabel2NP.setText("Nome Paciente");
 
         jButton2.setText("OK");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Nome do remédio");
 
@@ -281,6 +291,61 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
+    public void compareHour() throws InterruptedException{
+        new Thread(){
+            @Override
+            public void run(){
+                int k=1;
+                while(true){
+                    
+                    try {
+                        compararHora();
+                        sleep(1000);
+                        
+                    } catch (IOException ex) {
+                        Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+            if(remedio.savedHour==horaAtualMinutos){
+                Audio audio = new Audio();
+            try {
+                audio.playAudio(10, true);
+                
+                JOptionPane.showMessageDialog(null,"ALARME!!\nALARME!!");
+                audio.playAudio(10,false);
+                
+               compararHora();
+               sleep((30)*1000);
+               menorDifAtual= 1441;
+               //break;
+              
+                
+            } catch (UnsupportedAudioFileException ex) {
+                Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (LineUnavailableException ex) {
+                Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
+            }           catch (Throwable ex) {
+                            Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    
+            }  
+            
+        }
+        //  this.interrupt(); 
+          
+        }
+        
+          
+       }.start();
+      
+        
+ }
+    
     public void updateRemedy(boolean flag) throws IOException{
         String linha;
         File file = new File("CadastroRemedios/" + nomeUser +".txt");
@@ -412,33 +477,13 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
-        //while(true){
-            try {
-                compararHora();
-               // sleep(20*1000);
-            } catch (IOException ex) {
-                Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            if(remedio.savedHour==horaAtualMinutos){
-                Audio audio = new Audio();
-                try {
-                    audio.playAudio(3);
-                    
-                } catch (UnsupportedAudioFileException ex) {
-                    Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (LineUnavailableException ex) {
-                    Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IOException ex) {
-                    Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            
-       // }
     }//GEN-LAST:event_jTabbedPane1MouseClicked
 
-    public void compararHora() throws FileNotFoundException, IOException{
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    public void compararHora() throws FileNotFoundException, IOException, InterruptedException{
         File file = new File("CadastroRemedios/" + nomeUser +".txt");
         if(!file.exists()) file.createNewFile();
         InputStream is = new FileInputStream("CadastroRemedios/" + nomeUser +".txt");
@@ -448,16 +493,12 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         SimpleDateFormat sdf = new SimpleDateFormat("HH");
         Date hora = Calendar.getInstance().getTime(); // Ou qualquer outra forma que tem
         String dataFormatada = sdf.format(hora);
-        System.out.println(dataFormatada);
         horaAtualMinutos = Integer.parseInt(dataFormatada)*60;
         
         SimpleDateFormat sdf2 = new SimpleDateFormat("mm");
         hora = Calendar.getInstance().getTime(); // Ou qualquer outra forma que tem
         dataFormatada = sdf2.format(hora);
-        System.out.println(dataFormatada);
         horaAtualMinutos += Integer.parseInt(dataFormatada);
-        
-        System.out.println(horaAtualMinutos);
         
          String linha = br.readLine();
        
@@ -466,7 +507,8 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
             if(linha.equals(nomeUser)){
                
                 linha = br.readLine();
-                remedio.nomeRemedio = linha;
+                //if(linha == remedio.nomeRemedio)continue;
+                String remedioName = linha;
                 
                 int minutosRemedio;
                 linha = br.readLine();
@@ -484,7 +526,7 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
                 intervalo = linha.split(" ");
                 int interval = Integer.parseInt(intervalo[0]);
                 if(interval == 1) interval = 24;
-                System.out.println(interval);
+                
                 for(int i=0; i < 24/interval; i++){
                     
                         //System.out.println(minutosRemedio);
@@ -519,9 +561,9 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
                         }
                         
                         if(minutosRemedio-horaAtualMinutos >= 0 ){
-                                if(horaAtualMinutos-minutosRemedio < menorDifAtual){
+                                if(minutosRemedio-horaAtualMinutos < menorDifAtual){
                                     menorDifAtual = minutosRemedio-horaAtualMinutos;
-                                    //remedio.nomeRemedio = linha;
+                                    remedio.nomeRemedio = remedioName;
                                     remedio.remainingTime = menorDifAtual;
                                     remedio.savedHour = minutosRemedio;
                                 }
@@ -550,19 +592,27 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         br.close();
         
         nomeAlarme.setText(remedio.nomeRemedio);
+        
         if(remedio.remainingTime>60){
+            
             remainingTime.setText(remedio.remainingTime/60+ "h e " + remedio.remainingTime%60+"m");
+            remainingTime.repaint();
         }
         else
             remainingTime.setText(""+remedio.remainingTime+"m");
         
         if(horaAtualMinutos>60){
             horaAtual.setText(horaAtualMinutos/60+ "h e " + horaAtualMinutos%60+"m");
+            
         }
         else
         horaAtual.setText(""+horaAtualMinutos+"m");
-       
         
+        System.out.println(remedio.nomeRemedio + "  " + remedio.remainingTime + " " + horaAtualMinutos + " "  + (menorDifAtual+horaAtualMinutos));
+        nomeAlarme.repaint();
+        remainingTime.repaint();
+        horaAtual.repaint();
+       
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
