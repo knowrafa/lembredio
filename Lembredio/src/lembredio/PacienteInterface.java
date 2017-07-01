@@ -92,7 +92,6 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2NP = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         nomeAlarme = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -106,6 +105,11 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         scroll = new javax.swing.JScrollPane();
         jPanel6 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        sobre = new javax.swing.JMenuItem();
 
         setMinimumSize(new java.awt.Dimension(665, 544));
         setPreferredSize(new java.awt.Dimension(665, 544));
@@ -120,13 +124,6 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
 
         jLabel2NP.setText("Nome Paciente");
 
-        jButton2.setText("OK");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         jLabel2.setText("Nome do remédio");
 
         nomeAlarme.setText("   ");
@@ -140,19 +137,14 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2))
-                        .addGap(39, 39, 39)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(nomeAlarme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(remainingTime, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(162, 162, 162)
-                        .addComponent(jButton2)))
+                .addGap(33, 33, 33)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel2))
+                .addGap(39, 39, 39)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(nomeAlarme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(remainingTime, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -166,9 +158,7 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(remainingTime))
-                .addGap(34, 34, 34)
-                .addComponent(jButton2)
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addContainerGap(226, Short.MAX_VALUE))
         );
 
         horaAtual.setText("   ");
@@ -202,7 +192,7 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
                     .addComponent(horaAtual, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Avisos", jPanel1);
@@ -232,7 +222,7 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel5)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -272,10 +262,36 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scroll)
+            .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Remedios Cadastrados/2", jPanel4);
+
+        jMenu2.setText("Arquivo");
+
+        jMenuItem1.setText("Sair");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu2);
+
+        jMenu1.setText("Ajuda");
+
+        sobre.setText("Sobre");
+        sobre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sobreActionPerformed(evt);
+            }
+        });
+        jMenu1.add(sobre);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -285,7 +301,7 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
@@ -479,9 +495,18 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
     private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
     }//GEN-LAST:event_jTabbedPane1MouseClicked
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        jTabbedPane1.setVisible(false);
+        getParent().remove(jTabbedPane1);
+        getParent().setVisible(false);
+        getParent().getParent().add(new LoginInterface());
+        //getParent().remove(this);
+      
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void sobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sobreActionPerformed
+        JOptionPane.showMessageDialog(null, "\t\tLEMBRÉDIO\t\t\n\tDesenvolvedores:\nMatheus Brito\nRafael Alessandro\n");
+    }//GEN-LAST:event_sobreActionPerformed
 
     public void compararHora() throws FileNotFoundException, IOException, InterruptedException{
         File file = new File("CadastroRemedios/" + nomeUser +".txt");
@@ -501,7 +526,12 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         horaAtualMinutos += Integer.parseInt(dataFormatada);
         
          String linha = br.readLine();
-       
+        
+         if(linha == null){
+            remedio.nomeRemedio = "NÃO HÁ REMÉDIO CADASTRADO";
+            remedio.remainingTime = -1;
+        
+        }
         while ((linha) != null){  
            
             if(linha.equals(nomeUser)){
@@ -598,8 +628,10 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
             remainingTime.setText(remedio.remainingTime/60+ "h e " + remedio.remainingTime%60+"m");
             remainingTime.repaint();
         }
-        else
+        else if(remedio.remainingTime >=0 && remedio.remainingTime < 60){
             remainingTime.setText(""+remedio.remainingTime+"m");
+        }
+        else remainingTime.setText("--");
         
         if(horaAtualMinutos>60){
             horaAtual.setText(horaAtualMinutos/60+ "h e " + horaAtualMinutos%60+"m");
@@ -617,12 +649,15 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel horaAtual;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel2NP;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -634,6 +669,7 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
     private javax.swing.JLabel nomeAlarme;
     private javax.swing.JLabel remainingTime;
     private javax.swing.JScrollPane scroll;
+    private javax.swing.JMenuItem sobre;
     // End of variables declaration//GEN-END:variables
 
   

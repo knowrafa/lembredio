@@ -97,7 +97,6 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
         jTextAreaAvisos = new javax.swing.JTextArea();
         jButtonCriarLembrete = new javax.swing.JButton();
         ButtonLimpar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jPanel4 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -134,6 +133,11 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
         jLabel17 = new javax.swing.JLabel();
         jComboBox21 = new javax.swing.JComboBox<>();
         jButtonVoltarProcurarPaciente = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu2 = new javax.swing.JMenu();
+        logoutButton = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        sobre = new javax.swing.JMenuItem();
 
         setMaximumSize(new java.awt.Dimension(665, 544));
         setMinimumSize(new java.awt.Dimension(665, 544));
@@ -176,13 +180,6 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton1.setText("Logout");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -199,12 +196,10 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(medicoCrm)
-                .addContainerGap(250, Short.MAX_VALUE))
+                .addContainerGap(144, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(48, 48, 48)
                 .addComponent(jButtonCriarLembrete)
-                .addGap(100, 100, 100)
-                .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(ButtonLimpar)
                 .addGap(48, 48, 48))
@@ -223,9 +218,8 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCriarLembrete)
-                    .addComponent(ButtonLimpar)
-                    .addComponent(jButton1))
-                .addContainerGap(119, Short.MAX_VALUE))
+                    .addComponent(ButtonLimpar))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Avisos", jPanel1);
@@ -400,45 +394,20 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
         jLabel16.setText("Dias da Semana :");
 
         CheckDomingo1.setText("Domingo");
-        CheckDomingo1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CheckDomingo1ActionPerformed(evt);
-            }
-        });
 
         CheckSegunda1.setText("Segunda - feira");
 
         CheckTerça1.setText("Terça - feira");
 
         CheckQuinta1.setText("Quinta - feira");
-        CheckQuinta1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CheckQuinta1ActionPerformed(evt);
-            }
-        });
 
         CheckSexta1.setText("Sexta - feira");
-        CheckSexta1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CheckSexta1ActionPerformed(evt);
-            }
-        });
 
         CheckSabado1.setText("Sábado");
-        CheckSabado1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CheckSabado1ActionPerformed(evt);
-            }
-        });
 
         CheckQuarta1.setText("Quarta - feira");
 
         CheckTDS1.setText("Todos os dias da semana");
-        CheckTDS1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CheckTDS1ActionPerformed(evt);
-            }
-        });
 
         try {
             horarioRemedio1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
@@ -461,7 +430,7 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
 
         jLabel17.setText("Intervalo:");
 
-        jComboBox21.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "30 em 30 minutos", "1 em 1 hora", "2 em 2 horas", "3 em 3 horas", "4 em 4 horas", "5 em 5 hora", "6 em 6 horas", "7 em 7 horas", "8 em 8 horas", "9 em 9 hora", "10 em 10 horas", "11 em 11 horas", "12 em 12 horas", "1 vez ao dia" }));
+        jComboBox21.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 vez ao dia", "3 em 3 horas", "4 em 4 horas", "6 em 6 horas", "8 em 8 horas", "12 em 12 horas", "1 vez ao dia" }));
 
         jButtonVoltarProcurarPaciente.setText("Voltar");
         jButtonVoltarProcurarPaciente.addActionListener(new java.awt.event.ActionListener() {
@@ -582,6 +551,32 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Procurar Pacientes", jLayeredPane1);
 
+        jMenu2.setText("Arquivo");
+
+        logoutButton.setText("Sair");
+        logoutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutButtonActionPerformed(evt);
+            }
+        });
+        jMenu2.add(logoutButton);
+
+        jMenuBar1.add(jMenu2);
+
+        jMenu1.setText("Ajuda");
+
+        sobre.setText("Sobre");
+        sobre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sobreActionPerformed(evt);
+            }
+        });
+        jMenu1.add(sobre);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -590,7 +585,7 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 550, Short.MAX_VALUE)
         );
 
         pack();
@@ -748,26 +743,6 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
       
     }//GEN-LAST:event_okButtonActionPerformed
 
-    private void CheckDomingo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckDomingo1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CheckDomingo1ActionPerformed
-
-    private void CheckQuinta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckQuinta1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CheckQuinta1ActionPerformed
-
-    private void CheckSexta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckSexta1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CheckSexta1ActionPerformed
-
-    private void CheckSabado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckSabado1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CheckSabado1ActionPerformed
-
-    private void CheckTDS1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckTDS1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CheckTDS1ActionPerformed
-
     private void horarioRemedio1RemedioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_horarioRemedio1RemedioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_horarioRemedio1RemedioActionPerformed
@@ -913,18 +888,19 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_ButtonLimparActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
         jTabbedPane1.setVisible(false);
-        LoginInterface LI = new LoginInterface(); 
-        //MedicoInterface mi = new MedicoInterface();
         getParent().remove(jTabbedPane1);
         getParent().setVisible(false);
-        getParent().getParent().add(LI);
-        
-      
-        //LI.setVisible(true);
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+        getParent().getParent().add(new LoginInterface());
+        getParent().remove(this);
+ 
+       
+    }//GEN-LAST:event_logoutButtonActionPerformed
+
+    private void sobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sobreActionPerformed
+        JOptionPane.showMessageDialog(null, "\t\tLEMBRÉDIO\t\t\n\tDesenvolvedores:\nMatheus Brito\nRafael Alessandro\n");
+    }//GEN-LAST:event_sobreActionPerformed
     
     public void manageUsers(){
         InputStream is = null;
@@ -991,7 +967,6 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
     private javax.swing.JCheckBox CheckTDS1;
     private javax.swing.JCheckBox CheckTerça1;
     private javax.swing.JFormattedTextField horarioRemedio1;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonCriarLembrete;
     private javax.swing.JButton jButtonVoltarProcurarPaciente;
     private javax.swing.JComboBox<String> jComboBox21;
@@ -1008,6 +983,9 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
@@ -1015,6 +993,7 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextArea jTextAreaAvisos;
     private javax.swing.JButton lastUser;
+    private javax.swing.JMenuItem logoutButton;
     private javax.swing.JLabel medicoCrm;
     private javax.swing.JButton nextUser;
     private javax.swing.JLabel nomeMedico;
@@ -1022,6 +1001,7 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
     private javax.swing.JButton okButton;
     private javax.swing.JTextField searchTextField;
     private javax.swing.JButton selectUser;
+    private javax.swing.JMenuItem sobre;
     private javax.swing.JLabel userAge4Medic;
     private javax.swing.JLabel userEmail4Medic;
     private javax.swing.JLabel userLogin4Medic;

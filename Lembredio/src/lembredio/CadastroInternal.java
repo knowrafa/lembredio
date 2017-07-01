@@ -207,10 +207,17 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
                
              JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso");
              setVisible(false);
+             
              getParent().add(new LoginInterface());
+             getParent().remove(this);
+            }else if(vlogin.verificaCadastro() == false){
+                JOptionPane.showMessageDialog(null, "Login já existe\nTente novamente!");
+                    }
+            else if(vlogin.type == -1){
+                JOptionPane.showMessageDialog(null, "Escolha uma opção!!");
             }else{
-                JOptionPane.showMessageDialog(null, "Preencha todos os dados");
-                    }// TODO add your handling code here:
+                JOptionPane.showMessageDialog(null, "e-mai  l já existe\nTente novamente!");
+            }// TODO add your handling code here:
         } catch (IOException ex) {
             Logger.getLogger(CadastroInternal.class.getName()).log(Level.SEVERE, null, ex);
         }

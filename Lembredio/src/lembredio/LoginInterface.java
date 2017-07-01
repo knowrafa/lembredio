@@ -31,8 +31,7 @@ public class LoginInterface extends javax.swing.JInternalFrame {
         initComponents();
         setVisible(true);
         errorMessage.setVisible(false);
-       
-
+     
     }
 
     /**
@@ -222,7 +221,7 @@ public class LoginInterface extends javax.swing.JInternalFrame {
         
         try {
             getParent().add(new CadastroInternal());
-             
+            getParent().remove(this);
         } catch (PropertyVetoException ex) {
             Logger.getLogger(LoginInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
