@@ -11,12 +11,30 @@ package lembredio;
  */
 public class Pessoa {
     protected String nome;
-    protected ValidarLogin loginInfo;
+    protected Login loginInfo;
     protected String email;
     
     
     public boolean verificaEmail(){
         
         return true;
+    }
+    
+    public void setNome(String nome){
+    
+        this.nome = nome;
+    }
+    public String getNome(){
+    
+        return this.nome;
+    }
+    
+    public void setEmail(String email){
+    
+        this.nome = nome;
+    }
+    public String getEmail(){
+    
+        return this.email;
     }
 }

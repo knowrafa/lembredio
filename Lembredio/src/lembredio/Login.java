@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  *
  * @author elrafa
  */
-public class ValidarLogin {
+public class Login {
     String login;
     String senha;
     int type;
@@ -30,6 +30,15 @@ public class ValidarLogin {
    } 
    public void setSenha(String senha){
        this.senha = senha;
+   }
+   public String getLogin(){
+       return this.login;
+   }
+   public void setType(int type){
+       this.type = type;
+   } 
+   public int getType(){
+       return this.type;
    }
    
    public boolean verificaLogin() throws FileNotFoundException, IOException {
@@ -87,7 +96,7 @@ public class ValidarLogin {
 
             
         } catch (IOException ex) {
-            Logger.getLogger(ValidarLogin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
        
        br.close();
@@ -139,15 +148,12 @@ public class ValidarLogin {
 
             
         } catch (IOException ex) {
-            Logger.getLogger(ValidarLogin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
        
        br.close();
        return true;
    }
    
-   public String getLogin(){
-       return this.login;
-   }
-   
+
 }

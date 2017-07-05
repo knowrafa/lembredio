@@ -53,25 +53,23 @@ import javax.swing.text.MaskFormatter;
 public class PacienteInterface extends javax.swing.JInternalFrame {
     String nomeUser;
     int x, y, k;
-    int horaAtualMinutos, menorDifAtual= 1441;
+    int horaAtualMinutos, menorDifAtual= 1441;   //Valores para manipulação do algoritmo magnífico de horas.
     boolean flag = true;
     Remédio remedio = new Remédio();
   
-   
+     /*
+        Inicializa os componentes, define o nome utilizar na interface para manipulações,
+    o nome escrito na janela inicial, deixa visível, inicializa as variáveis de controle
+    da página de atualização, mostra os remédios que o usuário possui e inicializa o método
+    para verificar se é hora do Lembrédio.
+     */
      public PacienteInterface(String nome) throws FileNotFoundException, IOException, UnsupportedAudioFileException, LineUnavailableException, InterruptedException{
         
         initComponents();
-        
         nomeUser = nome;
-        
         jLabel2NP.setText(nome);
-        
         setVisible(true);
-        
-        x = 50;
-        y = 50;
-        k = 175;
-        //remedio.nomeRemedio = "";
+        initXYK();
         updateRemedy(false);
         compareHour();
      }
@@ -104,21 +102,15 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         jPanel4 = new javax.swing.JPanel();
         scroll = new javax.swing.JScrollPane();
         jPanel6 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        atualizarListaDeRemedios = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        arquivoMenu = new javax.swing.JMenu();
+        logoutButton = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         sobre = new javax.swing.JMenuItem();
 
         setMinimumSize(new java.awt.Dimension(665, 544));
         setPreferredSize(new java.awt.Dimension(665, 544));
-
-        jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTabbedPane1MouseClicked(evt);
-            }
-        });
 
         jLabel1.setText("Paciente :");
 
@@ -228,10 +220,10 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Remédios Cadastrados", jPanel3);
 
-        jButton1.setText("Atualizar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        atualizarListaDeRemedios.setText("Atualizar");
+        atualizarListaDeRemedios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                atualizarListaDeRemediosActionPerformed(evt);
             }
         });
 
@@ -241,14 +233,14 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap(498, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(atualizarListaDeRemedios, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(atualizarListaDeRemedios, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(418, Short.MAX_VALUE))
         );
 
@@ -267,17 +259,17 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Remedios Cadastrados/2", jPanel4);
 
-        jMenu2.setText("Arquivo");
+        arquivoMenu.setText("Arquivo");
 
-        jMenuItem1.setText("Sair");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        logoutButton.setText("Sair");
+        logoutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                logoutButtonActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem1);
+        arquivoMenu.add(logoutButton);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(arquivoMenu);
 
         jMenu1.setText("Ajuda");
 
@@ -306,7 +298,18 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    public void initXYK(){
+        x = 50;
+        y = 50;
+        k = 175; 
+    }
     
+    /*
+     Método para verificar se é a hora de tomar o remédio.
+     Thread para calcular o horário e chamar a função de comparar a hora,
+    pois é preciso fazer isso a cada segundo de execução.
+        
+    */
     public void compareHour() throws InterruptedException{
         new Thread(){
             @Override
@@ -361,6 +364,12 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
       
         
  }
+    
+    /*
+     Método para atualizar a lista de remédios que foi cadastrada para o usuário.
+     Utiliza a flag como false para dizer se está escrevendo a primeira vez.
+     Utiliza como true para dizer que está atualizando e deve excluir os componentes anteriores.
+    */
     
     public void updateRemedy(boolean flag) throws IOException{
         String linha;
@@ -483,31 +492,36 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         br.close();
        // String ok = horarioRemedio1.getText();
     }
-    
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    /*
+        Atualiza a lista de remédios do usuário.
+    */
+    private void atualizarListaDeRemediosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarListaDeRemediosActionPerformed
         try {
             updateRemedy(true);
         } catch (IOException ex) {
             Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
-    }//GEN-LAST:event_jTabbedPane1MouseClicked
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_atualizarListaDeRemediosActionPerformed
+    /*
+        Volta para a tela de Login.
+    */
+    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
         jTabbedPane1.setVisible(false);
         getParent().remove(jTabbedPane1);
         getParent().setVisible(false);
         getParent().getParent().add(new LoginInterface());
-        //getParent().remove(this);
-      
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
+       
+    }//GEN-LAST:event_logoutButtonActionPerformed
+    /*
+        Exibe os produtores & desenvolvedores do programa.
+    */
     private void sobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sobreActionPerformed
         JOptionPane.showMessageDialog(null, "\t\tLEMBRÉDIO\t\t\n\tDesenvolvedores:\nMatheus Brito\nRafael Alessandro\n");
     }//GEN-LAST:event_sobreActionPerformed
-
+    /*
+        Retorna, depois de muito custo, a menor hora utilizando os valores lidos do arquivo como
+    'Intervalo de horas' & Hora Inicial. Não se engane, esta implementação não foi nada fácil.
+    */
     public void compararHora() throws FileNotFoundException, IOException, InterruptedException{
         File file = new File("CadastroRemedios/" + nomeUser +".txt");
         if(!file.exists()) file.createNewFile();
@@ -647,17 +661,16 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu arquivoMenu;
+    private javax.swing.JButton atualizarListaDeRemedios;
     private javax.swing.JLabel horaAtual;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel2NP;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -666,6 +679,7 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JMenuItem logoutButton;
     private javax.swing.JLabel nomeAlarme;
     private javax.swing.JLabel remainingTime;
     private javax.swing.JScrollPane scroll;

@@ -26,7 +26,7 @@ import javax.swing.JOptionPane;
  * @author elrafa
  */
 public class CadastroInternal extends javax.swing.JInternalFrame {
-    ValidarLogin vlogin = new ValidarLogin();
+    Login vlogin = new Login();
     Pessoa plogin = new Pessoa();
     Médico medico = new Médico();
     /**

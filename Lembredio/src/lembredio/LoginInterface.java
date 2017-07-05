@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import lembredio.ValidarLogin;
+import lembredio.Login;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -23,7 +23,8 @@ import lembredio.ValidarLogin;
  */
 public class LoginInterface extends javax.swing.JInternalFrame {
     
-    ValidarLogin vlogin = new ValidarLogin();
+    Login vlogin = new Login();
+    
     /**
      * Creates new form NovoJInternalFrame
      */
@@ -168,27 +169,26 @@ public class LoginInterface extends javax.swing.JInternalFrame {
     private void DigitarLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DigitarLoginActionPerformed
         this.vlogin.setLogin(evt.getActionCommand());
         System.out.println(vlogin.getLogin());
-
-// TODO add your handling code here:
     }//GEN-LAST:event_DigitarLoginActionPerformed
 
     private void EfetuarLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EfetuarLoginActionPerformed
         
         try {
-            vlogin.login = DigitarLogin.getText();
-            vlogin.senha = DigitarSenha.getText();
+            vlogin.setLogin(DigitarLogin.getText());
+            vlogin.setSenha(DigitarSenha.getText());
             
             if(vlogin.verificaLogin()){
              setVisible(false);
              
-                switch (vlogin.type) {
+                switch (vlogin.getType()) {
                     case 0:
                         getParent().add(new PacienteInterface(vlogin.getLogin()));
                         
                         break;
                        
                     case 1:
-                        getParent().add(new MedicoInterface(vlogin));
+                        
+                        getParent().add(new MedicoInterface(new Médico(vlogin)));
                         break;
                     default:
                       
@@ -209,7 +209,7 @@ public class LoginInterface extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_EfetuarLoginActionPerformed
 
     private void DigitarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DigitarSenhaActionPerformed
-
+        
     }//GEN-LAST:event_DigitarSenhaActionPerformed
 
     private void formComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentMoved
@@ -218,7 +218,6 @@ public class LoginInterface extends javax.swing.JInternalFrame {
 
     private void EfetuarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EfetuarCadastroActionPerformed
         setVisible(false);
-        
         try {
             getParent().add(new CadastroInternal());
             getParent().remove(this);
