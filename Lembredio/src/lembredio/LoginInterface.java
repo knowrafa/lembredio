@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import lembredio.ValidarLogin;
+import lembredio.Login;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -23,7 +23,8 @@ import lembredio.ValidarLogin;
  */
 public class LoginInterface extends javax.swing.JInternalFrame {
     
-    ValidarLogin vlogin = new ValidarLogin();
+    Login vlogin = new Login();
+    
     /**
      * Creates new form NovoJInternalFrame
      */
@@ -31,11 +32,7 @@ public class LoginInterface extends javax.swing.JInternalFrame {
         initComponents();
         setVisible(true);
         errorMessage.setVisible(false);
-        //this.setMaximizable(true);
-       // this.setMaximum(true);
-        
-       //Container parent = getParent();
-
+     
     }
 
     /**
@@ -47,16 +44,15 @@ public class LoginInterface extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        ImagemTelaDeLogin = new javax.swing.JLabel();
+        EfetuarCadastro = new javax.swing.JButton();
+        EfetuarLogin = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        errorMessage = new javax.swing.JLabel();
+        DigitarSenha = new javax.swing.JPasswordField();
         DigitarLogin = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        EfetuarLogin = new javax.swing.JButton();
-        EfetuarCadastro = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        DigitarSenha = new javax.swing.JPasswordField();
-        errorMessage = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        ImagemTelaDeLogin = new javax.swing.JLabel();
 
         setTitle("Login");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -74,20 +70,7 @@ public class LoginInterface extends javax.swing.JInternalFrame {
             }
         });
 
-        DigitarLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DigitarLoginActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setText("Senha");
-
-        EfetuarLogin.setText("Login");
-        EfetuarLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EfetuarLoginActionPerformed(evt);
-            }
-        });
+        ImagemTelaDeLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Logo - Lembredio-1.png"))); // NOI18N
 
         EfetuarCadastro.setText("Cadastre-se!");
         EfetuarCadastro.addActionListener(new java.awt.event.ActionListener() {
@@ -96,7 +79,17 @@ public class LoginInterface extends javax.swing.JInternalFrame {
             }
         });
 
+        EfetuarLogin.setText("Login");
+        EfetuarLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EfetuarLoginActionPerformed(evt);
+            }
+        });
+
         jLabel2.setText("Não tem conta?");
+
+        errorMessage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/1497671163_scull.png"))); // NOI18N
+        errorMessage.setText("Login ou Senha incorretos!!!");
 
         DigitarSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,85 +97,70 @@ public class LoginInterface extends javax.swing.JInternalFrame {
             }
         });
 
-        errorMessage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/1497671163_scull.png"))); // NOI18N
-        errorMessage.setText("Login ou Senha incorretos!!!");
+        DigitarLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DigitarLoginActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Senha");
 
         jLabel3.setText("Login");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addComponent(errorMessage)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(DigitarLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(DigitarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(EfetuarCadastro)
-                                        .addGap(91, 91, 91)
-                                        .addComponent(EfetuarLogin))))
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(DigitarLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(DigitarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addComponent(errorMessage)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addGap(4, 4, 4)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(EfetuarCadastro)
-                    .addComponent(EfetuarLogin))
-                .addContainerGap())
-        );
-
-        ImagemTelaDeLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/panic.attack.symptoms.jpg"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(174, 174, 174)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(64, 64, 64)
+                                .addComponent(errorMessage))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(EfetuarCadastro)
+                                .addGap(91, 91, 91)
+                                .addComponent(EfetuarLogin))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addGap(12, 30, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(182, 182, 182)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(DigitarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(270, 270, 270)
-                        .addComponent(ImagemTelaDeLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(201, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(DigitarLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(180, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(ImagemTelaDeLogin)
+                .addGap(223, 223, 223))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(ImagemTelaDeLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(ImagemTelaDeLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(159, Short.MAX_VALUE))
+                .addComponent(DigitarLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
+                .addComponent(DigitarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(errorMessage)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addGap(4, 4, 4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(EfetuarCadastro)
+                    .addComponent(EfetuarLogin))
+                .addGap(61, 61, 61))
         );
 
         pack();
@@ -191,30 +169,29 @@ public class LoginInterface extends javax.swing.JInternalFrame {
     private void DigitarLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DigitarLoginActionPerformed
         this.vlogin.setLogin(evt.getActionCommand());
         System.out.println(vlogin.getLogin());
-
-// TODO add your handling code here:
     }//GEN-LAST:event_DigitarLoginActionPerformed
 
     private void EfetuarLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EfetuarLoginActionPerformed
         
         try {
-            vlogin.login = DigitarLogin.getText();
-            vlogin.senha = DigitarSenha.getText();
+            vlogin.setLogin(DigitarLogin.getText());
+            vlogin.setSenha(DigitarSenha.getText());
             
             if(vlogin.verificaLogin()){
              setVisible(false);
              
-                switch (vlogin.type) {
+                switch (vlogin.getType()) {
                     case 0:
                         getParent().add(new PacienteInterface(vlogin.getLogin()));
                         
                         break;
                        
                     case 1:
-                        getParent().add(new MedicoInterface(vlogin));
+                        
+                        getParent().add(new MedicoInterface(new Médico(vlogin)));
                         break;
                     default:
-                        //getParent().add(new EnfermeiraInterface(vlogin.getLogin()));
+                      
                         break;
                 }
              
@@ -232,7 +209,7 @@ public class LoginInterface extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_EfetuarLoginActionPerformed
 
     private void DigitarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DigitarSenhaActionPerformed
-
+        
     }//GEN-LAST:event_DigitarSenhaActionPerformed
 
     private void formComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentMoved
@@ -241,12 +218,9 @@ public class LoginInterface extends javax.swing.JInternalFrame {
 
     private void EfetuarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EfetuarCadastroActionPerformed
         setVisible(false);
-        
         try {
             getParent().add(new CadastroInternal());
-            
-            
-            //getParent().removeAll();       // TODO add your handling code here:
+            getParent().remove(this);
         } catch (PropertyVetoException ex) {
             Logger.getLogger(LoginInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -263,6 +237,5 @@ public class LoginInterface extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

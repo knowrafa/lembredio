@@ -53,22 +53,25 @@ import javax.swing.text.MaskFormatter;
 public class PacienteInterface extends javax.swing.JInternalFrame {
     String nomeUser;
     int x, y, k;
-    int horaAtualMinutos, menorDifAtual= 1441;
+    int horaAtualMinutos, menorDifAtual= 1441;   //Valores para manipulação do algoritmo magnífico de horas.
+    boolean flag = true;
     Remédio remedio = new Remédio();
   
-   
+     /*
+        Inicializa os componentes, define o nome utilizar na interface para manipulações,
+    o nome escrito na janela inicial, deixa visível, inicializa as variáveis de controle
+    da página de atualização, mostra os remédios que o usuário possui e inicializa o método
+    para verificar se é hora do Lembrédio.
+     */
      public PacienteInterface(String nome) throws FileNotFoundException, IOException, UnsupportedAudioFileException, LineUnavailableException, InterruptedException{
         
         initComponents();
         nomeUser = nome;
         jLabel2NP.setText(nome);
         setVisible(true);
-        x = 50;
-        y = 50;
-        k = 175;
-        compararHora();
+        initXYK();
         updateRemedy(false);
-
+        compareHour();
      }
      
     
@@ -87,35 +90,27 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2NP = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         nomeAlarme = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         remainingTime = new javax.swing.JLabel();
         horaAtual = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
         jPanel4 = new javax.swing.JPanel();
         scroll = new javax.swing.JScrollPane();
         jPanel6 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        atualizarListaDeRemedios = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        arquivoMenu = new javax.swing.JMenu();
+        logoutButton = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        sobre = new javax.swing.JMenuItem();
 
         setMinimumSize(new java.awt.Dimension(665, 544));
         setPreferredSize(new java.awt.Dimension(665, 544));
 
-        jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTabbedPane1MouseClicked(evt);
-            }
-        });
-
         jLabel1.setText("Paciente :");
 
         jLabel2NP.setText("Nome Paciente");
-
-        jButton2.setText("OK");
 
         jLabel2.setText("Nome do remédio");
 
@@ -130,19 +125,14 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2))
-                        .addGap(39, 39, 39)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(nomeAlarme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(remainingTime, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(162, 162, 162)
-                        .addComponent(jButton2)))
+                .addGap(33, 33, 33)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel2))
+                .addGap(39, 39, 39)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(nomeAlarme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(remainingTime, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -156,9 +146,7 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(remainingTime))
-                .addGap(34, 34, 34)
-                .addComponent(jButton2)
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addContainerGap(226, Short.MAX_VALUE))
         );
 
         horaAtual.setText("   ");
@@ -192,46 +180,15 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
                     .addComponent(horaAtual, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Avisos", jPanel1);
 
-        jLabel5.setText("Horários :");
-
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jTabbedPane1.addTab("Remédios Cadastrados", jPanel3);
-
-        jButton1.setText("Atualizar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        atualizarListaDeRemedios.setText("Atualizar");
+        atualizarListaDeRemedios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                atualizarListaDeRemediosActionPerformed(evt);
             }
         });
 
@@ -241,14 +198,14 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap(498, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(atualizarListaDeRemedios, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(atualizarListaDeRemedios, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(418, Short.MAX_VALUE))
         );
 
@@ -262,10 +219,36 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scroll)
+            .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Remedios Cadastrados/2", jPanel4);
+        jTabbedPane1.addTab("Remedios Cadastrados", jPanel4);
+
+        arquivoMenu.setText("Arquivo");
+
+        logoutButton.setText("Sair");
+        logoutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutButtonActionPerformed(evt);
+            }
+        });
+        arquivoMenu.add(logoutButton);
+
+        jMenuBar1.add(arquivoMenu);
+
+        jMenu1.setText("Ajuda");
+
+        sobre.setText("Sobre");
+        sobre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sobreActionPerformed(evt);
+            }
+        });
+        jMenu1.add(sobre);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -275,11 +258,83 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    public void initXYK(){
+        x = 50;
+        y = 50;
+        k = 175; 
+    }
+    
+    /*
+     Método para verificar se é a hora de tomar o remédio.
+     Thread para calcular o horário e chamar a função de comparar a hora,
+    pois é preciso fazer isso a cada segundo de execução.
+        
+    */
+    public void compareHour() throws InterruptedException{
+        new Thread(){
+            @Override
+            public void run(){
+                int k=1;
+                while(true){
+                    
+                    try {
+                        compararHora();
+                        sleep(1000);
+                        
+                    } catch (IOException ex) {
+                        Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+            if(remedio.savedHour==horaAtualMinutos){
+                Audio audio = new Audio();
+            try {
+                audio.playAudio(10, true);
+                
+                JOptionPane.showMessageDialog(null,"ALARME!!\nALARME!!");
+                audio.playAudio(10,false);
+                
+               compararHora();
+               sleep((30)*1000);
+               menorDifAtual= 1441;
+               //break;
+              
+                
+            } catch (UnsupportedAudioFileException ex) {
+                Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (LineUnavailableException ex) {
+                Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
+            }           catch (Throwable ex) {
+                            Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    
+            }  
+            
+        }
+        //  this.interrupt(); 
+          
+        }
+        
+          
+       }.start();
+      
+        
+ }
+    
+    /*
+     Método para atualizar a lista de remédios que foi cadastrada para o usuário.
+     Utiliza a flag como false para dizer se está escrevendo a primeira vez.
+     Utiliza como true para dizer que está atualizando e deve excluir os componentes anteriores.
+    */
     
     public void updateRemedy(boolean flag) throws IOException{
         String linha;
@@ -402,43 +457,37 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         br.close();
        // String ok = horarioRemedio1.getText();
     }
-    
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    /*
+        Atualiza a lista de remédios do usuário.
+    */
+    private void atualizarListaDeRemediosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarListaDeRemediosActionPerformed
         try {
             updateRemedy(true);
         } catch (IOException ex) {
             Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
-        //while(true){
-            try {
-                compararHora();
-               // sleep(20*1000);
-            } catch (IOException ex) {
-                Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            if(remedio.savedHour==horaAtualMinutos){
-                Audio audio = new Audio();
-                try {
-                    audio.playAudio(3);
-                    
-                } catch (UnsupportedAudioFileException ex) {
-                    Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (LineUnavailableException ex) {
-                    Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IOException ex) {
-                    Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            
-       // }
-    }//GEN-LAST:event_jTabbedPane1MouseClicked
-
-    public void compararHora() throws FileNotFoundException, IOException{
+    }//GEN-LAST:event_atualizarListaDeRemediosActionPerformed
+    /*
+        Volta para a tela de Login.
+    */
+    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
+        jTabbedPane1.setVisible(false);
+        getParent().remove(jTabbedPane1);
+        getParent().setVisible(false);
+        getParent().getParent().add(new LoginInterface());
+       
+    }//GEN-LAST:event_logoutButtonActionPerformed
+    /*
+        Exibe os produtores & desenvolvedores do programa.
+    */
+    private void sobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sobreActionPerformed
+        JOptionPane.showMessageDialog(null, "\t\tLEMBRÉDIO\t\t\n\tDesenvolvedores:\nMatheus Brito\nRafael Alessandro\n");
+    }//GEN-LAST:event_sobreActionPerformed
+    /*
+        Retorna, depois de muito custo, a menor hora utilizando os valores lidos do arquivo como
+    'Intervalo de horas' & Hora Inicial. Não se engane, esta implementação não foi nada fácil.
+    */
+    public void compararHora() throws FileNotFoundException, IOException, InterruptedException{
         File file = new File("CadastroRemedios/" + nomeUser +".txt");
         if(!file.exists()) file.createNewFile();
         InputStream is = new FileInputStream("CadastroRemedios/" + nomeUser +".txt");
@@ -448,25 +497,27 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         SimpleDateFormat sdf = new SimpleDateFormat("HH");
         Date hora = Calendar.getInstance().getTime(); // Ou qualquer outra forma que tem
         String dataFormatada = sdf.format(hora);
-        System.out.println(dataFormatada);
         horaAtualMinutos = Integer.parseInt(dataFormatada)*60;
         
         SimpleDateFormat sdf2 = new SimpleDateFormat("mm");
         hora = Calendar.getInstance().getTime(); // Ou qualquer outra forma que tem
         dataFormatada = sdf2.format(hora);
-        System.out.println(dataFormatada);
         horaAtualMinutos += Integer.parseInt(dataFormatada);
         
-        System.out.println(horaAtualMinutos);
-        
          String linha = br.readLine();
-       
+        
+         if(linha == null){
+            remedio.nomeRemedio = "NÃO HÁ REMÉDIO CADASTRADO";
+            remedio.remainingTime = -1;
+        
+        }
         while ((linha) != null){  
            
             if(linha.equals(nomeUser)){
                
                 linha = br.readLine();
-                remedio.nomeRemedio = linha;
+                //if(linha == remedio.nomeRemedio)continue;
+                String remedioName = linha;
                 
                 int minutosRemedio;
                 linha = br.readLine();
@@ -484,7 +535,7 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
                 intervalo = linha.split(" ");
                 int interval = Integer.parseInt(intervalo[0]);
                 if(interval == 1) interval = 24;
-                System.out.println(interval);
+                
                 for(int i=0; i < 24/interval; i++){
                     
                         //System.out.println(minutosRemedio);
@@ -519,9 +570,9 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
                         }
                         
                         if(minutosRemedio-horaAtualMinutos >= 0 ){
-                                if(horaAtualMinutos-minutosRemedio < menorDifAtual){
+                                if(minutosRemedio-horaAtualMinutos < menorDifAtual){
                                     menorDifAtual = minutosRemedio-horaAtualMinutos;
-                                    //remedio.nomeRemedio = linha;
+                                    remedio.nomeRemedio = remedioName;
                                     remedio.remainingTime = menorDifAtual;
                                     remedio.savedHour = minutosRemedio;
                                 }
@@ -550,41 +601,50 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         br.close();
         
         nomeAlarme.setText(remedio.nomeRemedio);
+        
         if(remedio.remainingTime>60){
+            
             remainingTime.setText(remedio.remainingTime/60+ "h e " + remedio.remainingTime%60+"m");
+            remainingTime.repaint();
         }
-        else
-        remainingTime.setText(""+remedio.remainingTime+"m");
+        else if(remedio.remainingTime >=0 && remedio.remainingTime < 60){
+            remainingTime.setText(""+remedio.remainingTime+"m");
+        }
+        else remainingTime.setText("--");
         
         if(horaAtualMinutos>60){
             horaAtual.setText(horaAtualMinutos/60+ "h e " + horaAtualMinutos%60+"m");
+            
         }
         else
         horaAtual.setText(""+horaAtualMinutos+"m");
-       
         
+        nomeAlarme.repaint();
+        remainingTime.repaint();
+        horaAtual.repaint();
+       
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu arquivoMenu;
+    private javax.swing.JButton atualizarListaDeRemedios;
     private javax.swing.JLabel horaAtual;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel2NP;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JMenuItem logoutButton;
     private javax.swing.JLabel nomeAlarme;
     private javax.swing.JLabel remainingTime;
     private javax.swing.JScrollPane scroll;
+    private javax.swing.JMenuItem sobre;
     // End of variables declaration//GEN-END:variables
 
   

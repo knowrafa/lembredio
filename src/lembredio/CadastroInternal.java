@@ -29,6 +29,7 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
     Login vlogin = new Login();
     Pessoa plogin = new Pessoa();
     Médico medico = new Médico();
+    Farmaceutico farma = new Farmaceutico();
     /**
      * Creates new form CadastroInternal
      */
@@ -39,9 +40,12 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
         RadioButtonHandler handler = new RadioButtonHandler();
         jRadioButtonPaciente.addItemListener(handler);
         jRadioButtonMedico.addItemListener(handler);
-       
+        jRadioButtonFarmaceutico.addItemListener(handler);
+        
         jLabel4.setVisible(false);
         CRM.setVisible(false);
+        LabelFarmacia.setVisible(false);
+        NomeFarmacia.setVisible(false);   
     }
     public void cadastroInfo() throws IOException{
         if(vlogin.verificaCadastro() && plogin.verificaEmail()){
@@ -55,6 +59,8 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
         }
         
     }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -80,6 +86,9 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
         nomePessoa = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         email = new javax.swing.JTextField();
+        jRadioButtonFarmaceutico = new javax.swing.JRadioButton();
+        NomeFarmacia = new javax.swing.JTextField();
+        LabelFarmacia = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
 
@@ -114,6 +123,11 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
 
         jLabel7.setText("Digite seu e-mail");
 
+        buttonGroup1.add(jRadioButtonFarmaceutico);
+        jRadioButtonFarmaceutico.setText("Farmacêutico");
+
+        LabelFarmacia.setText("Farmácia");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,17 +140,20 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(loginDesejado, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(CRM, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(EfetuarCadastro))
                             .addComponent(jLabel3)
                             .addComponent(jLabel2)
-                            .addComponent(SENHA, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(SENHA, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(NomeFarmacia, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(CRM, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(LabelFarmacia)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jRadioButtonPaciente)
                         .addGap(18, 18, 18)
-                        .addComponent(jRadioButtonMedico))
+                        .addComponent(jRadioButtonMedico)
+                        .addGap(18, 18, 18)
+                        .addComponent(jRadioButtonFarmaceutico))
                     .addComponent(jLabel6)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
@@ -145,7 +162,11 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
                             .addComponent(nomePessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7)
                             .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(82, 82, 82))
+                .addContainerGap(171, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(EfetuarCadastro)
+                .addGap(96, 96, 96))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,7 +176,8 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButtonPaciente)
-                    .addComponent(jRadioButtonMedico))
+                    .addComponent(jRadioButtonMedico)
+                    .addComponent(jRadioButtonFarmaceutico))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -165,38 +187,41 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(EfetuarCadastro, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(loginDesejado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(SENHA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CRM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)))
-                .addGap(92, 92, 92))
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(loginDesejado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(SENHA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(LabelFarmacia))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NomeFarmacia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CRM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(EfetuarCadastro)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void EfetuarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EfetuarCadastroActionPerformed
-        try {
+          try {
             
                 plogin.nome = nomePessoa.getText();
                 plogin.email = email.getText();
                 vlogin.senha = SENHA.getText();
                 vlogin.login = loginDesejado.getText();
                 if(vlogin.type == 1) medico.setCRM(Integer.parseInt(CRM.getText()));
-                
-            
-            if(vlogin.verificaCadastro() && plogin.verificaEmail() && vlogin.type != -1){
+                if(vlogin.type == 2) farma.setnomeFarmacia(NomeFarmacia.getText());
+            boolean verifica = plogin.verificaNome();
+            System.out.println(plogin.nome + "-" + plogin.email +"- "+ vlogin.login);
+            if(vlogin.verificaCadastro() && plogin.verificaEmail() && vlogin.type != -1 && loginDesejado.getText() != "" && verifica){
                 
                swapFile("CADASTRADOS.txt"); 
                this.nomePessoa.setText("");
@@ -204,7 +229,7 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
                this.loginDesejado.setText("");
                this.SENHA.setText("");
                if(vlogin.type == 1) this.CRM.setText("");
-               
+               if(vlogin.type == 2) this.NomeFarmacia.setText("");
              JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso");
              setVisible(false);
              
@@ -215,27 +240,45 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
                     }
             else if(vlogin.type == -1){
                 JOptionPane.showMessageDialog(null, "Escolha uma opção!!");
-            }else{
-                JOptionPane.showMessageDialog(null, "e-mai  l já existe\nTente novamente!");
-            }// TODO add your handling code here:
+            }else if(!verifica){
+                JOptionPane.showMessageDialog(null,"Insira caracteres válidos!!");
+            }
+            else
+                    JOptionPane.showMessageDialog(null,  "E-mail já existe\nTente novamente!");// TODO add your handling code here:
         } catch (IOException ex) {
             Logger.getLogger(CadastroInternal.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }//GEN-LAST:event_EfetuarCadastroActionPerformed
 
     public class RadioButtonHandler implements ItemListener{
         @Override
+        
         public void itemStateChanged (ItemEvent evt){
                     
+                      
+
         if(evt.getSource()== jRadioButtonPaciente){
             jLabel4.setVisible(false);
             CRM.setVisible(false);
+            LabelFarmacia.setVisible(false);
+            NomeFarmacia.setVisible(false);     
             vlogin.type = 0;
             
         }else if(evt.getSource()== jRadioButtonMedico){
             jLabel4.setVisible(true);
             CRM.setVisible(true);
+            LabelFarmacia.setVisible(false);
+            NomeFarmacia.setVisible(false);  
             vlogin.type = 1;
+        }else if(evt.getSource() == jRadioButtonFarmaceutico){
+            jLabel4.setVisible(false);
+            CRM.setVisible(false);
+            LabelFarmacia.setVisible(true);
+            NomeFarmacia.setVisible(true);
+            vlogin.type = 2;
+            
+           
         } 
         
         }
@@ -252,6 +295,7 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
                     out.println(plogin.nome);
                     out.println(plogin.email);
                     if(vlogin.type==1) out.println(medico.getCRM());
+                    if(vlogin.type==2) out.println(farma.getnomeFarmacia());
                     
 
               out.close();
@@ -260,6 +304,8 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CRM;
     private javax.swing.JButton EfetuarCadastro;
+    private javax.swing.JLabel LabelFarmacia;
+    private javax.swing.JTextField NomeFarmacia;
     private javax.swing.JPasswordField SENHA;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField email;
@@ -270,6 +316,7 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JRadioButton jRadioButtonFarmaceutico;
     private javax.swing.JRadioButton jRadioButtonMedico;
     private javax.swing.JRadioButton jRadioButtonPaciente;
     private javax.swing.JTextField loginDesejado;

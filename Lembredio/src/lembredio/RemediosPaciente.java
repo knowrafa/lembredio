@@ -27,7 +27,6 @@ public class RemediosPaciente {
     }
     
     
-    //FALTA PASSAR O HORARIO
     public RemediosPaciente(String nome, String NomeRemedio) throws IOException{
         File diretorio = new File("CadastroRemedios");
         diretorio.mkdir();

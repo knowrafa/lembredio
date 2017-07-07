@@ -18,6 +18,22 @@ REMEDIO1
 6
 mmm
 HoraCorreta
-20:28
-3 em 3 horas
+20:34
+4 em 4 horas
 4
+mmm
+TESTANDONOWIN
+23:23
+12 em 12 horas
+2
+mmm
+testandonafacul
+10:50
+4 em 4 horas
+1
+2
+3
+4
+5
+6
+7

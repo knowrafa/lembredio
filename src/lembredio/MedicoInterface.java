@@ -44,7 +44,6 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
     public MedicoInterface() throws IOException {
         initComponents();
         setVisible(true); 
-        
        
     }
     
@@ -768,7 +767,7 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
                     fw.write(nomeRemedio1.getText());
                     fw.write("\r\n");
 
-                    fw.write(ok);
+                    //fw.write(ok);
                     fw.write("\r\n");
                     fw.write(jComboBox21.getSelectedItem().toString());
                     fw.write("\r\n");
@@ -969,6 +968,7 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
             Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

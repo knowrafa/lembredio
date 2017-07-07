@@ -8,10 +8,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import static java.lang.Thread.sleep;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.event.InternalFrameEvent;
+import static java.lang.Thread.sleep;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -24,27 +29,45 @@ import javax.swing.JOptionPane;
  * @author elrafa
  */
 public class MedicoInterface extends javax.swing.JInternalFrame {
-    ValidarLogin vlogin = new ValidarLogin();
+    Login vlogin = new Login();
     int qual=0;
     String nomeUser;
     String loginUser;
+    Médico medico;
     
     /**
      * Creates new form MedicoInterface
      */
-    public MedicoInterface() {
+    
+    
+    
+    public MedicoInterface() throws IOException {
         initComponents();
-        setVisible(true);
+        setVisible(true); 
+        
+       
     }
-    public MedicoInterface(ValidarLogin vlogin){
+    
+     /*
+        Inicializa o nome do médico, coloca a interface de cadastro de remédios como
+    invisível, salva o CRM no campo do CRM, mostra os usuário na aba de visualizar usuários
+     e mostra as mensagens do médico.
+     */
+    public MedicoInterface(Médico medico) throws FileNotFoundException, IOException{
         initComponents();
         setVisible(true);
+        this.medico = medico;
         
-        jPanel2.setVisible(false);
+        cadastroRemedioInterface.setVisible(false);
         
-        nomeMedico.setText(vlogin.pessoa.nome);
+        nomeMedico.setText(medico.loginInfo.pessoa.getNome());
+        
         qual = -1;
+        
         manageUsers();
+        int CRM = returnCRM();
+        medicoCrm.setText(Integer.toString(CRM));
+        setMedicMessages();
     }
 
     /**
@@ -56,16 +79,17 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
+        abasInterfaceMedico = new javax.swing.JTabbedPane();
+        telaInicialMedico = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         nomeMedico = new javax.swing.JLabel();
         medicoCrm = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        avisosTextArea = new javax.swing.JTextArea();
+        jButtonCriarLembrete = new javax.swing.JButton();
+        ButtonLimpar = new javax.swing.JButton();
         jLayeredPane1 = new javax.swing.JLayeredPane();
-        jPanel4 = new javax.swing.JPanel();
+        visualizarUsuariosInterface = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         userName4Medic = new javax.swing.JLabel();
@@ -82,7 +106,7 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
         searchTextField = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         okButton = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        cadastroRemedioInterface = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         nomeRemedio1 = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
@@ -99,8 +123,12 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
         BotaoSalvar1 = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         jComboBox21 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
+        jButtonVoltarProcurarPaciente = new javax.swing.JButton();
+        menuDeOpcoes = new javax.swing.JMenuBar();
+        jMenu2 = new javax.swing.JMenu();
+        logoutButton = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        sobre = new javax.swing.JMenuItem();
 
         setMaximumSize(new java.awt.Dimension(665, 544));
         setMinimumSize(new java.awt.Dimension(665, 544));
@@ -119,49 +147,71 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
 
         medicoCrm.setText("CRM do Médico");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jScrollPane1.setViewportView(jTextArea1);
+        avisosTextArea.setColumns(20);
+        avisosTextArea.setRows(5);
+        avisosTextArea.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jButtonCriarLembrete.setText("Criar Lembrete");
+        jButtonCriarLembrete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCriarLembreteActionPerformed(evt);
+            }
+        });
+
+        ButtonLimpar.setText("Limpar");
+        ButtonLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonLimparActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout telaInicialMedicoLayout = new javax.swing.GroupLayout(telaInicialMedico);
+        telaInicialMedico.setLayout(telaInicialMedicoLayout);
+        telaInicialMedicoLayout.setHorizontalGroup(
+            telaInicialMedicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(telaInicialMedicoLayout.createSequentialGroup()
+                .addComponent(avisosTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 20, Short.MAX_VALUE))
+            .addGroup(telaInicialMedicoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nomeMedico)
-                        .addGap(185, 185, 185)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(medicoCrm)
-                        .addGap(0, 131, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(nomeMedico)
+                .addGap(175, 175, 175)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(medicoCrm)
+                .addContainerGap(144, Short.MAX_VALUE))
+            .addGroup(telaInicialMedicoLayout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addComponent(jButtonCriarLembrete)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ButtonLimpar)
+                .addGap(48, 48, 48))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        telaInicialMedicoLayout.setVerticalGroup(
+            telaInicialMedicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(telaInicialMedicoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(telaInicialMedicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
                     .addComponent(nomeMedico)
+                    .addComponent(jLabel2)
                     .addComponent(medicoCrm))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(avisosTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(telaInicialMedicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonCriarLembrete)
+                    .addComponent(ButtonLimpar))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Avisos", jPanel1);
+        abasInterfaceMedico.addTab("Avisos", telaInicialMedico);
 
         jLayeredPane1.setPreferredSize(new java.awt.Dimension(665, 544));
 
-        jPanel4.setPreferredSize(new java.awt.Dimension(665, 544));
+        visualizarUsuariosInterface.setPreferredSize(new java.awt.Dimension(665, 544));
 
         jPanel6.setBorder(new javax.swing.border.MatteBorder(null));
 
@@ -273,48 +323,48 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout visualizarUsuariosInterfaceLayout = new javax.swing.GroupLayout(visualizarUsuariosInterface);
+        visualizarUsuariosInterface.setLayout(visualizarUsuariosInterfaceLayout);
+        visualizarUsuariosInterfaceLayout.setHorizontalGroup(
+            visualizarUsuariosInterfaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(visualizarUsuariosInterfaceLayout.createSequentialGroup()
                 .addGap(64, 64, 64)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(68, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, visualizarUsuariosInterfaceLayout.createSequentialGroup()
+                .addGroup(visualizarUsuariosInterfaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(visualizarUsuariosInterfaceLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addGroup(visualizarUsuariosInterfaceLayout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addComponent(lastUser)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(nextUser)))
                 .addGap(50, 50, 50))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        visualizarUsuariosInterfaceLayout.setVerticalGroup(
+            visualizarUsuariosInterfaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(visualizarUsuariosInterfaceLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(visualizarUsuariosInterfaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
                     .addComponent(okButton))
                 .addGap(56, 56, 56)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(visualizarUsuariosInterfaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nextUser)
                     .addComponent(lastUser))
                 .addContainerGap(134, Short.MAX_VALUE))
         );
 
-        jPanel2.setPreferredSize(new java.awt.Dimension(665, 544));
+        cadastroRemedioInterface.setPreferredSize(new java.awt.Dimension(665, 544));
 
         jLabel14.setText(" Remédios :");
 
@@ -344,6 +394,11 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
         horarioRemedio1.setToolTipText("");
+        horarioRemedio1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                horarioRemedio1RemedioActionPerformed(evt);
+            }
+        });
 
         BotaoSalvar1.setText("Salvar");
         BotaoSalvar1.addActionListener(new java.awt.event.ActionListener() {
@@ -354,43 +409,43 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
 
         jLabel17.setText("Intervalo:");
 
-        jComboBox21.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 vez ao dia", "4 em 4 horas", "6 em 6 horas", "8 em 8 horas", "12 em 12 horas" }));
+        jComboBox21.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 vez ao dia", "3 em 3 horas", "4 em 4 horas", "6 em 6 horas", "8 em 8 horas", "12 em 12 horas", "1 vez ao dia" }));
 
-        jButton1.setText("Voltar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonVoltarProcurarPaciente.setText("Voltar");
+        jButtonVoltarProcurarPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonVoltarProcurarPacienteActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout cadastroRemedioInterfaceLayout = new javax.swing.GroupLayout(cadastroRemedioInterface);
+        cadastroRemedioInterface.setLayout(cadastroRemedioInterfaceLayout);
+        cadastroRemedioInterfaceLayout.setHorizontalGroup(
+            cadastroRemedioInterfaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cadastroRemedioInterfaceLayout.createSequentialGroup()
+                .addGroup(cadastroRemedioInterfaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(cadastroRemedioInterfaceLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(cadastroRemedioInterfaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, cadastroRemedioInterfaceLayout.createSequentialGroup()
                                 .addComponent(jLabel14)
                                 .addGap(124, 124, 124)
                                 .addComponent(nomeRemedio1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(cadastroRemedioInterfaceLayout.createSequentialGroup()
+                                .addGroup(cadastroRemedioInterfaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel15)
                                     .addComponent(jLabel17))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(cadastroRemedioInterfaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(horarioRemedio1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addGroup(cadastroRemedioInterfaceLayout.createSequentialGroup()
                                         .addGap(36, 36, 36)
                                         .addComponent(jComboBox21, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(cadastroRemedioInterfaceLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(cadastroRemedioInterfaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(cadastroRemedioInterfaceLayout.createSequentialGroup()
+                                .addGroup(cadastroRemedioInterfaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(CheckDomingo1)
                                     .addComponent(jLabel16))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -399,7 +454,7 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
                                 .addComponent(CheckTerça1)
                                 .addGap(18, 18, 18)
                                 .addComponent(CheckQuarta1))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGroup(cadastroRemedioInterfaceLayout.createSequentialGroup()
                                 .addGap(16, 16, 16)
                                 .addComponent(CheckQuinta1)
                                 .addGap(18, 18, 18)
@@ -407,124 +462,222 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(CheckSabado1)
                                 .addGap(18, 18, 18)
-                                .addComponent(CheckTDS1)))))
-                .addContainerGap(85, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addComponent(BotaoSalvar1)
-                .addGap(34, 34, 34))
+                                .addComponent(CheckTDS1))))
+                    .addGroup(cadastroRemedioInterfaceLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButtonVoltarProcurarPaciente)
+                        .addGap(367, 367, 367)
+                        .addComponent(BotaoSalvar1)))
+                .addContainerGap(164, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        cadastroRemedioInterfaceLayout.setVerticalGroup(
+            cadastroRemedioInterfaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cadastroRemedioInterfaceLayout.createSequentialGroup()
                 .addGap(45, 45, 45)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(cadastroRemedioInterfaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
                     .addComponent(nomeRemedio1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(cadastroRemedioInterfaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
                     .addComponent(horarioRemedio1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(cadastroRemedioInterfaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
                     .addComponent(jComboBox21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(69, 69, 69)
                 .addComponent(jLabel16)
                 .addGap(35, 35, 35)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(cadastroRemedioInterfaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CheckDomingo1)
                     .addComponent(CheckSegunda1)
                     .addComponent(CheckTerça1)
                     .addComponent(CheckQuarta1))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(cadastroRemedioInterfaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CheckQuinta1)
                     .addComponent(CheckSexta1)
                     .addComponent(CheckSabado1)
                     .addComponent(CheckTDS1))
-                .addGap(52, 52, 52)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BotaoSalvar1)
-                    .addComponent(jButton1))
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addGroup(cadastroRemedioInterfaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonVoltarProcurarPaciente)
+                    .addComponent(BotaoSalvar1))
+                .addContainerGap(171, Short.MAX_VALUE))
         );
 
-        jLayeredPane1.setLayer(jPanel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(jPanel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(visualizarUsuariosInterface, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(cadastroRemedioInterface, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
         jLayeredPane1Layout.setHorizontalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(cadastroRemedioInterface, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(visualizarUsuariosInterface, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(cadastroRemedioInterface, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(visualizarUsuariosInterface, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        jTabbedPane1.addTab("Procurar Pacientes", jLayeredPane1);
+        abasInterfaceMedico.addTab("Procurar Pacientes", jLayeredPane1);
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 665, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 544, Short.MAX_VALUE)
-        );
+        jMenu2.setText("Arquivo");
 
-        jTabbedPane1.addTab("tab5", jPanel5);
+        logoutButton.setText("Sair");
+        logoutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutButtonActionPerformed(evt);
+            }
+        });
+        jMenu2.add(logoutButton);
+
+        menuDeOpcoes.add(jMenu2);
+
+        jMenu1.setText("Ajuda");
+
+        sobre.setText("Sobre");
+        sobre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sobreActionPerformed(evt);
+            }
+        });
+        jMenu1.add(sobre);
+
+        menuDeOpcoes.add(jMenu1);
+
+        setJMenuBar(menuDeOpcoes);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(abasInterfaceMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 670, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(abasInterfaceMedico, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 550, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    /*
+        Pega o CRM do médico cujo abriu a interface.
+    */
+    public int returnCRM() throws IOException{
+        InputStream is = new FileInputStream("CADASTRADOS.txt");
+       InputStreamReader isr = new InputStreamReader(is);
+       BufferedReader br = new BufferedReader(isr);
+       
+        try {
+            String linha;
+            int i =0;
+          do{
+            
+              linha = br.readLine();
+              
+              if(linha == null) break;
+              
+             
+                switch (Integer.parseInt(linha)) {
+                    case 0:
+                               for(i=0; i< 4; i++) br.readLine();
+                        break;
+                    case 1:
+                        if(br.readLine().equals(medico.loginInfo.getLogin())){
+                            for(i=0; i < 3; i++) br.readLine();
+                            
+                            int CRM = Integer.parseInt(br.readLine());
+                            
+                            br.close();
+                            
+                            return CRM;
+                        }       for(i=0; i< 4; i++) br.readLine();
+                        break;
+                    case 2:
+                               for(i=0; i< 4; i++) br.readLine();
+                        break;
+                    default:
+                        break;
+                }
+            
+          }while(linha != null);
 
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+       br.close();
+       return -1;
+       //return true;
+    }
+    /*
+        Na aba de visualizar usuários, ao clicar no botão de último usuário ele 
+    modifica a variável 'qual' que serve para a manipulação dos usuário que serão mostrados.
+    */
     private void lastUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastUserActionPerformed
         if(qual > 0){
             qual = qual -2;
-
             manageUsers();
         }// TODO add your handling code here:
     }//GEN-LAST:event_lastUserActionPerformed
-
+    /*
+        Na aba de visualizar usuários, ao clicar no botão de próximo usuário ele 
+    simplesmente invoca o método de manipular o que é mostrado na tela..
+    */
     private void nextUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextUserActionPerformed
         manageUsers();
-        
-        java.awt.Toolkit.getDefaultToolkit().beep();
     }//GEN-LAST:event_nextUserActionPerformed
-
+    /*
+        Ao selecionar o usuário, é mostrado qual o remédio que o médico deseja cadastrar
+    para o supracitado e pré-selecionado usuário.
+    
+    */
     private void selectUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectUserActionPerformed
-        
-        System.out.println(loginUser);  
-        jPanel2.setVisible(true);
-        jPanel4.setVisible(false);
+        cadastroRemedioInterface.setVisible(true);
+        visualizarUsuariosInterface.setVisible(false);
         
     }//GEN-LAST:event_selectUserActionPerformed
-
+    /*
+        Define as mensagens que serão mostradas na página inicial do médico.
+    */
+    
+    public void setMedicMessages() throws FileNotFoundException, IOException{
+                File diretorio = new File("LembretesMedicos");
+         
+        File Recados = new File(diretorio,nomeMedico.getText() + ".txt");
+        if(!Recados.exists()) try {
+            Recados.createNewFile();
+        } catch (IOException ex) {
+           Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        InputStream is;
+      
+            is = new FileInputStream("LembretesMedicos/" + nomeMedico.getText() +".txt");
+            InputStreamReader isr = new InputStreamReader(is);
+                BufferedReader br = new BufferedReader(isr);
+             String linha = br.readLine();
+        while(linha != null){           
+            avisosTextArea.append(linha);
+            avisosTextArea.append("\n");
+            linha = br.readLine();
+        }
+           
+            br.close();
+        
+    }
+    /*
+        Faz a pesquisa no arquivo em busca do usuário que foi digitado no campo de busca.
+    */
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
        InputStream is = null;
         try {
@@ -577,7 +730,7 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
 
             
         } catch (IOException ex) {
-            Logger.getLogger(ValidarLogin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
        
         try {
@@ -588,6 +741,13 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
       
     }//GEN-LAST:event_okButtonActionPerformed
 
+    private void horarioRemedio1RemedioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_horarioRemedio1RemedioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_horarioRemedio1RemedioActionPerformed
+    /*
+        Botão referente à tela de cadastrar remédios, mostrada após selecionar o usuário.
+        Salva no arquivo do usuário o remédio receitado pelo médico.
+    */
     private void BotaoSalvar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoSalvar1ActionPerformed
         File diretorio = new File("CadastroRemedios");
         diretorio.mkdir();
@@ -676,20 +836,88 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
                 }
                 fw.flush();
                 fw.close();
+                
             } catch (IOException ex) {
                 Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
             }
         
-        jPanel2.setVisible(false);
-        jPanel4.setVisible(true);
+        cadastroRemedioInterface.setVisible(false);
+        visualizarUsuariosInterface.setVisible(true);
         }  
     }//GEN-LAST:event_BotaoSalvar1ActionPerformed
+    /*
+        Botão que retorna à tela de procura de pacientes.
+    */
+    private void jButtonVoltarProcurarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarProcurarPacienteActionPerformed
+        cadastroRemedioInterface.setVisible(false);
+       visualizarUsuariosInterface.setVisible(true);
+    }//GEN-LAST:event_jButtonVoltarProcurarPacienteActionPerformed
+    /*
+        Cria um lembrete que o médico digitou na tela, após clicar no botão.
+    */
+    private void jButtonCriarLembreteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCriarLembreteActionPerformed
+        File diretorio = new File("LembretesMedicos");
+        diretorio.mkdir();
+        File Recados = new File(diretorio,nomeMedico.getText()+ ".txt");
+        if(!Recados.exists()) try {
+            Recados.createNewFile();
+        } catch (IOException ex) {
+            Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            FileWriter fw = new FileWriter(Recados, true);
+            fw.write( avisosTextArea.getText());
+            fw.write("\r\n");
+            fw.flush();
+            fw.close();
+        } catch (IOException ex) {
+            Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonCriarLembreteActionPerformed
+    /*
+        Limpa da tela o que foi escrito.
+    */
+    private void ButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonLimparActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        jPanel2.setVisible(false);
-       jPanel4.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
-    
+       avisosTextArea.setText("");
+     
+       File diretorio = new File("LembretesMedicos");
+         
+        File Recados = new File(diretorio,nomeMedico.getText() + ".txt");
+        if(!Recados.exists()) try {
+            Recados.createNewFile();
+       } catch (IOException ex) {
+           Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
+       }      
+        
+        if(Recados.delete()){
+            System.out.println("Deu certo");
+        }
+    }//GEN-LAST:event_ButtonLimparActionPerformed
+    /*
+        Retorna à tela de login.
+    */
+    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
+        abasInterfaceMedico.setVisible(false);
+        getParent().remove(abasInterfaceMedico);
+        getParent().setVisible(false);
+        getParent().getParent().add(new LoginInterface());
+        getParent().remove(this);
+ 
+       
+    }//GEN-LAST:event_logoutButtonActionPerformed
+    /*
+        Exibe os produtores & desenvolvedores do programa.
+    */
+    private void sobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sobreActionPerformed
+        JOptionPane.showMessageDialog(null, "\t\tLEMBRÉDIO\t\t\n\tDesenvolvedores:\nMatheus Brito\nRafael Alessandro\n");
+    }//GEN-LAST:event_sobreActionPerformed
+    /*
+        Sem dúvidas, o mais 'belo' método que existe aqui. Ele utiliza 
+    a variável 'qual' para identificar qual o último usuário visitado e procura no
+    arquivo o próximo para ser exibido. Obviamente com algumas manipulações ele pega o último
+    usuário e com outras o próximo. Tudo incluso na variável 'qual'.
+    */
     public void manageUsers(){
         InputStream is = null;
         try {
@@ -732,7 +960,7 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
 
             
         } catch (IOException ex) {
-            Logger.getLogger(ValidarLogin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
        
         try {
@@ -745,6 +973,7 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotaoSalvar1;
+    private javax.swing.JButton ButtonLimpar;
     private javax.swing.JCheckBox CheckDomingo1;
     private javax.swing.JCheckBox CheckQuarta1;
     private javax.swing.JCheckBox CheckQuinta1;
@@ -753,8 +982,12 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
     private javax.swing.JCheckBox CheckSexta1;
     private javax.swing.JCheckBox CheckTDS1;
     private javax.swing.JCheckBox CheckTerça1;
+    private javax.swing.JTabbedPane abasInterfaceMedico;
+    private javax.swing.JTextArea avisosTextArea;
+    private javax.swing.JPanel cadastroRemedioInterface;
     private javax.swing.JFormattedTextField horarioRemedio1;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonCriarLembrete;
+    private javax.swing.JButton jButtonVoltarProcurarPaciente;
     private javax.swing.JComboBox<String> jComboBox21;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
@@ -769,25 +1002,25 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton lastUser;
+    private javax.swing.JMenuItem logoutButton;
     private javax.swing.JLabel medicoCrm;
+    private javax.swing.JMenuBar menuDeOpcoes;
     private javax.swing.JButton nextUser;
     private javax.swing.JLabel nomeMedico;
     private javax.swing.JTextField nomeRemedio1;
     private javax.swing.JButton okButton;
     private javax.swing.JTextField searchTextField;
     private javax.swing.JButton selectUser;
+    private javax.swing.JMenuItem sobre;
+    private javax.swing.JPanel telaInicialMedico;
     private javax.swing.JLabel userAge4Medic;
     private javax.swing.JLabel userEmail4Medic;
     private javax.swing.JLabel userLogin4Medic;
     private javax.swing.JLabel userName4Medic;
+    private javax.swing.JPanel visualizarUsuariosInterface;
     // End of variables declaration//GEN-END:variables
 }

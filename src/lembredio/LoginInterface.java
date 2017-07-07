@@ -190,6 +190,9 @@ public class LoginInterface extends javax.swing.JInternalFrame {
                         
                         getParent().add(new MedicoInterface(new Médico(vlogin)));
                         break;
+                    case 2:
+                        getParent().add(new FarmaceuticoInterface(new Farmaceutico(vlogin)));
+                        break;
                     default:
                       
                         break;

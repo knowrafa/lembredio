@@ -60,8 +60,6 @@ public class Login {
                         if(br.readLine().equals(this.login) & br.readLine().equals(this.senha)){
                             this.type = Integer.parseInt(linha);
                             
-                            System.out.println(this.type);
-                            
                             pessoa.nome = br.readLine();
                             
                             br.close();
@@ -73,7 +71,6 @@ public class Login {
                         if(br.readLine().equals(this.login) & br.readLine().equals(this.senha)){
                            this.type = Integer.parseInt(linha);
                            pessoa.nome = br.readLine();
-                           System.out.println(this.type);
                            
                            br.close();
                             return true;
@@ -82,11 +79,10 @@ public class Login {
                     case 2:
                         if(br.readLine().equals(this.login) & br.readLine().equals(this.senha)){
                             this.type = Integer.parseInt(linha);
-                            System.out.println(this.type);
                             pessoa.nome = br.readLine();
                             br.close();
                             return true;
-                        }       for(i=0; i< 2; i++) br.readLine();
+                        }       for(i=0; i< 3; i++) br.readLine();
                         break;
                     default:
                         break;
@@ -116,8 +112,6 @@ public class Login {
             
               linha = br.readLine();
               
-              System.out.println(linha + " - " + this.login);
-              
               if(linha == null) break;
               
              
@@ -138,7 +132,7 @@ public class Login {
                         if(br.readLine().equals(this.login)){
                             br.close();
                             return false;
-                        }       for(i=0; i< 3; i++) br.readLine();
+                        }       for(i=0; i< 4; i++) br.readLine();
                         break;
                     default:
                         break;

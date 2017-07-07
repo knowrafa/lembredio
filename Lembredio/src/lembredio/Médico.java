@@ -9,8 +9,17 @@ package lembredio;
  *
  * @author elrafa
  */
-public class Médico {
+public class Médico extends Pessoa{
     private int CRM;
+    
+    public Médico(){
+    
+    }
+            
+    public Médico(Login login){
+        this.loginInfo = login;
+        
+    }
     public void setCRM(int CRM){
         this.CRM = CRM;
     }
