@@ -95,10 +95,6 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         remainingTime = new javax.swing.JLabel();
         horaAtual = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
         jPanel4 = new javax.swing.JPanel();
         scroll = new javax.swing.JScrollPane();
         jPanel6 = new javax.swing.JPanel();
@@ -189,37 +185,6 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Avisos", jPanel1);
 
-        jLabel5.setText("Horários :");
-
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jTabbedPane1.addTab("Remédios Cadastrados", jPanel3);
-
         atualizarListaDeRemedios.setText("Atualizar");
         atualizarListaDeRemedios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -257,7 +222,7 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
             .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Remedios Cadastrados/2", jPanel4);
+        jTabbedPane1.addTab("Remedios Cadastrados", jPanel4);
 
         arquivoMenu.setText("Arquivo");
 
@@ -668,17 +633,13 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel2NP;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JMenuItem logoutButton;
     private javax.swing.JLabel nomeAlarme;
     private javax.swing.JLabel remainingTime;

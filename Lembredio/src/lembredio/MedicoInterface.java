@@ -44,7 +44,6 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
     public MedicoInterface() throws IOException {
         initComponents();
         setVisible(true); 
-        
        
     }
     
@@ -969,6 +968,7 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
             Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -14,6 +14,7 @@ enf1
 senha2
 Enfermeira da Silva
 enfermeira_hot@hotmail.com
+farma1
 0
 silva3
 feqrqwerq
@@ -76,12 +77,12 @@ qweqwrqq
 Jose da Silva
 aeroporto@gmail.com
 333344
-2
+0
 RATO_MENTIROSO
 qweqwrqq
 Jose da Silva
 aeroporto@gmail.com
-2
+0
 RATO_LIER
 qweqwrqq
 Jose da Silva
@@ -111,7 +112,7 @@ oqweoqweo2223322244
 22111qq
 oqwoeqw
 oeqoweq@gmail.com
-2
+0
 oqweoqweo2223322247
 22111qq
 oqwoeqw
@@ -141,7 +142,7 @@ qweqwr2
 wqeqwoeqwo
 Aeroporto da Silva
 qowoqwoq
-2
+0
 q2424444222
 qqqqq
 qqqeqweqwe
@@ -187,7 +188,7 @@ quadrado
 1
 wqeqweq
 eqcqqqqq
-2
+0
 ssssss
 22222
 qqqqqq
@@ -250,7 +251,7 @@ MatheusBrito
 123123123
 0
 zxc
-
+zxc
 zxc
 zxc
 0
@@ -309,3 +310,19 @@ ttt
 ttt
 ttt
 tttt
+2
+farma1
+321
+farma1
+farma1
+farma1
+0
+a
+a
+a
+a
+0
+b
+b
+a
+a
