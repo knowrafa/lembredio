@@ -5,9 +5,13 @@
  */
 package lembredio;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -17,7 +21,8 @@ import javax.swing.JOptionPane;
  * @author elrafa
  */
 public class FarmaceuticoInterface extends javax.swing.JInternalFrame {
-        
+    Farmaceutico Farma = new Farmaceutico();
+   
     String nomeUser;
     String loginUser;
     String nomeFarmacia;
@@ -28,17 +33,65 @@ public class FarmaceuticoInterface extends javax.swing.JInternalFrame {
         initComponents();
     }
     
-    public FarmaceuticoInterface(Farmaceutico farma) {
+    public FarmaceuticoInterface(Farmaceutico farma) throws IOException {
         initComponents();
         setVisible(true);
         //jInternalFrame2.setVisible(true);
-       
+       this.Farma = farma;
        nomeUser = farma.loginInfo.pessoa.getNome();
-       nomeFarmacia = farma.getnomeFarmacia();
+       nomeFarmacia = returnNomeFarma();
+       jLabel2.setText(nomeFarmacia);
        LabelNomeFarma.setText(nomeUser);
        
     }
-    
+    public String returnNomeFarma() throws IOException{
+       InputStream is = new FileInputStream("CADASTRADOS.txt");
+       InputStreamReader isr = new InputStreamReader(is);
+       BufferedReader br = new BufferedReader(isr);
+
+        try {
+            String linha;
+            int i =0;
+          do{
+
+              linha = br.readLine();
+
+              if(linha == null) break;
+
+
+                switch (Integer.parseInt(linha)) {
+                    case 0:
+                               for(i=0; i< 4; i++) br.readLine();
+                        break;
+                    case 1:
+                              for(i=0; i< 5; i++) br.readLine();
+                        break;
+                    case 2:
+                        if(br.readLine().equals(Farma.loginInfo.getLogin())){
+                            for(i=0; i < 3; i++) br.readLine();
+
+                            String nomefarma = br.readLine();
+
+                            br.close();
+
+                            return nomefarma;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+
+          }while(linha != null);
+
+
+        } catch (IOException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+       br.close();
+       return "";
+       //return true;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -288,7 +341,7 @@ public class FarmaceuticoInterface extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TextFieldNomeRemeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldNomeRemeActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_TextFieldNomeRemeActionPerformed
 
     private void ButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSalvarActionPerformed

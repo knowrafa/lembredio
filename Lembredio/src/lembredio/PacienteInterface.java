@@ -99,6 +99,22 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         scroll = new javax.swing.JScrollPane();
         jPanel6 = new javax.swing.JPanel();
         atualizarListaDeRemedios = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jProgressBar1 = new javax.swing.JProgressBar();
+        jTextField1 = new javax.swing.JTextField();
+        jToggleButton1 = new javax.swing.JToggleButton();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        userName4Medic = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        userLogin4Medic = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        userEmail4Medic = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        userAge4Medic = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        selectUser = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         arquivoMenu = new javax.swing.JMenu();
         logoutButton = new javax.swing.JMenuItem();
@@ -224,6 +240,141 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Remedios Cadastrados", jPanel4);
 
+        jTextField1.setText("                                          ");
+
+        jToggleButton1.setText("Ok");
+
+        jLabel3.setText("Pesquisar");
+
+        jPanel7.setBorder(new javax.swing.border.MatteBorder(null));
+
+        jLabel5.setText("Nome do Paciente:");
+
+        userName4Medic.setText("nomePaciente");
+
+        jLabel6.setText("Login:");
+
+        userLogin4Medic.setText("loginpaciente");
+
+        jLabel7.setText("E-mail:");
+
+        userEmail4Medic.setText("emailPaciente");
+
+        jLabel9.setText("Idade:");
+
+        userAge4Medic.setText("Idadepaciente");
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user_image.jpg"))); // NOI18N
+
+        selectUser.setText("Selecionar Usuário");
+        selectUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectUserActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel5))
+                        .addGap(34, 34, 34)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(userName4Medic, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(userAge4Medic)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(selectUser)
+                                .addContainerGap())))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addGap(67, 67, 67)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(userLogin4Medic, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(userEmail4Medic))
+                        .addContainerGap())))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(userLogin4Medic))
+                        .addGap(31, 31, 31)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(userEmail4Medic)))
+                    .addComponent(jLabel11))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(userName4Medic))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(userAge4Medic)
+                        .addComponent(selectUser)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(441, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(26, 26, 26)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jToggleButton1)
+                .addGap(28, 28, 28))
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(56, 56, 56)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(57, Short.MAX_VALUE)))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jToggleButton1)
+                    .addComponent(jLabel3))
+                .addGap(109, 109, 109)
+                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(268, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(121, 121, 121)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(122, Short.MAX_VALUE)))
+        );
+
+        jTabbedPane1.addTab("Busca de Remédio", jPanel3);
+
         arquivoMenu.setText("Arquivo");
 
         logoutButton.setText("Sair");
@@ -269,7 +420,7 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         k = 175; 
     }
     
-    /*
+    /**
      Método para verificar se é a hora de tomar o remédio.
      Thread para calcular o horário e chamar a função de comparar a hora,
     pois é preciso fazer isso a cada segundo de execução.
@@ -330,12 +481,11 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         
  }
     
-    /*
+    /**
      Método para atualizar a lista de remédios que foi cadastrada para o usuário.
      Utiliza a flag como false para dizer se está escrevendo a primeira vez.
      Utiliza como true para dizer que está atualizando e deve excluir os componentes anteriores.
     */
-    
     public void updateRemedy(boolean flag) throws IOException{
         String linha;
         File file = new File("CadastroRemedios/" + nomeUser +".txt");
@@ -457,7 +607,8 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         br.close();
        // String ok = horarioRemedio1.getText();
     }
-    /*
+    
+    /**
         Atualiza a lista de remédios do usuário.
     */
     private void atualizarListaDeRemediosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarListaDeRemediosActionPerformed
@@ -467,7 +618,8 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
             Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_atualizarListaDeRemediosActionPerformed
-    /*
+    
+    /**
         Volta para a tela de Login.
     */
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
@@ -477,13 +629,20 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         getParent().getParent().add(new LoginInterface());
        
     }//GEN-LAST:event_logoutButtonActionPerformed
-    /*
+    
+    /**
         Exibe os produtores & desenvolvedores do programa.
     */
     private void sobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sobreActionPerformed
         JOptionPane.showMessageDialog(null, "\t\tLEMBRÉDIO\t\t\n\tDesenvolvedores:\nMatheus Brito\nRafael Alessandro\n");
     }//GEN-LAST:event_sobreActionPerformed
-    /*
+
+    private void selectUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectUserActionPerformed
+      //  cadastroRemedioInterface.setVisible(true);
+      //  visualizarUsuariosInterface.setVisible(false);
+
+    }//GEN-LAST:event_selectUserActionPerformed
+    /**
         Retorna, depois de muito custo, a menor hora utilizando os valores lidos do arquivo como
     'Intervalo de horas' & Hora Inicial. Não se engane, esta implementação não foi nada fácil.
     */
@@ -630,21 +789,37 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
     private javax.swing.JButton atualizarListaDeRemedios;
     private javax.swing.JLabel horaAtual;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel2NP;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JMenuItem logoutButton;
     private javax.swing.JLabel nomeAlarme;
     private javax.swing.JLabel remainingTime;
     private javax.swing.JScrollPane scroll;
+    private javax.swing.JButton selectUser;
     private javax.swing.JMenuItem sobre;
+    private javax.swing.JLabel userAge4Medic;
+    private javax.swing.JLabel userEmail4Medic;
+    private javax.swing.JLabel userLogin4Medic;
+    private javax.swing.JLabel userName4Medic;
     // End of variables declaration//GEN-END:variables
 
   
