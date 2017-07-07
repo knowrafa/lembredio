@@ -23,7 +23,6 @@ public class Pessoa {
             for(int k = 0; k < 10; k++)
                 if(ary[i].equals(Integer.toString(k))) return false; 
             
-            
             if("#".equals(ary[i]) || "@".equals(ary[i]) || "/".equals(ary[i])  || "!".equals(ary[i])  || "$".equals(ary[i]) || ary[i] == "%" ) return false;
         
         }
