@@ -25,7 +25,7 @@ import javax.swing.JOptionPane;
  *
  * @author elrafa
  */
-public class CadastroInternal extends javax.swing.JInternalFrame {
+public class CadastroInterface extends javax.swing.JInternalFrame {
     Login vlogin = new Login();
     Pessoa plogin = new Pessoa();
     Médico medico = new Médico();
@@ -33,7 +33,7 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
     /**
      * Creates new form CadastroInternal
      */
-    public CadastroInternal() throws PropertyVetoException {
+    public CadastroInterface() throws PropertyVetoException {
         this.vlogin.type = -1;
         initComponents();
         setVisible(true);
@@ -160,7 +160,7 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
                             .addComponent(nomePessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7)
                             .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(EfetuarCadastro)
@@ -245,7 +245,7 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
             else
                     JOptionPane.showMessageDialog(null,  "E-mail já existe\nTente novamente!");// TODO add your handling code here:
         } catch (IOException ex) {
-            Logger.getLogger(CadastroInternal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CadastroInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_EfetuarCadastroActionPerformed
