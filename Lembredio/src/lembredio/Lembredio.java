@@ -33,7 +33,7 @@ public class Lembredio {
        }
        
        LoginInterface inFrame = new LoginInterface();
-       CadastroInterface inCadas = new CadastroInterface();
+       CadastroInternal inCadas = new CadastroInternal();
        TelaInicial tl = new TelaInicial(inFrame);
        tl.setVisible(true);
         System.out.println("Permitir Alteração");
