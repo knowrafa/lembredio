@@ -5,92 +5,41 @@
  */
 package lembredio;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author elrafa
+ * @author Matheus
  */
-public class FarmaceuticoInterface extends javax.swing.JInternalFrame {
-    Farmaceutico Farma = new Farmaceutico();
+public class TemQueSaberCriarInterface extends javax.swing.JFrame {
+    
     String nomeUser;
     String loginUser;
     String nomeFarmacia;
     /**
-     * Creates new form FarmaceuticoInterface
+     * Creates new form Farmaceutico
      */
-    public FarmaceuticoInterface() {
-        initComponents();
-    }
-    
-    public FarmaceuticoInterface(Farmaceutico Farma) throws IOException {
+    public TemQueSaberCriarInterface() {
         initComponents();
         setVisible(true);
-        this.Farma = Farma;
-        
-        nomeUser = Farma.loginInfo.pessoa.getNome();
-       nomeFarmacia = returnNomeFarma();
-       jLabel2.setText(nomeFarmacia);
-       LabelNomeFarma.setText(nomeUser);
     }
     
-     public String returnNomeFarma() throws IOException{
-       InputStream is = new FileInputStream("CADASTRADOS.txt");
-       InputStreamReader isr = new InputStreamReader(is);
-       BufferedReader br = new BufferedReader(isr);
-
-        try {
-            String linha;
-            int i =0;
-          do{
-
-              linha = br.readLine();
-
-              if(linha == null) break;
-
-
-                switch (Integer.parseInt(linha)) {
-                    case 0:
-                               for(i=0; i< 4; i++) br.readLine();
-                        break;
-                    case 1:
-                              for(i=0; i< 5; i++) br.readLine();
-                        break;
-                    case 2:
-                        if(br.readLine().equals(Farma.loginInfo.getLogin())){
-                            for(i=0; i < 3; i++) br.readLine();
-
-                            String nomefarma = br.readLine();
-
-                            br.close();
-
-                            return nomefarma;
-                        }
-                        break;
-                    default:
-                        break;
-                }
-
-          }while(linha != null);
-
-
-        } catch (IOException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-       br.close();
-       return "";
-       //return true;
+    public TemQueSaberCriarInterface(Farmaceutico farma) {
+        initComponents();
+        setVisible(true);
+        //jInternalFrame2.setVisible(true);
+       
+       nomeUser = farma.loginInfo.pessoa.getNome();
+       nomeFarmacia = farma.getnomeFarmacia();
+       LabelNomeFarma.setText(nomeUser);
+       
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -100,7 +49,8 @@ public class FarmaceuticoInterface extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jInternalFrame2 = new javax.swing.JInternalFrame();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         LabelNomeFarma = new javax.swing.JLabel();
@@ -110,10 +60,9 @@ public class FarmaceuticoInterface extends javax.swing.JInternalFrame {
         TextFieldNomeReme = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         ButtonSalvar = new javax.swing.JButton();
+        FormattedFieldQuantReme = new javax.swing.JFormattedTextField();
         jLabel6 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        FormattedTextFieldPU = new javax.swing.JTextField();
-        FormattedFieldQuantReme = new javax.swing.JTextField();
+        FormattedTextFieldPU = new javax.swing.JFormattedTextField();
         jPanel2 = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
@@ -122,12 +71,13 @@ public class FarmaceuticoInterface extends javax.swing.JInternalFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         logoutButton = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         sobre = new javax.swing.JMenuItem();
+
+        jInternalFrame2.setVisible(true);
 
         jLabel5.setText("Farmacêutico(a) :");
 
@@ -154,15 +104,20 @@ public class FarmaceuticoInterface extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel6.setText("Preço Unitário :");
-
-        jLabel12.setText("R$");
-
+        try {
+            FormattedFieldQuantReme.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#########")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         FormattedFieldQuantReme.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 FormattedFieldQuantRemeActionPerformed(evt);
             }
         });
+
+        jLabel6.setText("Preço Unitário :");
+
+        FormattedTextFieldPU.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("¤ #,##0.00"))));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -181,22 +136,16 @@ public class FarmaceuticoInterface extends javax.swing.JInternalFrame {
                         .addComponent(jLabel2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TextFieldNomeReme, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(26, 26, 26)
-                                .addComponent(jLabel12)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(FormattedTextFieldPU, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(FormattedFieldQuantReme, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(223, Short.MAX_VALUE))
+                            .addComponent(TextFieldNomeReme, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                            .addComponent(FormattedTextFieldPU)
+                            .addComponent(FormattedFieldQuantReme, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE))))
+                .addContainerGap(60, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(ButtonSalvar)
@@ -222,14 +171,13 @@ public class FarmaceuticoInterface extends javax.swing.JInternalFrame {
                 .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel12)
                     .addComponent(FormattedTextFieldPU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 217, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(ButtonSalvar)
                 .addGap(35, 35, 35))
         );
 
-        jTabbedPane2.addTab("Cadastrar Remédios", jPanel1);
+        jTabbedPane1.addTab("Cadastrar Remédios", jPanel1);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -278,29 +226,23 @@ public class FarmaceuticoInterface extends javax.swing.JInternalFrame {
                     .addComponent(jLabel9)
                     .addComponent(jLabel10)
                     .addComponent(jLabel11))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(417, Short.MAX_VALUE))
         );
 
-        jTabbedPane2.addTab("Ver Estoque", jPanel2);
+        jTabbedPane1.addTab("Ver Estoque", jPanel2);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(96, 96, 96)
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
+            .addGap(0, 628, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(132, 132, 132)
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
+            .addGap(0, 473, Short.MAX_VALUE)
         );
 
-        jTabbedPane2.addTab("tab3", jPanel3);
+        jTabbedPane1.addTab("tab3", jPanel3);
 
         jMenu2.setText("Arquivo");
 
@@ -326,31 +268,57 @@ public class FarmaceuticoInterface extends javax.swing.JInternalFrame {
 
         jMenuBar1.add(jMenu1);
 
-        setJMenuBar(jMenuBar1);
+        jInternalFrame2.setJMenuBar(jMenuBar1);
+
+        javax.swing.GroupLayout jInternalFrame2Layout = new javax.swing.GroupLayout(jInternalFrame2.getContentPane());
+        jInternalFrame2.getContentPane().setLayout(jInternalFrame2Layout);
+        jInternalFrame2Layout.setHorizontalGroup(
+            jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTabbedPane1)
+        );
+        jInternalFrame2Layout.setVerticalGroup(
+            jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
+        );
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2)
+            .addGap(0, 796, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2)
+            .addGap(0, 459, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
+        jTabbedPane1.setVisible(false);
+        getParent().remove(jTabbedPane1);
+        getParent().setVisible(false);
+        getParent().getParent().add(new LoginInterface());
+        getParent().remove(this);
+
+    }//GEN-LAST:event_logoutButtonActionPerformed
+
+    private void sobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sobreActionPerformed
+        JOptionPane.showMessageDialog(null, "\t\tLEMBRÉDIO\t\t\n\tDesenvolvedores:\nMatheus Brito\nRafael Alessandro\n");
+    }//GEN-LAST:event_sobreActionPerformed
 
     private void TextFieldNomeRemeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldNomeRemeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TextFieldNomeRemeActionPerformed
 
     private void ButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSalvarActionPerformed
-        File diretorio = new File("EstoqueFamarcias");
+       File diretorio = new File("EstoqueFamarcias");
         diretorio.mkdir();
-        File Estoque = new File(diretorio,nomeFarmacia + ".txt");
-
+        File Estoque = new File(diretorio,loginUser + ".txt");
+        
         try {
             FileWriter fw = new FileWriter(Estoque, true);
             if(TextFieldNomeReme.getText().length()>0 && FormattedFieldQuantReme.getText().length() > 0 && FormattedTextFieldPU.getText().length() > 0){
@@ -361,11 +329,6 @@ public class FarmaceuticoInterface extends javax.swing.JInternalFrame {
                 fw.write(FormattedTextFieldPU.getText());
                 fw.write("\r\n");
                 
-                fw.flush();
-                fw.close();
-                
-                JOptionPane.showMessageDialog(null,"Remédio Cadastrado com sucesso!");
-                
                 TextFieldNomeReme.setText("");
                 FormattedFieldQuantReme.setText("");
                 FormattedTextFieldPU.setText("");
@@ -374,54 +337,76 @@ public class FarmaceuticoInterface extends javax.swing.JInternalFrame {
                 if(TextFieldNomeReme.getText().length()<= 0){
                     JOptionPane.showMessageDialog(null,"Entre com o nome do remédio!");
                 }
-                if (FormattedFieldQuantReme.getText().length() <= 0){
-                    JOptionPane.showMessageDialog(null,"Entre com a quantidade de remédios!");
+                else if (FormattedFieldQuantReme.getText().length() <= 0){
+                     JOptionPane.showMessageDialog(null,"Entre com a quantidade de remédios!");
                 }
                 else{
-                    JOptionPane.showMessageDialog(null,"Entre com o preço!!");
+                     JOptionPane.showMessageDialog(null,"Entre com o preço!!");
                 }
             }
-          // TextFieldNomeReme.setText("");
-            //FormattedFieldQuantReme.setText("");
-           // FormattedTextFieldPU.setText("");
-
+            
         } catch (IOException ex) {
-            Logger.getLogger(FarmaceuticoInterface.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TemQueSaberCriarInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_ButtonSalvarActionPerformed
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
-    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
-        jTabbedPane1.setVisible(false);
-        getParent().remove(jTabbedPane1);
-        getParent().setVisible(false);
-        getParent().getParent().add(new LoginInterface());
-        getParent().remove(this);
-    }//GEN-LAST:event_logoutButtonActionPerformed
-
-    private void sobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sobreActionPerformed
-        JOptionPane.showMessageDialog(null, "\t\tLEMBRÉDIO\t\t\n\tDesenvolvedores:\nMatheus Brito\nRafael Alessandro\n");
-    }//GEN-LAST:event_sobreActionPerformed
 
     private void FormattedFieldQuantRemeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FormattedFieldQuantRemeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_FormattedFieldQuantRemeActionPerformed
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(TemQueSaberCriarInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(TemQueSaberCriarInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(TemQueSaberCriarInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(TemQueSaberCriarInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new TemQueSaberCriarInterface().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonSalvar;
-    private javax.swing.JTextField FormattedFieldQuantReme;
-    private javax.swing.JTextField FormattedTextFieldPU;
+    private javax.swing.JFormattedTextField FormattedFieldQuantReme;
+    private javax.swing.JFormattedTextField FormattedTextFieldPU;
     private javax.swing.JLabel LabelNomeFarma;
     private javax.swing.JTextField TextFieldNomeReme;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JInternalFrame jInternalFrame2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -437,7 +422,6 @@ public class FarmaceuticoInterface extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JMenuItem logoutButton;
     private javax.swing.JMenuItem sobre;
     // End of variables declaration//GEN-END:variables

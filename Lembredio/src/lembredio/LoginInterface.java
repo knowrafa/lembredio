@@ -222,7 +222,7 @@ public class LoginInterface extends javax.swing.JInternalFrame {
     private void EfetuarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EfetuarCadastroActionPerformed
         setVisible(false);
         try {
-            getParent().add(new CadastroInterface());
+            getParent().add(new CadastroInternal());
             getParent().remove(this);
         } catch (PropertyVetoException ex) {
             Logger.getLogger(LoginInterface.class.getName()).log(Level.SEVERE, null, ex);

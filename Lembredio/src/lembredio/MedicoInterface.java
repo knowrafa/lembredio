@@ -568,8 +568,7 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    /**
+    /*
         Pega o CRM do médico cujo abriu a interface.
     */
     public int returnCRM() throws IOException{
@@ -620,8 +619,7 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
        return -1;
        //return true;
     }
-    
-    /**
+    /*
         Na aba de visualizar usuários, ao clicar no botão de último usuário ele 
     modifica a variável 'qual' que serve para a manipulação dos usuário que serão mostrados.
     */
@@ -631,16 +629,14 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
             manageUsers();
         }// TODO add your handling code here:
     }//GEN-LAST:event_lastUserActionPerformed
-    
-    /**
+    /*
         Na aba de visualizar usuários, ao clicar no botão de próximo usuário ele 
     simplesmente invoca o método de manipular o que é mostrado na tela..
     */
     private void nextUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextUserActionPerformed
         manageUsers();
     }//GEN-LAST:event_nextUserActionPerformed
-    
-    /**
+    /*
         Ao selecionar o usuário, é mostrado qual o remédio que o médico deseja cadastrar
     para o supracitado e pré-selecionado usuário.
     
@@ -650,10 +646,10 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
         visualizarUsuariosInterface.setVisible(false);
         
     }//GEN-LAST:event_selectUserActionPerformed
-   
-    /**
+    /*
         Define as mensagens que serão mostradas na página inicial do médico.
     */
+    
     public void setMedicMessages() throws FileNotFoundException, IOException{
                 File diretorio = new File("LembretesMedicos");
          
@@ -678,8 +674,7 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
             br.close();
         
     }
-    
-    /**
+    /*
         Faz a pesquisa no arquivo em busca do usuário que foi digitado no campo de busca.
     */
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
@@ -748,8 +743,7 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
     private void horarioRemedio1RemedioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_horarioRemedio1RemedioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_horarioRemedio1RemedioActionPerformed
-    
-    /**
+    /*
         Botão referente à tela de cadastrar remédios, mostrada após selecionar o usuário.
         Salva no arquivo do usuário o remédio receitado pelo médico.
     */
@@ -773,7 +767,7 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
                     fw.write(nomeRemedio1.getText());
                     fw.write("\r\n");
 
-                    fw.write(ok);
+                    //fw.write(ok);
                     fw.write("\r\n");
                     fw.write(jComboBox21.getSelectedItem().toString());
                     fw.write("\r\n");
@@ -850,16 +844,14 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
         visualizarUsuariosInterface.setVisible(true);
         }  
     }//GEN-LAST:event_BotaoSalvar1ActionPerformed
-    
-    /**
+    /*
         Botão que retorna à tela de procura de pacientes.
     */
     private void jButtonVoltarProcurarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarProcurarPacienteActionPerformed
         cadastroRemedioInterface.setVisible(false);
        visualizarUsuariosInterface.setVisible(true);
     }//GEN-LAST:event_jButtonVoltarProcurarPacienteActionPerformed
-    
-    /**
+    /*
         Cria um lembrete que o médico digitou na tela, após clicar no botão.
     */
     private void jButtonCriarLembreteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCriarLembreteActionPerformed
@@ -881,8 +873,7 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
             Logger.getLogger(MedicoInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonCriarLembreteActionPerformed
-    
-    /**
+    /*
         Limpa da tela o que foi escrito.
     */
     private void ButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonLimparActionPerformed
@@ -902,8 +893,7 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
             System.out.println("Deu certo");
         }
     }//GEN-LAST:event_ButtonLimparActionPerformed
-    
-    /**
+    /*
         Retorna à tela de login.
     */
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
@@ -915,15 +905,13 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
  
        
     }//GEN-LAST:event_logoutButtonActionPerformed
-    
-    /**
+    /*
         Exibe os produtores & desenvolvedores do programa.
     */
     private void sobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sobreActionPerformed
         JOptionPane.showMessageDialog(null, "\t\tLEMBRÉDIO\t\t\n\tDesenvolvedores:\nMatheus Brito\nRafael Alessandro\n");
     }//GEN-LAST:event_sobreActionPerformed
-    
-    /**
+    /*
         Sem dúvidas, o mais 'belo' método que existe aqui. Ele utiliza 
     a variável 'qual' para identificar qual o último usuário visitado e procura no
     arquivo o próximo para ser exibido. Obviamente com algumas manipulações ele pega o último

@@ -25,7 +25,7 @@ import javax.swing.JInternalFrame;
  */
 public class TelaInicial extends javax.swing.JFrame {
     public LoginInterface obj = new LoginInterface();
-    public CadastroInterface obj2 = new CadastroInterface();
+    public CadastroInternal obj2 = new CadastroInternal();
         
     /**
      * Creates new form TelaInicial

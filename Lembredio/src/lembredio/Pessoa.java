@@ -13,7 +13,6 @@ public class Pessoa {
     protected String nome;
     protected Login loginInfo;
     protected String email;
-    
     public boolean verificaNome(){
         if("".equals(nome)) return false;
         if(" ".equals(nome)) return false;
@@ -21,7 +20,11 @@ public class Pessoa {
         for(int i= 0; i < nome.length(); i++){
             
             for(int k = 0; k < 10; k++)
+<<<<<<< HEAD
                 if(ary[i].equals(Integer.toString(k))) return false; 
+=======
+            if(ary[i].equals(Integer.toString(k))) return false;
+>>>>>>> 8d98cff7d21621ffd45c30f70f47c8fb0d87d4a8
             
             if("#".equals(ary[i]) || "@".equals(ary[i]) || "/".equals(ary[i])  || "!".equals(ary[i])  || "$".equals(ary[i]) || ary[i] == "%" ) return false;
         
