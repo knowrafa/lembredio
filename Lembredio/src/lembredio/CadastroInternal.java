@@ -216,9 +216,10 @@ public class CadastroInternal extends javax.swing.JInternalFrame {
                 vlogin.senha = SENHA.getText();
                 vlogin.login = loginDesejado.getText();
                 if(vlogin.type == 1) medico.setCRM(Integer.parseInt(CRM.getText()));
+                if(vlogin.type == 2) farma.setnomeFarmacia(NomeFarmacia.getText());
                 
             boolean verifica = plogin.verificaNome();
-            System.out.println(plogin.nome + "-" + plogin.email +"- "+ vlogin.login);
+            //System.out.println(plogin.nome + "-" + plogin.email +"- "+ vlogin.login);
             if(vlogin.verificaCadastro() && plogin.verificaEmail() && vlogin.type != -1 && loginDesejado.getText() != "" && verifica){
                 
                swapFile("CADASTRADOS.txt"); 
