@@ -36,7 +36,10 @@ public class Farmaceutico extends Pessoa{
         File file = new File("FarmaciasCadastradas.txt");
         FileWriter outputfile = new FileWriter(file, true);
         PrintWriter out = new PrintWriter(outputfile);
-        out.print(nomeFarmacia);
+        System.out.println(nomeFarmacia);
+        out.println(nomeFarmacia);
+        out.flush();
+        out.close();
         return false;
     }
     

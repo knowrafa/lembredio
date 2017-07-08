@@ -17,10 +17,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import static java.lang.Thread.sleep;
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.LinkedList;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -99,9 +101,11 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         scroll = new javax.swing.JScrollPane();
         jPanel6 = new javax.swing.JPanel();
         atualizarListaDeRemedios = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        scroll2 = new javax.swing.JScrollPane();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        pesquisaText = new javax.swing.JTextField();
+        okButtonSearch = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         arquivoMenu = new javax.swing.JMenu();
@@ -228,7 +232,12 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Remedios Cadastrados", jPanel4);
 
-        jButton1.setText("Ok");
+        okButtonSearch.setText("Ok");
+        okButtonSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                okButtonSearchActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Pesquisar");
 
@@ -236,27 +245,40 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(288, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap(310, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addGap(90, 90, 90))
+                .addComponent(pesquisaText, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(okButtonSearch)
+                .addGap(54, 54, 54))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(60, 60, 60)
+                .addGap(32, 32, 32)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(okButtonSearch)
+                    .addComponent(pesquisaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addContainerGap(368, Short.MAX_VALUE))
+                .addContainerGap(394, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Pesquisar Remédios", jPanel3);
+        scroll2.setViewportView(jPanel3);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(scroll2, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(scroll2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Pesquisar Remédios", jPanel5);
 
         arquivoMenu.setText("Arquivo");
 
@@ -517,6 +539,14 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
     private void sobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sobreActionPerformed
         JOptionPane.showMessageDialog(null, "\t\tLEMBRÉDIO\t\t\n\tDesenvolvedores:\nMatheus Brito\nRafael Alessandro\n");
     }//GEN-LAST:event_sobreActionPerformed
+
+    private void okButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonSearchActionPerformed
+        try {
+            search(true, pesquisaText.getText());
+        } catch (IOException ex) {
+            Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_okButtonSearchActionPerformed
     /*
         Retorna, depois de muito custo, a menor hora utilizando os valores lidos do arquivo como
     'Intervalo de horas' & Hora Inicial. Não se engane, esta implementação não foi nada fácil.
@@ -658,12 +688,130 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         horaAtual.repaint();
        
     }
+    public LinkedList<String> retornarListaDeFarmacias() throws IOException{
+        String linha;
+        LinkedList<String> farmacias = new LinkedList(); 
+        File file = new File("FarmaciasCadastradas.txt");
+        if(!file.exists()) file.createNewFile();
+        InputStream is = new FileInputStream("FarmaciasCadastradas.txt");
+        InputStreamReader isr = new InputStreamReader(is);
+        BufferedReader br = new BufferedReader(isr);
+        
+        do{
+            linha = br.readLine();
+            if(linha != null) farmacias.add(linha);
+        }while(linha != null);
+        is.close();
+        isr.close();
+        br.close();
+        return farmacias;
     
+    }
+    public void search(boolean flag, String pesquisa) throws FileNotFoundException, IOException{
+        String linha;
+        LinkedList<String> farmacias = retornarListaDeFarmacias();
+        
+        x = 50;
+        y = 50;
+        k = 175;
+         scroll2.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+         scroll2.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+         scroll2.setViewportBorder(BorderFactory.createLoweredBevelBorder());
+         scroll2.setAutoscrolls(true);
+         scroll2.setViewportView(jPanel3);
+        
+         if(flag){
+        
+             Component comps[] = jPanel3.getComponents(); // retorna todos os componentes do JPanel       
+             //System.out.println(comps.length);
+             for (int i = 0; i < comps.length; i++) { 
+             //    System.out.println(comps.length);
+             if (comps[i] instanceof JLabel) {   // verifica se é um JTextField   
+               jPanel3.remove(comps[i]);   
+          }     
+         }     
+       }
+       
+       
+      
+        for(int i=0; i < farmacias.size(); i++){  
+            linha = farmacias.get(i);
+            System.out.println(linha);
+           // File file = new File("EstoqueFarmacias/"+linha+".txt");
+           // if(!file.exists()) file.createNewFile();
+            InputStream is = new FileInputStream("EstoqueFarmacias/"+linha+".txt");
+            InputStreamReader isr = new InputStreamReader(is);
+            BufferedReader br = new BufferedReader(isr);
+            
+            do{
+                System.out.println("AQUI1");
+                linha = br.readLine();
+                System.out.println(linha + " AQUI");
+                if(linha == null) break;
+                System.out.println(linha + "  " + pesquisa);
+                if(linha.equals(pesquisa)){
+                    JLabel farmacia = new JLabel();
+                    jPanel3.add(farmacia);
+                    farmacia.setText(farmacias.get(i));
+                    farmacia.setFont(new Font("Sherif", Font.BOLD, 30));
+                    farmacia.setBounds(x, y, 200, 100);
+                    y +=50;
+                    k += 50;
+
+                    jPanel3.setPreferredSize(new Dimension(0,k));
+                    
+                    JLabel remedio= new JLabel();
+                    JLabel preco = new JLabel("Nada");
+                    JLabel quantidade = new JLabel("0");
+                    remedio.setText("Remédio: " +linha);
+                    remedio.setFont(new Font("Sherif", Font.ITALIC + Font.BOLD, 15));
+                    jPanel3.add(remedio);
+                    jPanel3.add(preco);
+                    jPanel3.add(quantidade);
+                    remedio.setBounds(x, y, 200, 100);
+
+                    remedio.setVisible(true);
+                    linha = br.readLine();
+                   
+                    if(linha==null) break;
+
+                    quantidade.setText("Quantidade: " + linha);
+                    quantidade.setBounds(x+300, y, 200, 100);
+                    quantidade.setVisible(true);
+
+                    y +=50;
+                    k += 50;
+
+                    jPanel3.setPreferredSize(new Dimension(0,k));
+
+                    linha = br.readLine();
+
+                    if(linha==null) break;
+
+                    preco.setText("Preço: " + linha);
+                    preco.setBounds(x+300, y-30, 200, 100);
+                    preco.setVisible(true);
+
+                    y+=30;
+                    k+=30;
+                    jPanel3.setPreferredSize(new Dimension(0,k));
+
+                    if(linha == null) break;
+
+                    break;
+             }else for(int b=0; b < 2; b++) br.readLine();
+                
+           }while(true);
+            is.close();
+            isr.close();
+            br.close();
+        
+        }        
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu arquivoMenu;
     private javax.swing.JButton atualizarListaDeRemedios;
     private javax.swing.JLabel horaAtual;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel2NP;
@@ -675,13 +823,16 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JMenuItem logoutButton;
     private javax.swing.JLabel nomeAlarme;
+    private javax.swing.JButton okButtonSearch;
+    private javax.swing.JTextField pesquisaText;
     private javax.swing.JLabel remainingTime;
     private javax.swing.JScrollPane scroll;
+    private javax.swing.JScrollPane scroll2;
     private javax.swing.JMenuItem sobre;
     // End of variables declaration//GEN-END:variables
 

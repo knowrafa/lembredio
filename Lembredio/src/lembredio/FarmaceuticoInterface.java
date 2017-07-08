@@ -398,7 +398,7 @@ public class FarmaceuticoInterface extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_TextFieldNomeRemeActionPerformed
 
     private void ButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSalvarActionPerformed
-        File diretorio = new File("EstoqueFamarcias");
+        File diretorio = new File("EstoqueFarmacias");
         diretorio.mkdir();
         File Estoque = new File(diretorio,nomeFarmacia + ".txt");
 
@@ -468,7 +468,7 @@ public class FarmaceuticoInterface extends javax.swing.JInternalFrame {
      jComboBox1.removeAllItems();
         InputStream is;
         try {
-            is = new FileInputStream("EstoqueFamarcias/"+nomeFarmacia+".txt");
+            is = new FileInputStream("EstoqueFarmacias/"+nomeFarmacia+".txt");
         
        InputStreamReader isr = new InputStreamReader(is);
        BufferedReader br = new BufferedReader(isr);
@@ -510,7 +510,7 @@ public class FarmaceuticoInterface extends javax.swing.JInternalFrame {
         
         InputStream is;
         try {
-            is = new FileInputStream("EstoqueFamarcias/"+nomeFarmacia+".txt");
+            is = new FileInputStream("EstoqueFarmacias/"+nomeFarmacia+".txt");
         
        InputStreamReader isr = new InputStreamReader(is);
        BufferedReader br = new BufferedReader(isr);
@@ -550,8 +550,8 @@ public class FarmaceuticoInterface extends javax.swing.JInternalFrame {
       
       
         try {
-             BufferedWriter wr = new BufferedWriter(new FileWriter("EstoqueFamarcias/"+"arqTemp.txt"));
-             BufferedReader br = new BufferedReader(new FileReader("EstoqueFamarcias/"+nomeFarmacia+".txt"));
+             BufferedWriter wr = new BufferedWriter(new FileWriter("EstoqueFarmacias/"+"arqTemp.txt"));
+             BufferedReader br = new BufferedReader(new FileReader("EstoqueFarmacias/"+nomeFarmacia+".txt"));
 
         try {
             String linha;
@@ -577,8 +577,8 @@ public class FarmaceuticoInterface extends javax.swing.JInternalFrame {
           wr.close();
           br.close();
            
-           new File("EstoqueFamarcias/"+nomeFarmacia+".txt").delete();
-           new File("EstoqueFamarcias/"+"arqTemp.txt").renameTo(new File("EstoqueFamarcias/"+nomeFarmacia+".txt")); 
+           new File("EstoqueFarmacias/"+nomeFarmacia+".txt").delete();
+           new File("EstoqueFarmacias/"+"arqTemp.txt").renameTo(new File("EstoqueFarmacias/"+nomeFarmacia+".txt")); 
             } catch (FileNotFoundException ex) {
             Logger.getLogger(FarmaceuticoInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
