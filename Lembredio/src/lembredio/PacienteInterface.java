@@ -99,6 +99,10 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         scroll = new javax.swing.JScrollPane();
         jPanel6 = new javax.swing.JPanel();
         atualizarListaDeRemedios = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         arquivoMenu = new javax.swing.JMenu();
         logoutButton = new javax.swing.JMenuItem();
@@ -223,6 +227,36 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         );
 
         jTabbedPane1.addTab("Remedios Cadastrados", jPanel4);
+
+        jButton1.setText("Ok");
+
+        jLabel3.setText("Pesquisar");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(288, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addGap(90, 90, 90))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addContainerGap(368, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Pesquisar Remédios", jPanel3);
 
         arquivoMenu.setText("Arquivo");
 
@@ -629,17 +663,21 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
     private javax.swing.JMenu arquivoMenu;
     private javax.swing.JButton atualizarListaDeRemedios;
     private javax.swing.JLabel horaAtual;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel2NP;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JMenuItem logoutButton;
     private javax.swing.JLabel nomeAlarme;
     private javax.swing.JLabel remainingTime;
