@@ -221,7 +221,7 @@ public class CadastroInterface extends javax.swing.JInternalFrame {
             boolean verifica = plogin.verificaNome();
             //System.out.println(plogin.nome + "-" + plogin.email +"- "+ vlogin.login);
             if(vlogin.verificaCadastro() && plogin.verificaEmail() && vlogin.type != -1 && loginDesejado.getText() != "" && verifica){
-                
+               farma.verificaFarmacia();
                swapFile("CADASTRADOS.txt"); 
                this.nomePessoa.setText("");
                this.email.setText("");
