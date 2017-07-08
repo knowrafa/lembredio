@@ -83,6 +83,7 @@ public class FarmaceuticoInterface extends javax.swing.JInternalFrame {
 
                             return nomefarma;
                         }
+                        for(i = 0; i < 4; i++) br.readLine();
                         break;
                     default:
                         break;
