@@ -54,11 +54,11 @@ public class Login {
        BufferedReader br = new BufferedReader(isr);
        
         try {
-            String linha = "here";
+            String linha;
             int i=0;
           
           do{
-              System.out.println(linha + "!!"); 
+            
             linha = br.readLine();
              
             if(linha == null) break;
@@ -114,12 +114,12 @@ public class Login {
        BufferedReader br = new BufferedReader(isr);
        
         try {
-            String linha = "ake";
+            String linha;
             int i =0;
           do{
-               System.out.println(linha + "!!"); 
+              
               linha = br.readLine();
-               System.out.println(linha + "!!2"); 
+              
               if(linha == null) break;
               
              
