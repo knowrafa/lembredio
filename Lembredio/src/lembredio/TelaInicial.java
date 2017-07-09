@@ -55,7 +55,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
     }
     
-    public TelaInicial(LoginInterface obj) throws PropertyVetoException{
+    public TelaInicial(LoginInterface obj) throws PropertyVetoException, IOException{
         initComponents();
         this.setLocationRelativeTo(null);
         this.obj = obj;
@@ -65,6 +65,15 @@ public class TelaInicial extends javax.swing.JFrame {
         this.obj.setMaximum(true);
         this.obj.setVisible(true);
         getContentPane().setBackground(Color.WHITE);
+        File file = new File("CADASTRADOS.txt");
+       
+       if(!file.exists()){
+        file.createNewFile();// TODO code application logic here
+       }
+       File dir = new File("CadastroRemedios");
+       if(!dir.exists()){
+           dir.mkdir();
+       }
         //setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
     

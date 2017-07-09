@@ -135,8 +135,6 @@ public class FarmaceuticoInterface extends javax.swing.JInternalFrame {
         jTextFieldQuantidade = new javax.swing.JTextField();
         jTextFieldPreço = new javax.swing.JTextField();
         jButtonAtualizarEstoque = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         logoutButton = new javax.swing.JMenuItem();
@@ -334,25 +332,6 @@ public class FarmaceuticoInterface extends javax.swing.JInternalFrame {
 
         jTabbedPane2.addTab("Ver Estoque", jPanel2);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(96, 96, 96)
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(132, 132, 132)
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
-        );
-
-        jTabbedPane2.addTab("tab3", jPanel3);
-
         jMenu2.setText("Arquivo");
 
         logoutButton.setText("Sair");
@@ -448,8 +427,8 @@ public class FarmaceuticoInterface extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
-        jTabbedPane1.setVisible(false);
-        getParent().remove(jTabbedPane1);
+        jTabbedPane2.setVisible(false);
+        getParent().remove(jTabbedPane2);
         getParent().setVisible(false);
         getParent().getParent().add(new LoginInterface());
         getParent().remove(this);
@@ -613,8 +592,6 @@ public class FarmaceuticoInterface extends javax.swing.JInternalFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextField jTextFieldPreço;
     private javax.swing.JTextField jTextFieldQuantidade;
