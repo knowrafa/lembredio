@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -213,8 +214,8 @@ public class CadastroInterface extends javax.swing.JInternalFrame {
             
                 plogin.nome = nomePessoa.getText();
                 plogin.email = email.getText();
-                vlogin.senha = SENHA.getText();
-                vlogin.login = loginDesejado.getText();
+                vlogin.setSenha(SENHA.getText());
+                vlogin.setLogin(loginDesejado.getText());
                 if(vlogin.type == 1) medico.setCRM(Integer.parseInt(CRM.getText()));
                 if(vlogin.type == 2) farma.setnomeFarmacia(NomeFarmacia.getText());
                 
@@ -245,6 +246,8 @@ public class CadastroInterface extends javax.swing.JInternalFrame {
             else
                     JOptionPane.showMessageDialog(null,  "E-mail já existe\nTente novamente!");// TODO add your handling code here:
         } catch (IOException ex) {
+            Logger.getLogger(CadastroInterface.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(CadastroInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
 

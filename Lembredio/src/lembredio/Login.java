@@ -12,6 +12,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,12 +27,15 @@ public class Login {
     String senha;
     int type;
     Pessoa pessoa = new Pessoa();
-    
+
    public void setLogin(String login){
        this.login = login;
    } 
-   public void setSenha(String senha){
-       this.senha = senha;
+   public void setSenha(String senha) throws NoSuchAlgorithmException{
+       String s = senha;
+       MessageDigest m=MessageDigest.getInstance("MD5");
+       m.update(s.getBytes(),0,s.length());
+       this.senha = new BigInteger(1,m.digest()).toString(16);
    }
    public String getLogin(){
        return this.login;
@@ -48,11 +54,13 @@ public class Login {
        BufferedReader br = new BufferedReader(isr);
        
         try {
-            String linha;
+            String linha = "here";
             int i=0;
           
           do{
+              System.out.println(linha + "!!"); 
             linha = br.readLine();
+             
             if(linha == null) break;
           
                 switch (Integer.parseInt(linha)) {
@@ -106,12 +114,12 @@ public class Login {
        BufferedReader br = new BufferedReader(isr);
        
         try {
-            String linha;
+            String linha = "ake";
             int i =0;
           do{
-            
+               System.out.println(linha + "!!"); 
               linha = br.readLine();
-              
+               System.out.println(linha + "!!2"); 
               if(linha == null) break;
               
              
