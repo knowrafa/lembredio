@@ -2,6 +2,18 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/home/elrafa/NetBeansProjects/lembredio/Lembredio/src/lembredio/Login.java</file>
+            <file>file:/home/elrafa/NetBeansProjects/lembredio/Lembredio/src/lembredio/FarmaceuticoInterface.java</file>
+            <file>file:/home/elrafa/NetBeansProjects/lembredio/Lembredio/src/lembredio/Pessoa.java</file>
+            <file>file:/home/elrafa/NetBeansProjects/lembredio/Lembredio/src/lembredio/Farmaceutico.java</file>
+            <file>file:/home/elrafa/NetBeansProjects/lembredio/Lembredio/src/lembredio/MedicoInterface.java</file>
+            <file>file:/home/elrafa/NetBeansProjects/lembredio/Lembredio/src/lembredio/Lembredio.java</file>
+            <file>file:/home/elrafa/NetBeansProjects/lembredio/Lembredio/src/lembredio/PacienteInterface.java</file>
+            <file>file:/home/elrafa/NetBeansProjects/lembredio/Lembredio/src/lembredio/LoginInterface.java</file>
+            <file>file:/home/elrafa/NetBeansProjects/lembredio/Lembredio/src/lembredio/TelaInicial.java</file>
+            <file>file:/home/elrafa/NetBeansProjects/lembredio/Lembredio/src/lembredio/CadastroInterface.java</file>
+            <file>file:/home/elrafa/NetBeansProjects/lembredio/Lembredio/src/lembredio/Audio.java</file>
+        </group>
     </open-files>
 </project-private>
