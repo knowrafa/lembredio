@@ -96,8 +96,6 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
         userLogin4Medic = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         userEmail4Medic = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        userAge4Medic = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         selectUser = new javax.swing.JButton();
         nextUser = new javax.swing.JButton();
@@ -226,10 +224,6 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
 
         userEmail4Medic.setText("emailPaciente");
 
-        jLabel9.setText("Idade:");
-
-        userAge4Medic.setText("Idadepaciente");
-
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user_image.jpg"))); // NOI18N
 
         selectUser.setText("Selecionar Usuário");
@@ -247,17 +241,14 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
                 .addGap(32, 32, 32)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel3))
+                        .addComponent(jLabel3)
                         .addGap(34, 34, 34)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(userName4Medic, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(userAge4Medic)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(selectUser)
                                 .addContainerGap())))
                     .addGroup(jPanel6Layout.createSequentialGroup()
@@ -291,11 +282,7 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
                     .addComponent(jLabel3)
                     .addComponent(userName4Medic))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(userAge4Medic)
-                        .addComponent(selectUser)))
+                .addComponent(selectUser)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1000,7 +987,6 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -1017,7 +1003,6 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
     private javax.swing.JButton selectUser;
     private javax.swing.JMenuItem sobre;
     private javax.swing.JPanel telaInicialMedico;
-    private javax.swing.JLabel userAge4Medic;
     private javax.swing.JLabel userEmail4Medic;
     private javax.swing.JLabel userLogin4Medic;
     private javax.swing.JLabel userName4Medic;
