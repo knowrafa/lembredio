@@ -408,7 +408,7 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
 
         jLabel17.setText("Intervalo:");
 
-        jComboBox21.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 vez ao dia", "3 em 3 horas", "4 em 4 horas", "6 em 6 horas", "8 em 8 horas", "12 em 12 horas", "1 vez ao dia" }));
+        jComboBox21.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "4 em 4 horas", "6 em 6 horas", "8 em 8 horas", "12 em 12 horas", "1 vez ao dia" }));
 
         jButtonVoltarProcurarPaciente.setText("Voltar");
         jButtonVoltarProcurarPaciente.addActionListener(new java.awt.event.ActionListener() {
@@ -559,11 +559,11 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(abasInterfaceMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 670, Short.MAX_VALUE)
+            .addComponent(abasInterfaceMedico)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(abasInterfaceMedico, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 550, Short.MAX_VALUE)
+            .addComponent(abasInterfaceMedico, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
         );
 
         pack();
@@ -651,8 +651,8 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
     */
     
     public void setMedicMessages() throws FileNotFoundException, IOException{
-                File diretorio = new File("LembretesMedicos");
-         
+        File diretorio = new File("LembretesMedicos");
+        if(!diretorio.exists()) diretorio.mkdir();
         File Recados = new File(diretorio,nomeMedico.getText() + ".txt");
         if(!Recados.exists()) try {
             Recados.createNewFile();
@@ -767,7 +767,7 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
                     fw.write(nomeRemedio1.getText());
                     fw.write("\r\n");
 
-                    //fw.write(ok);
+                    fw.write(ok);
                     fw.write("\r\n");
                     fw.write(jComboBox21.getSelectedItem().toString());
                     fw.write("\r\n");
