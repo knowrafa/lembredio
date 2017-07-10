@@ -107,6 +107,23 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         pesquisaText = new javax.swing.JTextField();
         okButtonSearch = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        cadastroRemedioInterface = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        nomeRemedio1 = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        CheckDomingo1 = new javax.swing.JCheckBox();
+        CheckSegunda1 = new javax.swing.JCheckBox();
+        CheckTerça1 = new javax.swing.JCheckBox();
+        CheckQuinta1 = new javax.swing.JCheckBox();
+        CheckSexta1 = new javax.swing.JCheckBox();
+        CheckSabado1 = new javax.swing.JCheckBox();
+        CheckQuarta1 = new javax.swing.JCheckBox();
+        CheckTDS1 = new javax.swing.JCheckBox();
+        horarioRemedio1 = new javax.swing.JFormattedTextField();
+        BotaoSalvar1 = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
+        jComboBox21 = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         arquivoMenu = new javax.swing.JMenu();
         logoutButton = new javax.swing.JMenuItem();
@@ -188,7 +205,7 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
                     .addComponent(horaAtual, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Avisos", jPanel1);
@@ -214,7 +231,7 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(atualizarListaDeRemedios, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(418, Short.MAX_VALUE))
+                .addContainerGap(422, Short.MAX_VALUE))
         );
 
         scroll.setViewportView(jPanel6);
@@ -227,7 +244,7 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
+            .addComponent(scroll)
         );
 
         jTabbedPane1.addTab("Remedios Cadastrados", jPanel4);
@@ -262,7 +279,7 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
                     .addComponent(okButtonSearch)
                     .addComponent(pesquisaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addContainerGap(394, Short.MAX_VALUE))
+                .addContainerGap(419, Short.MAX_VALUE))
         );
 
         scroll2.setViewportView(jPanel3);
@@ -275,10 +292,143 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scroll2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
+            .addComponent(scroll2, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         jTabbedPane1.addTab("Pesquisar Remédios", jPanel5);
+
+        cadastroRemedioInterface.setPreferredSize(new java.awt.Dimension(665, 544));
+
+        jLabel14.setText(" Remédios :");
+
+        jLabel15.setText("Horarios :");
+
+        jLabel16.setText("Dias da Semana :");
+
+        CheckDomingo1.setText("Domingo");
+
+        CheckSegunda1.setText("Segunda - feira");
+
+        CheckTerça1.setText("Terça - feira");
+
+        CheckQuinta1.setText("Quinta - feira");
+
+        CheckSexta1.setText("Sexta - feira");
+
+        CheckSabado1.setText("Sábado");
+
+        CheckQuarta1.setText("Quarta - feira");
+
+        CheckTDS1.setText("Todos os dias da semana");
+
+        try {
+            horarioRemedio1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        horarioRemedio1.setToolTipText("");
+        horarioRemedio1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                horarioRemedio1RemedioActionPerformed(evt);
+            }
+        });
+
+        BotaoSalvar1.setText("Salvar");
+        BotaoSalvar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotaoSalvar1ActionPerformed(evt);
+            }
+        });
+
+        jLabel17.setText("Intervalo:");
+
+        jComboBox21.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "4 em 4 horas", "6 em 6 horas", "8 em 8 horas", "12 em 12 horas", "1 vez ao dia" }));
+
+        javax.swing.GroupLayout cadastroRemedioInterfaceLayout = new javax.swing.GroupLayout(cadastroRemedioInterface);
+        cadastroRemedioInterface.setLayout(cadastroRemedioInterfaceLayout);
+        cadastroRemedioInterfaceLayout.setHorizontalGroup(
+            cadastroRemedioInterfaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cadastroRemedioInterfaceLayout.createSequentialGroup()
+                .addGroup(cadastroRemedioInterfaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(cadastroRemedioInterfaceLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(cadastroRemedioInterfaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, cadastroRemedioInterfaceLayout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addGap(124, 124, 124)
+                                .addComponent(nomeRemedio1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(cadastroRemedioInterfaceLayout.createSequentialGroup()
+                                .addGroup(cadastroRemedioInterfaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel15)
+                                    .addComponent(jLabel17))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(cadastroRemedioInterfaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(horarioRemedio1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(cadastroRemedioInterfaceLayout.createSequentialGroup()
+                                        .addGap(36, 36, 36)
+                                        .addComponent(jComboBox21, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(cadastroRemedioInterfaceLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(cadastroRemedioInterfaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(cadastroRemedioInterfaceLayout.createSequentialGroup()
+                                .addGroup(cadastroRemedioInterfaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(CheckDomingo1)
+                                    .addComponent(jLabel16))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(CheckSegunda1)
+                                .addGap(18, 18, 18)
+                                .addComponent(CheckTerça1)
+                                .addGap(18, 18, 18)
+                                .addComponent(CheckQuarta1))
+                            .addGroup(cadastroRemedioInterfaceLayout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addComponent(CheckQuinta1)
+                                .addGap(18, 18, 18)
+                                .addComponent(CheckSexta1)
+                                .addGap(18, 18, 18)
+                                .addComponent(CheckSabado1)
+                                .addGap(18, 18, 18)
+                                .addComponent(CheckTDS1))))
+                    .addGroup(cadastroRemedioInterfaceLayout.createSequentialGroup()
+                        .addGap(433, 433, 433)
+                        .addComponent(BotaoSalvar1)))
+                .addContainerGap(66, Short.MAX_VALUE))
+        );
+        cadastroRemedioInterfaceLayout.setVerticalGroup(
+            cadastroRemedioInterfaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cadastroRemedioInterfaceLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addGroup(cadastroRemedioInterfaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(nomeRemedio1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addGroup(cadastroRemedioInterfaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(horarioRemedio1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(44, 44, 44)
+                .addGroup(cadastroRemedioInterfaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(jComboBox21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(69, 69, 69)
+                .addComponent(jLabel16)
+                .addGap(35, 35, 35)
+                .addGroup(cadastroRemedioInterfaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckDomingo1)
+                    .addComponent(CheckSegunda1)
+                    .addComponent(CheckTerça1)
+                    .addComponent(CheckQuarta1))
+                .addGap(18, 18, 18)
+                .addGroup(cadastroRemedioInterfaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckQuinta1)
+                    .addComponent(CheckSexta1)
+                    .addComponent(CheckSabado1)
+                    .addComponent(CheckTDS1))
+                .addGap(29, 29, 29)
+                .addComponent(BotaoSalvar1)
+                .addContainerGap(36, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Cadastrar Remédios", cadastroRemedioInterface);
 
         arquivoMenu.setText("Arquivo");
 
@@ -310,11 +460,11 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 654, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
         );
 
         pack();
@@ -523,7 +673,7 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
             Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_atualizarListaDeRemediosActionPerformed
-    /*
+    /**
         Volta para a tela de Login.
     */
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
@@ -533,7 +683,7 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         getParent().getParent().add(new LoginInterface());
        
     }//GEN-LAST:event_logoutButtonActionPerformed
-    /*
+    /**
         Exibe os produtores & desenvolvedores do programa.
     */
     private void sobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sobreActionPerformed
@@ -547,6 +697,106 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
             Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_okButtonSearchActionPerformed
+
+    private void horarioRemedio1RemedioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_horarioRemedio1RemedioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_horarioRemedio1RemedioActionPerformed
+
+    private void BotaoSalvar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoSalvar1ActionPerformed
+        File diretorio = new File("CadastroRemedios");
+        if(!diretorio.exists()) diretorio.mkdir();
+        File Remedios = new File(diretorio,nomeUser + ".txt");
+        String ok = (horarioRemedio1.getText());
+        String horas[] = new String[2];
+        horas = ok.split(Pattern.quote(":"));
+        if(Integer.parseInt(horas[0]) > 24 || Integer.parseInt(horas[0]) < 0 && Integer.parseInt(horas[1]) < 0 || Integer.parseInt(horas[1]) > 59){
+            JOptionPane.showMessageDialog(null,"Horario inválido!!");
+            System.out.println("Horas "+horas[0]+"minutos "+horas[1]);
+        }
+        else{
+            try {
+                FileWriter fw = new FileWriter(Remedios, true);
+                if(nomeRemedio1.getText().length() > 0 && CheckDomingo1.isSelected()||CheckSegunda1.isSelected()||CheckTerça1.isSelected()||CheckQuarta1.isSelected()||CheckQuinta1.isSelected()||CheckSexta1.isSelected()||CheckSabado1.isSelected()||CheckTDS1.isSelected()){
+                    fw.write(nomeUser);
+                    fw.write("\r\n");
+                    fw.write(nomeRemedio1.getText());
+                    fw.write("\r\n");
+
+                    fw.write(ok);
+                    fw.write("\r\n");
+                    fw.write(jComboBox21.getSelectedItem().toString());
+                    fw.write("\r\n");
+                    if(CheckDomingo1.isSelected()){
+                        fw.write("1");
+                        fw.write("\r\n");
+                    }
+                    if(CheckSegunda1.isSelected()){
+                        fw.write("2");
+                        fw.write("\r\n");
+                    }
+                    if(CheckTerça1.isSelected()){
+                        fw.write("3");
+                        fw.write("\r\n");
+                    }
+                    if(CheckQuarta1.isSelected()){
+                        fw.write("4");
+                        fw.write("\r\n");
+                    }
+                    if(CheckQuinta1.isSelected()){
+                        fw.write("5");
+                        fw.write("\r\n");
+                    }
+                    if(CheckSexta1.isSelected()){
+                        fw.write("6");
+                        fw.write("\r\n");
+                    }
+                    if(CheckSabado1.isSelected()){
+                        fw.write("7");
+                        fw.write("\r\n");
+                    }
+                    if(CheckTDS1.isSelected()){
+                        fw.write("1");
+                        fw.write("\r\n");
+                        fw.write("2");
+                        fw.write("\r\n");
+                        fw.write("3");
+                        fw.write("\r\n");
+                        fw.write("4");
+                        fw.write("\r\n");
+                        fw.write("5");
+                        fw.write("\r\n");
+                        fw.write("6");
+                        fw.write("\r\n");
+                        fw.write("7");
+                        fw.write("\r\n");
+
+                    }
+                    JOptionPane.showMessageDialog(null,"Remédio Cadastrado com sucesso!");
+
+                    nomeRemedio1.setText("");
+                    horarioRemedio1.setText("");
+                    CheckDomingo1.setSelected(false);
+                    CheckDomingo1.setSelected(false);
+                    CheckTerça1.setSelected(false);
+                    CheckQuarta1.setSelected(false);
+                    CheckQuinta1.setSelected(false);
+                    CheckSexta1.setSelected(false);
+                    CheckSabado1.setSelected(false);
+                    CheckTDS1.setSelected(false);
+
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"Preencha todos os dados");
+                }
+                fw.flush();
+                fw.close();
+
+            } catch (IOException ex) {
+                Logger.getLogger(PacienteInterface.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+    }//GEN-LAST:event_BotaoSalvar1ActionPerformed
     /*
         Retorna, depois de muito custo, a menor hora utilizando os valores lidos do arquivo como
     'Intervalo de horas' & Hora Inicial. Não se engane, esta implementação não foi nada fácil.
@@ -708,7 +958,9 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         return farmacias;
     
     }
-    
+    /**
+     * Procura os Remédios nas farmácias cadastradas.
+     */
     public void search(boolean flag, String pesquisa) throws FileNotFoundException, IOException{
         String linha;
         LinkedList<String> farmacias = retornarListaDeFarmacias();
@@ -756,7 +1008,7 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
                     jPanel3.add(farmacia);
                     farmacia.setText(farmacias.get(i));
                     farmacia.setFont(new Font("Sherif", Font.BOLD, 30));
-                    farmacia.setBounds(x, y, 200, 100);
+                    farmacia.setBounds(x, y, 1000, 100);
                     y +=50;
                     k += 50;
 
@@ -770,7 +1022,7 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
                     jPanel3.add(remedio);
                     jPanel3.add(preco);
                     jPanel3.add(quantidade);
-                    remedio.setBounds(x, y, 200, 100);
+                    remedio.setBounds(x, y, 1000, 100);
 
                     remedio.setVisible(true);
                     linha = br.readLine();
@@ -811,10 +1063,26 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         }        
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotaoSalvar1;
+    private javax.swing.JCheckBox CheckDomingo1;
+    private javax.swing.JCheckBox CheckQuarta1;
+    private javax.swing.JCheckBox CheckQuinta1;
+    private javax.swing.JCheckBox CheckSabado1;
+    private javax.swing.JCheckBox CheckSegunda1;
+    private javax.swing.JCheckBox CheckSexta1;
+    private javax.swing.JCheckBox CheckTDS1;
+    private javax.swing.JCheckBox CheckTerça1;
     private javax.swing.JMenu arquivoMenu;
     private javax.swing.JButton atualizarListaDeRemedios;
+    private javax.swing.JPanel cadastroRemedioInterface;
     private javax.swing.JLabel horaAtual;
+    private javax.swing.JFormattedTextField horarioRemedio1;
+    private javax.swing.JComboBox<String> jComboBox21;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel2NP;
     private javax.swing.JLabel jLabel3;
@@ -830,6 +1098,7 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JMenuItem logoutButton;
     private javax.swing.JLabel nomeAlarme;
+    private javax.swing.JTextField nomeRemedio1;
     private javax.swing.JButton okButtonSearch;
     private javax.swing.JTextField pesquisaText;
     private javax.swing.JLabel remainingTime;
