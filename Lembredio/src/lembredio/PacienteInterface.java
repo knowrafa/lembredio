@@ -737,8 +737,8 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         for(int i=0; i < farmacias.size(); i++){  
             linha = farmacias.get(i);
             System.out.println(linha);
-           // File file = new File("EstoqueFarmacias/"+linha+".txt");
-           // if(!file.exists()) file.createNewFile();
+            File file = new File("EstoqueFarmacias/"+linha+".txt");
+            if(!file.exists()) file.createNewFile();
             InputStream is = new FileInputStream("EstoqueFarmacias/"+linha+".txt");
             InputStreamReader isr = new InputStreamReader(is);
             BufferedReader br = new BufferedReader(isr);

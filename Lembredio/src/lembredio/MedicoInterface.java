@@ -749,7 +749,7 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
     */
     private void BotaoSalvar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoSalvar1ActionPerformed
         File diretorio = new File("CadastroRemedios");
-        diretorio.mkdir();
+        if(!diretorio.exists()) diretorio.mkdir();
         File Remedios = new File(diretorio,loginUser + ".txt");
         String ok = (horarioRemedio1.getText());
         String horas[] = new String[2];

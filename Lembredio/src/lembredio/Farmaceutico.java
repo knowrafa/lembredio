@@ -23,6 +23,8 @@ public class Farmaceutico extends Pessoa{
     private String nomeFarmacia;
     
     public boolean verificaFarmacia() throws FileNotFoundException, IOException{
+        File file = new File("FarmaciasCadastradas.txt");
+        if(!file.exists()) file.createNewFile();
         InputStream is = new FileInputStream("FarmaciasCadastradas" +".txt");
         InputStreamReader isr = new InputStreamReader(is);
         BufferedReader br = new BufferedReader(isr);
@@ -33,7 +35,6 @@ public class Farmaceutico extends Pessoa{
             if(linha.equals(nomeFarmacia)) return true;
             
         }while(linha != null);
-        File file = new File("FarmaciasCadastradas.txt");
         FileWriter outputfile = new FileWriter(file, true);
         PrintWriter out = new PrintWriter(outputfile);
         System.out.println(nomeFarmacia);
