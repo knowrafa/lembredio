@@ -938,7 +938,7 @@ public class MedicoInterface extends javax.swing.JInternalFrame {
                      for(i=0; i< 5; i++) br.readLine();
                  }
                  else{
-                     for(i=0; i< 4; i++) br.readLine();
+                     for(i=0; i< 5; i++) br.readLine();
                  }
                     
                 

@@ -1,6 +1,0 @@
-paciente
-REMEDIO1
-22:22
-4 em 4 horas
-3
-4

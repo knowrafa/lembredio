@@ -1,9 +1,0 @@
-Remedio1
-32
-45,50
-Remedio2
-50
-50,50
-Remedio3
-56
-78,90
