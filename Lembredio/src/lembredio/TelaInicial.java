@@ -151,6 +151,14 @@ public class TelaInicial extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
+              File file = new File("CADASTRADOS.txt");
+              if(!file.exists()){
+               file.createNewFile();// TODO code application logic here
+              }
+              File dir = new File("CadastroRemedios");
+              if(!dir.exists()){
+                  dir.mkdir();
+              }
                     new TelaInicial().setVisible(true);
                 } catch (PropertyVetoException ex) {
                     Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);

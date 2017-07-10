@@ -287,7 +287,8 @@ public class CadastroInterface extends javax.swing.JInternalFrame {
     }
     
     public void swapFile(String file1) throws FileNotFoundException, IOException{
-                
+                File file = new File(file1);
+                if(!file.exists()) file.createNewFile();
                 FileWriter outputfile = new FileWriter(file1, true);
                 PrintWriter out = new PrintWriter(outputfile);
 
