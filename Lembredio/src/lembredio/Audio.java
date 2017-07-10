@@ -23,14 +23,20 @@ import sun.applet.Main;
  * @author elrafa
  */
 public class Audio {
+    AudioClip  audio;
     public void playAudio(int tempo, boolean flag) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException{
         Clip clip = AudioSystem.getClip();
         URL url = getClass().getResource("/audio/smb_die.wav");
         URL urlToHot = this.getClass().getResource("/audio/smb_die.wav");
         System.out.println(urlToHot);
-        AudioClip  audio = Applet.newAudioClip(url);
+        this.audio = Applet.newAudioClip(url);
         if(flag) audio.loop();
         else audio.stop();
+        
+    }
+    
+    public void stopAudio(){
+        audio.stop();
         
     }
 }

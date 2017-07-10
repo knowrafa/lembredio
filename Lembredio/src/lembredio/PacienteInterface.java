@@ -352,8 +352,8 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
             try {
                 audio.playAudio(10, true);
                 
-                JOptionPane.showMessageDialog(null,"ALARME!!\nALARME!!");
-                audio.playAudio(10,false);
+               JOptionPane.showMessageDialog(null,"ALARME!!\nALARME!!");
+               audio.stopAudio();
                 
                compararHora();
                sleep((30)*1000);
@@ -688,6 +688,7 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         horaAtual.repaint();
        
     }
+    
     public LinkedList<String> retornarListaDeFarmacias() throws IOException{
         String linha;
         LinkedList<String> farmacias = new LinkedList(); 
@@ -707,6 +708,7 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
         return farmacias;
     
     }
+    
     public void search(boolean flag, String pesquisa) throws FileNotFoundException, IOException{
         String linha;
         LinkedList<String> farmacias = retornarListaDeFarmacias();
