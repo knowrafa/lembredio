@@ -640,7 +640,7 @@ public class PacienteInterface extends javax.swing.JInternalFrame {
                     JLabel remedio2= new JLabel(linha);
                      
                     jPanel6.add(remedio2);
-                     remedio2.setBounds(x+125, y,100, 100);
+                     remedio2.setBounds(x+125, y,400, 100);
                      remedio2.setVisible(true);
                      //remedio2.setFont(font);
                      y += 30;

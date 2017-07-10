@@ -141,6 +141,8 @@ public class FarmaceuticoInterface extends javax.swing.JInternalFrame {
         jMenu1 = new javax.swing.JMenu();
         sobre = new javax.swing.JMenuItem();
 
+        setPreferredSize(new java.awt.Dimension(665, 545));
+
         jLabel5.setText("Farmacêutico(a) :");
 
         LabelNomeFarma.setText("Nome Farmacêutico(a)");
@@ -208,7 +210,7 @@ public class FarmaceuticoInterface extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(FormattedFieldQuantReme, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(ButtonSalvar)
@@ -287,9 +289,9 @@ public class FarmaceuticoInterface extends javax.swing.JInternalFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addComponent(jButtonSelecionar)
-                        .addGap(107, 107, 107)
+                        .addGap(38, 38, 38)
                         .addComponent(ButtonAtualizarMed)
-                        .addGap(107, 107, 107)
+                        .addGap(50, 50, 50)
                         .addComponent(jButtonAtualizarEstoque))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
@@ -305,7 +307,7 @@ public class FarmaceuticoInterface extends javax.swing.JInternalFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextFieldQuantidade)
                             .addComponent(jTextFieldPreço, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -362,11 +364,13 @@ public class FarmaceuticoInterface extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
+            .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
